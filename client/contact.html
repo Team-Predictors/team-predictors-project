@@ -21,6 +21,9 @@
         .bg-dark-green {
             background-color: #0f603c;
         }
+        .contact-box {
+            background: linear-gradient(135deg, #0f603c 0%, #15803d 100%);
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col relative">
@@ -57,80 +60,91 @@
     <!-- MAIN CONTENT -->
     <main class="flex-grow px-4 lg:px-16 pt-12 pb-24 z-10 flex justify-center items-center">
         
-        <div class="w-full max-w-[1200px] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
+        <div class="w-full max-w-[1100px] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
             
-            <!-- Left Side (Big Photo) -->
-            <div class="w-full lg:w-1/2 relative h-64 lg:h-auto">
-                <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                     alt="Contact Us" 
-                     class="absolute inset-0 w-full h-full object-cover">
-                <!-- Soft Green Gradient Overlay -->
-                <div class="absolute inset-0 bg-gradient-to-r from-green-900/60 to-transparent"></div>
-                <div class="absolute bottom-10 left-10 text-white">
-                    <h3 class="text-3xl font-extrabold mb-2 drop-shadow-md">We are here to help</h3>
-                    <p class="text-sm font-medium opacity-90 max-w-sm drop-shadow-md">Reach out to us for any queries related to land acquisition processes, our AI models, or collaboration.</p>
+            <!-- Left Side (Contact Info) -->
+            <div class="w-full lg:w-2/5 contact-box text-white p-10 lg:p-14 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-4xl font-extrabold mb-4 tracking-tight">Get in Touch</h2>
+                    <p class="text-green-50 text-sm leading-relaxed mb-12 opacity-90">
+                        Have questions about how INFRA GATI can streamline your land acquisition process? We'd love to hear from you.
+                    </p>
+
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <i class="fa-solid fa-location-dot text-xl mt-1 text-green-300"></i>
+                            <div>
+                                <h4 class="font-bold mb-1">Our Office</h4>
+                                <p class="text-sm text-green-50 opacity-90">123 Smart City Tech Park,<br>New Delhi, India 110001</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <i class="fa-solid fa-phone text-xl mt-1 text-green-300"></i>
+                            <div>
+                                <h4 class="font-bold mb-1">Call Us</h4>
+                                <p class="text-sm text-green-50 opacity-90">+91 98765 43210</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <i class="fa-solid fa-envelope text-xl mt-1 text-green-300"></i>
+                            <div>
+                                <h4 class="font-bold mb-1">Email Us</h4>
+                                <p class="text-sm text-green-50 opacity-90">support@infragati.in</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex gap-4 mt-16">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <i class="fa-brands fa-twitter text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <i class="fa-brands fa-linkedin-in text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <i class="fa-brands fa-github text-lg"></i>
+                    </a>
                 </div>
             </div>
 
-            <!-- Right Side (Form & Info) -->
-            <div class="w-full lg:w-1/2 p-10 lg:p-14 bg-white flex flex-col justify-center">
+            <!-- Right Side (Contact Form) -->
+            <div class="w-full lg:w-3/5 p-10 lg:p-14 bg-white">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8">Send us a message</h3>
                 
-                <h2 class="text-4xl font-extrabold text-gray-900 mb-2">Get in Touch</h2>
-                <p class="text-gray-500 mb-8 font-medium">Send us a message and we'll respond as soon as possible.</p>
-                
-                <form action="#" class="space-y-5">
+                <form action="#" class="space-y-6">
                     <!-- Name & Email Row -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Full Name</label>
-                            <input type="text" placeholder="John Doe" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-green-600 focus:border-green-600 block p-3.5 outline-none transition-colors font-medium">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+                            <input type="text" placeholder="John Doe" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-green-600 focus:border-green-600 block p-3.5 outline-none transition-colors">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Email Address</label>
-                            <input type="email" placeholder="john@example.com" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-green-600 focus:border-green-600 block p-3.5 outline-none transition-colors font-medium">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                            <input type="email" placeholder="john@example.com" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-green-600 focus:border-green-600 block p-3.5 outline-none transition-colors">
                         </div>
                     </div>
 
                     <!-- Subject -->
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1.5">Subject</label>
-                        <input type="text" placeholder="How can we help?" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-green-600 focus:border-green-600 block p-3.5 outline-none transition-colors font-medium">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
+                        <input type="text" placeholder="How can we help?" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-green-600 focus:border-green-600 block p-3.5 outline-none transition-colors">
                     </div>
 
                     <!-- Message -->
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1.5">Message</label>
-                        <textarea rows="4" placeholder="Write your message here..." class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-green-600 focus:border-green-600 block p-3.5 outline-none transition-colors resize-none font-medium"></textarea>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Message</label>
+                        <textarea rows="4" placeholder="Write your message here..." class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-green-600 focus:border-green-600 block p-3.5 outline-none transition-colors resize-none"></textarea>
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="w-full px-8 py-4 bg-[#0f603c] hover:bg-green-800 text-white font-bold rounded-xl text-sm transition-colors shadow-lg mt-2">
+                    <button type="submit" class="w-full lg:w-auto px-8 py-3.5 bg-[#0f603c] hover:bg-green-800 text-white font-bold rounded-xl text-sm transition-colors shadow-md">
                         Send Message
                     </button>
                 </form>
-
-                <!-- Quick Contact Info at bottom -->
-                <div class="mt-10 pt-8 border-t border-gray-100 flex flex-col sm:flex-row gap-6 justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-dark-green">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Email</p>
-                            <p class="text-sm font-bold text-gray-900">support@infragati.in</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-dark-green">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Phone</p>
-                            <p class="text-sm font-bold text-gray-900">+91 98765 43210</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
         </div>
@@ -139,6 +153,7 @@
 
     <!-- Wavy Bottom Graphic & Footer line -->
     <div class="absolute bottom-0 w-full h-32 bg-gradient-to-t from-green-100/30 to-transparent z-0 pointer-events-none">
+        <!-- Footer simple text -->
         <div class="absolute bottom-6 left-8 lg:left-16 flex items-center gap-4 z-10">
             <div class="h-0.5 w-8 bg-dark-green"></div>
             <p class="text-[10px] font-bold tracking-widest text-gray-600 uppercase">Smart Infrastructure | Stronger India</p>
