@@ -21,9 +21,6 @@
         .bg-dark-green {
             background-color: #0f603c;
         }
-        .contact-box {
-            background: linear-gradient(135deg, #0f603c 0%, #15803d 100%);
-        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col relative">
@@ -58,93 +55,82 @@
     </nav>
 
     <!-- MAIN CONTENT -->
-    <main class="flex-grow px-4 lg:px-16 pt-12 pb-24 z-10 flex justify-center items-center">
+    <main class="flex-grow px-4 lg:px-10 pt-10 pb-20 z-10 flex justify-center items-center">
         
-        <div class="w-full max-w-[1100px] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
+        <!-- 3-Column Layout Container -->
+        <div class="w-full max-w-[1300px] bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
             
-            <!-- Left Side (Contact Info) -->
-            <div class="w-full lg:w-2/5 contact-box text-white p-10 lg:p-14 flex flex-col justify-between">
-                <div>
-                    <h2 class="text-4xl font-extrabold mb-4 tracking-tight">Get in Touch</h2>
-                    <p class="text-green-50 text-sm leading-relaxed mb-12 opacity-90">
-                        Have questions about how INFRA GATI can streamline your land acquisition process? We'd love to hear from you.
-                    </p>
-
-                    <div class="space-y-8">
-                        <div class="flex items-start gap-4">
-                            <i class="fa-solid fa-location-dot text-xl mt-1 text-green-300"></i>
-                            <div>
-                                <h4 class="font-bold mb-1">Our Office</h4>
-                                <p class="text-sm text-green-50 opacity-90">123 Smart City Tech Park,<br>New Delhi, India 110001</p>
-                            </div>
+            <!-- LEFT COLUMN: Contact Info -->
+            <div class="w-full lg:w-[25%] bg-green-50/50 p-8 flex flex-col justify-center border-r border-gray-100">
+                <h3 class="text-xl font-extrabold text-gray-900 mb-8">Get in Touch</h3>
+                
+                <div class="space-y-8">
+                    <!-- Address -->
+                    <div class="flex flex-col gap-2">
+                        <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-dark-green">
+                            <i class="fa-solid fa-location-dot"></i>
                         </div>
-
-                        <div class="flex items-start gap-4">
-                            <i class="fa-solid fa-phone text-xl mt-1 text-green-300"></i>
-                            <div>
-                                <h4 class="font-bold mb-1">Call Us</h4>
-                                <p class="text-sm text-green-50 opacity-90">+91 98765 43210</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <i class="fa-solid fa-envelope text-xl mt-1 text-green-300"></i>
-                            <div>
-                                <h4 class="font-bold mb-1">Email Us</h4>
-                                <p class="text-sm text-green-50 opacity-90">support@infragati.in</p>
-                            </div>
-                        </div>
+                        <h4 class="font-bold text-sm text-gray-900 mt-1">Our Address</h4>
+                        <p class="text-xs text-gray-500 font-medium">123 Smart City Tech Park,<br>New Delhi, India 110001</p>
                     </div>
-                </div>
 
-                <!-- Social Icons -->
-                <div class="flex gap-4 mt-16">
-                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                        <i class="fa-brands fa-twitter text-lg"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                        <i class="fa-brands fa-linkedin-in text-lg"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                        <i class="fa-brands fa-github text-lg"></i>
-                    </a>
+                    <!-- Call Us -->
+                    <div class="flex flex-col gap-2">
+                        <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-dark-green">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <h4 class="font-bold text-sm text-gray-900 mt-1">Call Us</h4>
+                        <p class="text-xs text-gray-500 font-medium">+91 98765 43210</p>
+                    </div>
+
+                    <!-- Email Us -->
+                    <div class="flex flex-col gap-2">
+                        <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-dark-green">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <h4 class="font-bold text-sm text-gray-900 mt-1">Email Us</h4>
+                        <p class="text-xs text-gray-500 font-medium">support@infragati.in</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Right Side (Contact Form) -->
-            <div class="w-full lg:w-3/5 p-10 lg:p-14 bg-white">
-                <h3 class="text-2xl font-bold text-gray-900 mb-8">Send us a message</h3>
+            <!-- MIDDLE COLUMN: Form -->
+            <div class="w-full lg:w-[45%] p-10 lg:p-12 bg-white flex flex-col justify-center">
                 
-                <form action="#" class="space-y-6">
-                    <!-- Name & Email Row -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
-                            <input type="text" placeholder="John Doe" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-green-600 focus:border-green-600 block p-3.5 outline-none transition-colors">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
-                            <input type="email" placeholder="john@example.com" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-green-600 focus:border-green-600 block p-3.5 outline-none transition-colors">
-                        </div>
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-2">Send us a message</h2>
+                <p class="text-sm text-gray-500 mb-8 font-medium">We'd love to hear from you. Fill out the form and we'll be in touch.</p>
+                
+                <form action="#" class="space-y-5">
+                    
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase tracking-wide">Full Name</label>
+                        <input type="text" placeholder="John Doe" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block p-3 outline-none transition-colors font-medium">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase tracking-wide">Email Address</label>
+                        <input type="email" placeholder="john@example.com" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block p-3 outline-none transition-colors font-medium">
                     </div>
 
-                    <!-- Subject -->
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
-                        <input type="text" placeholder="How can we help?" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-green-600 focus:border-green-600 block p-3.5 outline-none transition-colors">
-                    </div>
-
-                    <!-- Message -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Message</label>
-                        <textarea rows="4" placeholder="Write your message here..." class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-green-600 focus:border-green-600 block p-3.5 outline-none transition-colors resize-none"></textarea>
+                        <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase tracking-wide">Message</label>
+                        <textarea rows="4" placeholder="Write your message here..." class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block p-3 outline-none transition-colors resize-none font-medium"></textarea>
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="w-full lg:w-auto px-8 py-3.5 bg-[#0f603c] hover:bg-green-800 text-white font-bold rounded-xl text-sm transition-colors shadow-md">
+                    <button type="submit" class="w-full px-8 py-3.5 bg-[#0f603c] hover:bg-green-800 text-white font-bold rounded-lg text-sm transition-colors shadow-md mt-2">
                         Send Message
                     </button>
                 </form>
+            </div>
+
+            <!-- RIGHT COLUMN: Picture -->
+            <div class="w-full lg:w-[30%] relative h-64 lg:h-auto hidden lg:block">
+                <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     alt="Customer Support" 
+                     class="absolute inset-0 w-full h-full object-cover">
+                <!-- Soft Green Gradient Overlay on image -->
+                <div class="absolute inset-0 bg-gradient-to-r from-green-900/40 to-green-900/10"></div>
             </div>
 
         </div>
@@ -153,7 +139,6 @@
 
     <!-- Wavy Bottom Graphic & Footer line -->
     <div class="absolute bottom-0 w-full h-32 bg-gradient-to-t from-green-100/30 to-transparent z-0 pointer-events-none">
-        <!-- Footer simple text -->
         <div class="absolute bottom-6 left-8 lg:left-16 flex items-center gap-4 z-10">
             <div class="h-0.5 w-8 bg-dark-green"></div>
             <p class="text-[10px] font-bold tracking-widest text-gray-600 uppercase">Smart Infrastructure | Stronger India</p>
