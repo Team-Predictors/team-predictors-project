@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFRA GATI - How It Works</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #f8fafc; /* Very light slate for contrast */
+        }
+        .text-dark-green {
+            color: #0f603c;
+        }
+        .bg-dark-green {
+            background-color: #0f603c;
+        }
+        /* Timeline styling */
+        .step-card {
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .step-number {
+            background-color: #e8f5e9;
+            color: #0f603c;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative">
+
+    <!-- NAVBAR -->
+    <nav class="w-full px-8 lg:px-16 py-6 flex items-center justify-between z-50 bg-white shadow-sm">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 cursor-pointer">
+            <i class="fa-solid fa-leaf text-3xl text-green-600"></i>
+            <div>
+                <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 leading-none">INFRA GATI</h1>
+                <p class="text-[9px] tracking-widest uppercase font-semibold text-gray-500 mt-1">Land Today. A Better Tomorrow.</p>
+            </div>
+        </a>
+
+        <!-- Links -->
+        <div class="hidden md:flex items-center gap-10 text-sm font-semibold text-gray-600">
+            <a href="index.html" class="hover:text-green-600 transition">Home</a>
+            <a href="about.html" class="hover:text-green-600 transition">About</a>
+            <a href="features.html" class="hover:text-green-600 transition">Features</a>
+            <!-- How It Works is Active -->
+            <a href="how_it_works.html" class="text-gray-900 border-b-2 border-green-600 pb-1">How It Works</a>
+            <a href="#" class="hover:text-green-600 transition">Contact</a>
+        </div>
+
+        <!-- Login Button -->
+        <div>
+            <a href="login_demo.html" class="bg-dark-green hover:bg-green-800 text-white px-8 py-3 rounded-lg font-bold text-sm transition-colors shadow-md">
+                Login
+            </a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow px-8 lg:px-24 pt-16 pb-32 z-10 relative">
+        
+        <!-- Header Section -->
+        <div class="text-center mb-20">
+            <div class="flex items-center justify-center gap-4 mb-4">
+                <div class="h-0.5 w-8 bg-green-600"></div>
+                <p class="text-xs font-bold tracking-widest text-gray-500 uppercase">HOW IT WORKS</p>
+                <div class="h-0.5 w-8 bg-green-600"></div>
+            </div>
+            <h2 class="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">Simple Steps to Smarter Infrastructure</h2>
+            <p class="text-lg text-gray-600 font-medium max-w-2xl mx-auto">From data gathering to actionable insights, see how INFRA GATI transforms the land acquisition process seamlessly.</p>
+        </div>
+
+        <!-- Timeline Section -->
+        <div class="relative max-w-6xl mx-auto mt-10">
+            
+            <!-- Connecting Line (hidden on mobile, visible on lg screens) -->
+            <div class="hidden lg:block absolute top-1/2 left-0 w-full h-1 bg-green-200 -translate-y-1/2 z-0"></div>
+
+            <!-- Steps Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-6 relative z-10">
+                
+                <!-- Step 1 -->
+                <div class="step-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100 relative flex flex-col items-center text-center">
+                    <div class="step-number w-16 h-16 rounded-full flex items-center justify-center text-2xl font-black mb-6 border-4 border-white shadow-sm absolute -top-8">
+                        1
+                    </div>
+                    <div class="bg-gray-50 w-full rounded-xl py-6 mb-6 mt-4 flex justify-center text-dark-green">
+                        <i class="fa-solid fa-file-arrow-up text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Data Input</h3>
+                    <p class="text-sm text-gray-500 font-medium leading-relaxed">Input historical records, spatial data, and project specifics into the platform.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100 relative flex flex-col items-center text-center">
+                    <div class="step-number w-16 h-16 rounded-full flex items-center justify-center text-2xl font-black mb-6 border-4 border-white shadow-sm absolute -top-8">
+                        2
+                    </div>
+                    <div class="bg-gray-50 w-full rounded-xl py-6 mb-6 mt-4 flex justify-center text-dark-green">
+                        <i class="fa-solid fa-brain text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">AI Processing</h3>
+                    <p class="text-sm text-gray-500 font-medium leading-relaxed">Our machine learning models analyze patterns, extract documents, and evaluate risks.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100 relative flex flex-col items-center text-center">
+                    <div class="step-number w-16 h-16 rounded-full flex items-center justify-center text-2xl font-black mb-6 border-4 border-white shadow-sm absolute -top-8">
+                        3
+                    </div>
+                    <div class="bg-gray-50 w-full rounded-xl py-6 mb-6 mt-4 flex justify-center text-dark-green">
+                        <i class="fa-solid fa-map-location-dot text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Actionable Insights</h3>
+                    <p class="text-sm text-gray-500 font-medium leading-relaxed">Receive detailed predictions and visualization on an interactive dashboard.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100 relative flex flex-col items-center text-center">
+                    <div class="step-number w-16 h-16 rounded-full flex items-center justify-center text-2xl font-black mb-6 border-4 border-white shadow-sm absolute -top-8">
+                        4
+                    </div>
+                    <div class="bg-gray-50 w-full rounded-xl py-6 mb-6 mt-4 flex justify-center text-dark-green">
+                        <i class="fa-solid fa-shield-check text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Proactive Measures</h3>
+                    <p class="text-sm text-gray-500 font-medium leading-relaxed">Take timely steps to prevent delays, manage grievances, and ensure smooth progress.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Wavy Bottom Graphic & Footer line -->
+    <div class="absolute bottom-0 w-full h-40 bg-gradient-to-t from-green-100/30 to-transparent z-0 pointer-events-none">
+        <svg class="absolute bottom-0 w-full h-full text-green-100/50" preserveAspectRatio="none" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" fill-opacity="1" d="M0,64L48,85.3C96,107,192,149,288,144C384,139,480,85,576,96C672,107,768,181,864,208C960,235,1056,213,1152,181.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+        
+        <!-- Footer simple text -->
+        <div class="absolute bottom-6 left-8 lg:left-16 flex items-center gap-4 z-10">
+            <div class="h-0.5 w-8 bg-dark-green"></div>
+            <p class="text-[10px] font-bold tracking-widest text-gray-600 uppercase">Smart Infrastructure | Stronger India</p>
+        </div>
+    </div>
+
+</body>
+</html>
