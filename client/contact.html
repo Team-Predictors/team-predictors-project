@@ -62,9 +62,14 @@
         
         <div class="w-full max-w-[1100px] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
             
-            <!-- Left Side (Contact Info) -->
-            <div class="w-full lg:w-2/5 contact-box text-white p-10 lg:p-14 flex flex-col justify-between">
-                <div>
+            <!-- Left Side (Contact Info with Photo) -->
+            <div class="w-full lg:w-2/5 relative text-white p-10 lg:p-14 flex flex-col justify-between overflow-hidden">
+                <!-- Background Image -->
+                <img src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Contact Us" class="absolute inset-0 w-full h-full object-cover z-0">
+                <!-- Dark green overlay -->
+                <div class="absolute inset-0 bg-green-900/80 mix-blend-multiply z-0"></div>
+                
+                <div class="relative z-10">
                     <h2 class="text-4xl font-extrabold mb-4 tracking-tight">Get in Touch</h2>
                     <p class="text-green-50 text-sm leading-relaxed mb-12 opacity-90">
                         Have questions about how INFRA GATI can streamline your land acquisition process? We'd love to hear from you.
@@ -98,14 +103,14 @@
                 </div>
 
                 <!-- Social Icons -->
-                <div class="flex gap-4 mt-16">
-                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                <div class="flex gap-4 mt-16 relative z-10">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
                         <i class="fa-brands fa-twitter text-lg"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
                         <i class="fa-brands fa-linkedin-in text-lg"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
                         <i class="fa-brands fa-github text-lg"></i>
                     </a>
                 </div>
