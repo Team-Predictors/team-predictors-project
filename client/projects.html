@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFRA GATI - Projects Directory</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: #f8fafc; }
+        .text-dark-green { color: #0f603c; }
+        .bg-dark-green { background-color: #0f603c; }
+        .sidebar-active { background-color: #15803d; border-left: 4px solid #4ade80; }
+        .glass-card { background: white; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border: 1px solid #f1f5f9; }
+        .project-card { transition: all 0.2s ease; }
+        .project-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-dark-green text-white flex flex-col h-full hidden md:flex transition-all z-20 shadow-2xl shrink-0">
+        <!-- Logo -->
+        <div class="h-16 flex items-center gap-3 px-6 bg-[#0a462b] border-b border-[#0f603c]">
+            <i class="fa-solid fa-leaf text-xl text-green-400"></i>
+            <div>
+                <h1 class="text-sm font-extrabold tracking-tight text-white leading-none">INFRA GATI</h1>
+                <p class="text-[7px] tracking-widest uppercase font-semibold text-green-200 mt-1">Admin Panel</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 overflow-y-auto py-6 flex flex-col gap-1 px-3">
+            <p class="px-3 text-[9px] font-bold tracking-widest text-green-300 uppercase mb-2">Main Menu</p>
+            
+            <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors">
+                <i class="fa-solid fa-border-all w-5"></i> Dashboard
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors">
+                <i class="fa-solid fa-map-location-dot w-5"></i> Map View
+            </a>
+            <!-- Projects is Active -->
+            <a href="projects.html" class="sidebar-active flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-white transition-colors">
+                <i class="fa-solid fa-building-flag w-5"></i> Projects
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors">
+                <i class="fa-solid fa-chart-line w-5"></i> Delay Analytics
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors">
+                <i class="fa-solid fa-scale-balanced w-5"></i> Litigation
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors">
+                <i class="fa-solid fa-users w-5"></i> Grievances
+            </a>
+        </nav>
+
+        <!-- Bottom Settings -->
+        <div class="p-4 border-t border-[#15803d]">
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors">
+                <i class="fa-solid fa-gear w-5"></i> Settings
+            </a>
+            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors mt-1 text-red-300 hover:text-red-100">
+                <i class="fa-solid fa-arrow-right-from-bracket w-5"></i> Log out
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="flex-1 flex flex-col h-full relative overflow-y-auto">
+        
+        <!-- TOP NAVBAR -->
+        <header class="h-16 bg-white shadow-sm flex items-center justify-between px-8 z-10 border-b border-gray-100 shrink-0 sticky top-0">
+            <!-- Search -->
+            <div class="relative w-96">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs"></i>
+                </div>
+                <input type="text" placeholder="Search projects by ID, name, or region..." class="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 text-gray-900 text-xs rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors">
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-6">
+                <button class="relative text-gray-500 hover:text-dark-green transition-colors">
+                    <i class="fa-regular fa-bell text-lg"></i>
+                    <span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-red-500 border-2 border-white rounded-full"></span>
+                </button>
+                <div class="flex items-center gap-3 border-l border-gray-200 pl-6">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=0f603c&color=fff" alt="User" class="w-8 h-8 rounded-full shadow-sm">
+                    <div class="hidden md:block">
+                        <p class="text-xs font-bold text-gray-900 leading-none">System Admin</p>
+                        <p class="text-[9px] text-gray-500 mt-0.5">admin@infragati.in</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD CONTENT -->
+        <main class="p-8 w-full max-w-7xl mx-auto">
+            
+            <div class="flex justify-between items-end mb-6">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-gray-900 tracking-tight">Project Directory</h2>
+                    <p class="text-xs text-gray-500 font-medium mt-1">Manage and track all infrastructure land acquisition projects.</p>
+                </div>
+                <button class="bg-dark-green hover:bg-green-800 text-white px-5 py-2.5 rounded-lg font-bold text-xs transition-colors shadow-md flex items-center gap-2">
+                    <i class="fa-solid fa-plus"></i> Create Project
+                </button>
+            </div>
+
+            <!-- Filters Bar -->
+            <div class="glass-card p-4 mb-8 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex flex-wrap items-center gap-2">
+                    <button class="px-4 py-2 rounded-lg bg-green-50 text-dark-green text-[10px] font-bold border border-green-200">All Projects (124)</button>
+                    <button class="px-4 py-2 rounded-lg bg-gray-50 text-gray-600 hover:bg-gray-100 text-[10px] font-bold border border-gray-200 transition-colors">In Progress (86)</button>
+                    <button class="px-4 py-2 rounded-lg bg-gray-50 text-gray-600 hover:bg-gray-100 text-[10px] font-bold border border-gray-200 transition-colors">At Risk (18)</button>
+                    <button class="px-4 py-2 rounded-lg bg-gray-50 text-gray-600 hover:bg-gray-100 text-[10px] font-bold border border-gray-200 transition-colors">Completed (20)</button>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <select class="bg-gray-50 border border-gray-200 text-gray-700 text-[10px] font-bold rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+                        <option>Region: All India</option>
+                        <option>North (Delhi, UP, Haryana)</option>
+                        <option>West (Maharashtra, Gujarat)</option>
+                        <option>South (Karnataka, TN)</option>
+                    </select>
+                    <select class="bg-gray-50 border border-gray-200 text-gray-700 text-[10px] font-bold rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+                        <option>Sort by: Highest Risk First</option>
+                        <option>Sort by: Latest Added</option>
+                        <option>Sort by: Budget (High to Low)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Project Card 1 (High Risk) -->
+                <div class="project-card glass-card p-5 flex flex-col justify-between border-t-4 border-t-red-500">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-red-100 text-red-700 text-[9px] font-bold uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-triangle-exclamation"></i> High Risk
+                            </span>
+                            <button class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        </div>
+                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-snug">NH-44 Expansion Phase 3</h3>
+                        <p class="text-[10px] text-gray-500 font-medium mb-4 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Uttar Pradesh, India</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-[10px] mb-1.5 font-bold">
+                                <span class="text-gray-600">Land Acquired</span>
+                                <span class="text-gray-900">45%</span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-1.5">
+                                <div class="bg-red-500 h-1.5 rounded-full" style="width: 45%"></div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 mb-5 border-t border-gray-50 pt-4">
+                            <div>
+                                <p class="text-[9px] font-bold text-gray-400 uppercase">Target Date</p>
+                                <p class="text-xs font-bold text-gray-900">Dec 2026</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] font-bold text-gray-400 uppercase">AI Delay Prediction</p>
+                                <p class="text-xs font-bold text-red-600">+8 Months</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full py-2.5 bg-gray-50 hover:bg-gray-100 text-dark-green text-xs font-bold rounded-lg transition-colors border border-gray-200">View Details</button>
+                </div>
+
+                <!-- Project Card 2 (Medium Risk) -->
+                <div class="project-card glass-card p-5 flex flex-col justify-between border-t-4 border-t-yellow-500">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-yellow-100 text-yellow-700 text-[9px] font-bold uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-circle-exclamation"></i> Medium Risk
+                            </span>
+                            <button class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        </div>
+                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-snug">Mumbai-Pune Freight Corridor</h3>
+                        <p class="text-[10px] text-gray-500 font-medium mb-4 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Maharashtra, India</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-[10px] mb-1.5 font-bold">
+                                <span class="text-gray-600">Land Acquired</span>
+                                <span class="text-gray-900">72%</span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-1.5">
+                                <div class="bg-yellow-500 h-1.5 rounded-full" style="width: 72%"></div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 mb-5 border-t border-gray-50 pt-4">
+                            <div>
+                                <p class="text-[9px] font-bold text-gray-400 uppercase">Target Date</p>
+                                <p class="text-xs font-bold text-gray-900">Mar 2025</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] font-bold text-gray-400 uppercase">AI Delay Prediction</p>
+                                <p class="text-xs font-bold text-yellow-600">+2 Months</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full py-2.5 bg-gray-50 hover:bg-gray-100 text-dark-green text-xs font-bold rounded-lg transition-colors border border-gray-200">View Details</button>
+                </div>
+
+                <!-- Project Card 3 (Low Risk / On Track) -->
+                <div class="project-card glass-card p-5 flex flex-col justify-between border-t-4 border-t-green-500">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-green-100 text-green-700 text-[9px] font-bold uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-check-circle"></i> On Track
+                            </span>
+                            <button class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        </div>
+                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-snug">Gujarat Smart City Zone B</h3>
+                        <p class="text-[10px] text-gray-500 font-medium mb-4 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Gujarat, India</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-[10px] mb-1.5 font-bold">
+                                <span class="text-gray-600">Land Acquired</span>
+                                <span class="text-gray-900">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-1.5">
+                                <div class="bg-green-500 h-1.5 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 mb-5 border-t border-gray-50 pt-4">
+                            <div>
+                                <p class="text-[9px] font-bold text-gray-400 uppercase">Target Date</p>
+                                <p class="text-xs font-bold text-gray-900">Oct 2024</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] font-bold text-gray-400 uppercase">AI Delay Prediction</p>
+                                <p class="text-xs font-bold text-green-600">None</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full py-2.5 bg-gray-50 hover:bg-gray-100 text-dark-green text-xs font-bold rounded-lg transition-colors border border-gray-200">View Details</button>
+                </div>
+
+                <!-- Project Card 4 (In Progress) -->
+                <div class="project-card glass-card p-5 flex flex-col justify-between border-t-4 border-t-blue-500">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-blue-100 text-blue-700 text-[9px] font-bold uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-spinner"></i> In Progress
+                            </span>
+                            <button class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        </div>
+                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-snug">Chennai Metro Line 4 Extension</h3>
+                        <p class="text-[10px] text-gray-500 font-medium mb-4 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Tamil Nadu, India</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-[10px] mb-1.5 font-bold">
+                                <span class="text-gray-600">Land Acquired</span>
+                                <span class="text-gray-900">12%</span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-1.5">
+                                <div class="bg-blue-500 h-1.5 rounded-full" style="width: 12%"></div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 mb-5 border-t border-gray-50 pt-4">
+                            <div>
+                                <p class="text-[9px] font-bold text-gray-400 uppercase">Target Date</p>
+                                <p class="text-xs font-bold text-gray-900">Jan 2028</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] font-bold text-gray-400 uppercase">AI Delay Prediction</p>
+                                <p class="text-xs font-bold text-gray-600">Evaluating...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full py-2.5 bg-gray-50 hover:bg-gray-100 text-dark-green text-xs font-bold rounded-lg transition-colors border border-gray-200">View Details</button>
+                </div>
+
+                <!-- Project Card 5 (High Risk) -->
+                <div class="project-card glass-card p-5 flex flex-col justify-between border-t-4 border-t-red-500">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-red-100 text-red-700 text-[9px] font-bold uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-triangle-exclamation"></i> High Risk
+                            </span>
+                            <button class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        </div>
+                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-snug">Bengaluru Suburban Rail Project</h3>
+                        <p class="text-[10px] text-gray-500 font-medium mb-4 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Karnataka, India</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-[10px] mb-1.5 font-bold">
+                                <span class="text-gray-600">Land Acquired</span>
+                                <span class="text-gray-900">30%</span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-1.5">
+                                <div class="bg-red-500 h-1.5 rounded-full" style="width: 30%"></div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 mb-5 border-t border-gray-50 pt-4">
+                            <div>
+                                <p class="text-[9px] font-bold text-gray-400 uppercase">Target Date</p>
+                                <p class="text-xs font-bold text-gray-900">Aug 2027</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] font-bold text-gray-400 uppercase">AI Delay Prediction</p>
+                                <p class="text-xs font-bold text-red-600">+12 Months</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full py-2.5 bg-gray-50 hover:bg-gray-100 text-dark-green text-xs font-bold rounded-lg transition-colors border border-gray-200">View Details</button>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>
