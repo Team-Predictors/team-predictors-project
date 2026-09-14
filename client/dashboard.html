@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFRA GATI - Admin Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js (for dummy charts) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: #f8fafc; }
+        .text-dark-green { color: #0f603c; }
+        .bg-dark-green { background-color: #0f603c; }
+        .sidebar-active { background-color: #15803d; border-left: 4px solid #4ade80; }
+        .glass-card { background: white; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border: 1px solid #f1f5f9; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-dark-green text-white flex flex-col h-full hidden md:flex transition-all z-20 shadow-2xl">
+        <!-- Logo -->
+        <div class="h-16 flex items-center gap-3 px-6 bg-[#0a462b] border-b border-[#0f603c]">
+            <i class="fa-solid fa-leaf text-xl text-green-400"></i>
+            <div>
+                <h1 class="text-sm font-extrabold tracking-tight text-white leading-none">INFRA GATI</h1>
+                <p class="text-[7px] tracking-widest uppercase font-semibold text-green-200 mt-1">Admin Panel</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 overflow-y-auto py-6 flex flex-col gap-1 px-3">
+            <p class="px-3 text-[9px] font-bold tracking-widest text-green-300 uppercase mb-2">Main Menu</p>
+            
+            <a href="#" class="sidebar-active flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-white transition-colors">
+                <i class="fa-solid fa-border-all w-5"></i> Dashboard
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors">
+                <i class="fa-solid fa-map-location-dot w-5"></i> Map View
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors">
+                <i class="fa-solid fa-building-flag w-5"></i> Projects
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors">
+                <i class="fa-solid fa-chart-line w-5"></i> Delay Analytics
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors">
+                <i class="fa-solid fa-scale-balanced w-5"></i> Litigation
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors">
+                <i class="fa-solid fa-users w-5"></i> Grievances
+            </a>
+        </nav>
+
+        <!-- Bottom Settings -->
+        <div class="p-4 border-t border-[#15803d]">
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors">
+                <i class="fa-solid fa-gear w-5"></i> Settings
+            </a>
+            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors mt-1 text-red-300 hover:text-red-100">
+                <i class="fa-solid fa-arrow-right-from-bracket w-5"></i> Log out
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="flex-1 flex flex-col h-full relative overflow-y-auto">
+        
+        <!-- TOP NAVBAR -->
+        <header class="h-16 bg-white shadow-sm flex items-center justify-between px-8 z-10 border-b border-gray-100 shrink-0">
+            <!-- Search -->
+            <div class="relative w-96">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs"></i>
+                </div>
+                <input type="text" placeholder="Search projects, documents..." class="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 text-gray-900 text-xs rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors">
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-6">
+                <button class="relative text-gray-500 hover:text-dark-green transition-colors">
+                    <i class="fa-regular fa-bell text-lg"></i>
+                    <span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-red-500 border-2 border-white rounded-full"></span>
+                </button>
+                <div class="flex items-center gap-3 border-l border-gray-200 pl-6">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=0f603c&color=fff" alt="User" class="w-8 h-8 rounded-full shadow-sm">
+                    <div class="hidden md:block">
+                        <p class="text-xs font-bold text-gray-900 leading-none">System Admin</p>
+                        <p class="text-[9px] text-gray-500 mt-0.5">admin@infragati.in</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD CONTENT -->
+        <main class="p-8 w-full max-w-7xl mx-auto">
+            
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-gray-900 tracking-tight">Overview Dashboard</h2>
+                    <p class="text-xs text-gray-500 font-medium mt-1">Monitor land acquisition progress and AI predictions.</p>
+                </div>
+                <button class="bg-dark-green hover:bg-green-800 text-white px-5 py-2.5 rounded-lg font-bold text-xs transition-colors shadow-md flex items-center gap-2">
+                    <i class="fa-solid fa-plus"></i> New Project
+                </button>
+            </div>
+
+            <!-- KPIs (Key Performance Indicators) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-5 relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Total Projects</p>
+                            <h3 class="text-2xl font-black text-gray-900 mt-1">124</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600"><i class="fa-solid fa-building"></i></div>
+                    </div>
+                    <p class="text-[10px] font-bold text-green-600 flex items-center gap-1"><i class="fa-solid fa-arrow-up"></i> +12% this month</p>
+                    <div class="absolute -bottom-4 -right-4 text-blue-50 opacity-50"><i class="fa-solid fa-building text-6xl"></i></div>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-card p-5 relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">At Risk (Delays)</p>
+                            <h3 class="text-2xl font-black text-red-600 mt-1">18</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-600"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    </div>
+                    <p class="text-[10px] font-bold text-red-600 flex items-center gap-1"><i class="fa-solid fa-arrow-up"></i> AI Alert triggers</p>
+                    <div class="absolute -bottom-4 -right-4 text-red-50 opacity-50"><i class="fa-solid fa-triangle-exclamation text-6xl"></i></div>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-card p-5 relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Acquired Area</p>
+                            <h3 class="text-2xl font-black text-gray-900 mt-1">45.2k <span class="text-xs text-gray-500 font-medium">Hectares</span></h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600"><i class="fa-solid fa-map-location-dot"></i></div>
+                    </div>
+                    <p class="text-[10px] font-bold text-green-600 flex items-center gap-1"><i class="fa-solid fa-arrow-up"></i> 89% of target</p>
+                    <div class="absolute -bottom-4 -right-4 text-green-50 opacity-50"><i class="fa-solid fa-map-location-dot text-6xl"></i></div>
+                </div>
+                <!-- Card 4 -->
+                <div class="glass-card p-5 relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Active Litigations</p>
+                            <h3 class="text-2xl font-black text-orange-500 mt-1">32</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-500"><i class="fa-solid fa-scale-balanced"></i></div>
+                    </div>
+                    <p class="text-[10px] font-bold text-gray-500 flex items-center gap-1">Across 12 courts</p>
+                    <div class="absolute -bottom-4 -right-4 text-orange-50 opacity-50"><i class="fa-solid fa-scale-balanced text-6xl"></i></div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Main Chart -->
+                <div class="glass-card p-6 lg:col-span-2">
+                    <h3 class="text-sm font-bold text-gray-900 mb-4">Acquisition Progress vs Target</h3>
+                    <div class="w-full h-64 flex items-end gap-2 text-xs font-bold text-gray-400">
+                        <canvas id="progressChart"></canvas>
+                    </div>
+                </div>
+                <!-- Mini Chart -->
+                <div class="glass-card p-6">
+                    <h3 class="text-sm font-bold text-gray-900 mb-4">Delay Reasons (AI Model)</h3>
+                    <div class="w-full h-64 flex justify-center">
+                        <canvas id="reasonsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Projects Table -->
+            <div class="glass-card overflow-hidden">
+                <div class="p-5 border-b border-gray-100 flex justify-between items-center bg-white">
+                    <h3 class="text-sm font-bold text-gray-900">Priority Projects (AI Risk Ranked)</h3>
+                    <button class="text-[10px] font-bold text-green-600 hover:underline">View All</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50 text-[10px] uppercase tracking-wider text-gray-500 border-b border-gray-100">
+                                <th class="p-4 font-bold">Project ID & Name</th>
+                                <th class="p-4 font-bold">Region</th>
+                                <th class="p-4 font-bold">Status</th>
+                                <th class="p-4 font-bold">AI Risk Level</th>
+                                <th class="p-4 font-bold text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-xs font-medium text-gray-700">
+                            <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                                <td class="p-4">
+                                    <p class="font-bold text-gray-900">NH-44 Expansion Phase 3</p>
+                                    <p class="text-[10px] text-gray-500">PRJ-2023-101</p>
+                                </td>
+                                <td class="p-4">Uttar Pradesh</td>
+                                <td class="p-4"><span class="px-2.5 py-1 rounded-full bg-blue-100 text-blue-700 text-[10px] font-bold">In Progress</span></td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-red-500"></div> <span class="text-red-600 font-bold">High (85%)</span>
+                                    </div>
+                                </td>
+                                <td class="p-4 text-right"><button class="text-green-600 hover:text-green-800 font-bold"><i class="fa-solid fa-chevron-right"></i></button></td>
+                            </tr>
+                            <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                                <td class="p-4">
+                                    <p class="font-bold text-gray-900">Mumbai-Pune Freight Corridor</p>
+                                    <p class="text-[10px] text-gray-500">PRJ-2023-082</p>
+                                </td>
+                                <td class="p-4">Maharashtra</td>
+                                <td class="p-4"><span class="px-2.5 py-1 rounded-full bg-yellow-100 text-yellow-700 text-[10px] font-bold">Review</span></td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-yellow-500"></div> <span class="text-yellow-600 font-bold">Medium (45%)</span>
+                                    </div>
+                                </td>
+                                <td class="p-4 text-right"><button class="text-green-600 hover:text-green-800 font-bold"><i class="fa-solid fa-chevron-right"></i></button></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="p-4">
+                                    <p class="font-bold text-gray-900">Gujarat Smart City Zone B</p>
+                                    <p class="text-[10px] text-gray-500">PRJ-2023-044</p>
+                                </td>
+                                <td class="p-4">Gujarat</td>
+                                <td class="p-4"><span class="px-2.5 py-1 rounded-full bg-green-100 text-green-700 text-[10px] font-bold">Acquired</span></td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-green-500"></div> <span class="text-green-600 font-bold">Low (5%)</span>
+                                    </div>
+                                </td>
+                                <td class="p-4 text-right"><button class="text-green-600 hover:text-green-800 font-bold"><i class="fa-solid fa-chevron-right"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Script to render dummy charts -->
+    <script>
+        // Line Chart
+        const ctxProgress = document.getElementById('progressChart').getContext('2d');
+        new Chart(ctxProgress, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Target',
+                    data: [1000, 2000, 3000, 4000, 5000, 6000],
+                    borderColor: '#94a3b8',
+                    borderDash: [5, 5],
+                    tension: 0.1
+                }, {
+                    label: 'Actual Acquired',
+                    data: [900, 1800, 2500, 3500, 4200, 5100],
+                    borderColor: '#0f603c',
+                    backgroundColor: 'rgba(15, 96, 60, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { font: { size: 10 } } } } }
+        });
+
+        // Doughnut Chart
+        const ctxReasons = document.getElementById('reasonsChart').getContext('2d');
+        new Chart(ctxReasons, {
+            type: 'doughnut',
+            data: {
+                labels: ['Litigation', 'Documentation', 'Budget', 'Compensation'],
+                datasets: [{
+                    data: [45, 25, 20, 10],
+                    backgroundColor: ['#ef4444', '#f59e0b', '#3b82f6', '#10b981'],
+                    borderWidth: 0
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } } }
+        });
+    </script>
+</body>
+</html>
