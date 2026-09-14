@@ -3,170 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INFRA GATI - Key Features</title>
-    <!-- Tailwind CSS -->
+    <title>INFRA GATI - Features</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            background-color: #ffffff;
-        }
-        .text-dark-green {
-            color: #0f603c;
-        }
-        .bg-dark-green {
-            background-color: #0f603c;
-        }
-        /* Custom light green for the feature cards */
-        .feature-card {
-            background-color: #e8f5e9; /* Very light, soft green */
-            transition: all 0.3s ease;
-        }
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: #f8fafc; }
+        .text-dark-green { color: #0f603c; }
+        .bg-dark-green { background-color: #0f603c; }
+        .feature-card { transition: all 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
     </style>
 </head>
 <body class="min-h-screen flex flex-col relative">
 
-    <!-- NAVBAR -->
-    <nav class="w-full px-8 lg:px-16 py-6 flex items-center justify-between z-50 bg-white">
-        <!-- Logo -->
+    <!-- NAVBAR (Unified) -->
+    <nav class="w-full px-8 lg:px-16 py-4 flex items-center justify-between z-50 bg-white shadow-sm border-b border-gray-100">
         <a href="index.html" class="flex items-center gap-2 cursor-pointer">
-            <i class="fa-solid fa-leaf text-3xl text-green-600"></i>
+            <i class="fa-solid fa-leaf text-2xl text-green-600"></i>
             <div>
-                <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 leading-none">INFRA GATI</h1>
-                <p class="text-[9px] tracking-widest uppercase font-semibold text-gray-500 mt-1">Land Today. A Better Tomorrow.</p>
+                <h1 class="text-xl font-extrabold tracking-tight text-gray-900 leading-none">INFRA GATI</h1>
+                <p class="text-[8px] tracking-widest uppercase font-semibold text-gray-500 mt-1">Land Today. A Better Tomorrow.</p>
             </div>
         </a>
-
-        <!-- Links -->
-        <div class="hidden md:flex items-center gap-10 text-sm font-semibold text-gray-600">
+        <div class="hidden md:flex items-center gap-8 text-xs font-semibold text-gray-600">
             <a href="index.html" class="hover:text-green-600 transition">Home</a>
             <a href="about.html" class="hover:text-green-600 transition">About</a>
-            <!-- Features is Active -->
             <a href="features.html" class="text-gray-900 border-b-2 border-green-600 pb-1">Features</a>
             <a href="how_it_works.html" class="hover:text-green-600 transition">How It Works</a>
             <a href="contact.html" class="hover:text-green-600 transition">Contact</a>
         </div>
-
-        <!-- Login Button -->
         <div>
-            <a href="login_demo.html" class="bg-dark-green hover:bg-green-800 text-white px-8 py-3 rounded-lg font-bold text-sm transition-colors shadow-md">
-                Login
-            </a>
+            <a href="login_demo.html" class="bg-dark-green hover:bg-green-800 text-white px-6 py-2.5 rounded-lg font-bold text-xs transition-colors shadow-md">Login</a>
         </div>
     </nav>
 
     <!-- MAIN CONTENT -->
-    <main class="flex-grow px-8 lg:px-24 pt-10 pb-32 z-10">
+    <main class="flex-grow px-8 lg:px-24 pt-12 pb-24 z-10 relative flex justify-center">
         
-        <!-- Header Section -->
-        <div class="mb-12">
-            <div class="flex items-center gap-4 mb-4">
-                <div class="h-0.5 w-12 bg-green-600"></div>
-                <p class="text-xs font-bold tracking-widest text-gray-500 uppercase">KEY FEATURES</p>
+        <div class="w-[95%] lg:w-[90%] max-w-[1400px]">
+            <div class="mb-12">
+                <!-- Unified Header Line -->
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="h-0.5 w-8 bg-green-600"></div>
+                    <p class="text-[10px] font-bold tracking-widest text-gray-500 uppercase">KEY FEATURES</p>
+                </div>
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-2 tracking-tight">Our Platform Highlights</h2>
+                <p class="text-xs text-gray-500 font-medium max-w-xl">Explore the powerful AI-driven tools that make INFRA GATI the perfect solution for land acquisition management.</p>
             </div>
-            <h2 class="text-5xl font-extrabold text-gray-900 mb-2 tracking-tight">Key Features</h2>
-            <p class="text-xl text-gray-600 font-medium">Technology for Timely Progress</p>
+
+            <!-- Features Grid (Scaled down) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                <!-- Card 1 -->
+                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
+                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Delay Prediction</h3><p class="text-[10px] text-gray-600 font-medium">Identify potential bottlenecks early in the process.</p></div>
+                </div>
+                <!-- Card 2 -->
+                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
+                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Risk Analysis</h3><p class="text-[10px] text-gray-600 font-medium">Evaluate litigation and compliance risks automatically.</p></div>
+                </div>
+                <!-- Card 3 -->
+                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
+                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
+                        <i class="fa-solid fa-earth-americas"></i>
+                    </div>
+                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Geo-Spatial Insights</h3><p class="text-[10px] text-gray-600 font-medium">Map and visualize critical land boundaries instantly.</p></div>
+                </div>
+                <!-- Card 4 -->
+                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
+                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    </div>
+                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Real-time Analytics</h3><p class="text-[10px] text-gray-600 font-medium">Monitor project status with live data dashboards.</p></div>
+                </div>
+                <!-- Card 5 -->
+                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
+                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Litigation Tracking</h3><p class="text-[10px] text-gray-600 font-medium">Manage and predict legal challenges with ML.</p></div>
+                </div>
+                <!-- Card 6 -->
+                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
+                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
+                        <i class="fa-solid fa-file-contract"></i>
+                    </div>
+                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Document OCR</h3><p class="text-[10px] text-gray-600 font-medium">Digitize and extract text from old land records.</p></div>
+                </div>
+                <!-- Card 7 -->
+                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
+                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
+                        <i class="fa-solid fa-hand-holding-hand"></i>
+                    </div>
+                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Grievance Portal</h3><p class="text-[10px] text-gray-600 font-medium">Handle stakeholder concerns transparently.</p></div>
+                </div>
+                <!-- Card 8 -->
+                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
+                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Budget Optimization</h3><p class="text-[10px] text-gray-600 font-medium">Forecast financial requirements securely.</p></div>
+                </div>
+            </div>
         </div>
-
-        <!-- Features Grid (4 Columns, 2 Rows) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            <!-- Card 1 -->
-            <div class="feature-card p-8 rounded-2xl">
-                <div class="bg-dark-green w-12 h-12 rounded-full flex items-center justify-center text-white mb-6 shadow-sm">
-                    <i class="fa-solid fa-chart-column text-xl"></i>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-3">Delay Prediction</h3>
-                <p class="text-sm text-gray-600 font-medium leading-relaxed">Predict potential delays using AI and historical data.</p>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="feature-card p-8 rounded-2xl">
-                <div class="bg-dark-green w-12 h-12 rounded-full flex items-center justify-center text-white mb-6 shadow-sm">
-                    <i class="fa-solid fa-file-contract text-xl"></i>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-3">Risk Analysis</h3>
-                <p class="text-sm text-gray-600 font-medium leading-relaxed">Identify high-risk projects and regions.</p>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="feature-card p-8 rounded-2xl">
-                <div class="bg-dark-green w-12 h-12 rounded-full flex items-center justify-center text-white mb-6 shadow-sm">
-                    <i class="fa-solid fa-location-dot text-xl"></i>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-3">Geo-Spatial Insights</h3>
-                <p class="text-sm text-gray-600 font-medium leading-relaxed">Visualize land data on interactive maps.</p>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="feature-card p-8 rounded-2xl">
-                <div class="bg-dark-green w-12 h-12 rounded-full flex items-center justify-center text-white mb-6 shadow-sm">
-                    <i class="fa-solid fa-users text-xl"></i>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-3">Stakeholder Tracking</h3>
-                <p class="text-sm text-gray-600 font-medium leading-relaxed">Monitor approvals and stakeholder involvement.</p>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="feature-card p-8 rounded-2xl">
-                <div class="bg-dark-green w-12 h-12 rounded-full flex items-center justify-center text-white mb-6 shadow-sm">
-                    <i class="fa-regular fa-bell text-xl"></i>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-3">Real-time Alerts</h3>
-                <p class="text-sm text-gray-600 font-medium leading-relaxed">Get early warnings for possible delays.</p>
-            </div>
-
-            <!-- Card 6 -->
-            <div class="feature-card p-8 rounded-2xl">
-                <div class="bg-dark-green w-12 h-12 rounded-full flex items-center justify-center text-white mb-6 shadow-sm">
-                    <i class="fa-solid fa-chart-pie text-xl"></i>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-3">Data-Driven Decisions</h3>
-                <p class="text-sm text-gray-600 font-medium leading-relaxed">Support policy and planning with accurate insights.</p>
-            </div>
-
-            <!-- Card 7 -->
-            <div class="feature-card p-8 rounded-2xl">
-                <div class="bg-dark-green w-12 h-12 rounded-full flex items-center justify-center text-white mb-6 shadow-sm">
-                    <i class="fa-solid fa-shield-halved text-xl"></i>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-3">Secure & Reliable</h3>
-                <p class="text-sm text-gray-600 font-medium leading-relaxed">Your data is safe with advanced security measures.</p>
-            </div>
-
-            <!-- Card 8 -->
-            <div class="feature-card p-8 rounded-2xl">
-                <div class="bg-dark-green w-12 h-12 rounded-full flex items-center justify-center text-white mb-6 shadow-sm">
-                    <i class="fa-solid fa-leaf text-xl"></i>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-3">Sustainable Development</h3>
-                <p class="text-sm text-gray-600 font-medium leading-relaxed">Enable faster, fairer land acquisition for a greener future.</p>
-            </div>
-
-        </div>
-
     </main>
 
-    <!-- Wavy Bottom Graphic & Footer line -->
-    <div class="absolute bottom-0 w-full h-40 bg-gradient-to-t from-green-100/40 to-transparent z-0 pointer-events-none">
-        <svg class="absolute bottom-0 w-full h-full text-green-100/60" preserveAspectRatio="none" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
-            <path fill="currentColor" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,192C672,181,768,139,864,133.3C960,128,1056,160,1152,176C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-        </svg>
-        
-        <!-- Footer simple text -->
-        <div class="absolute bottom-6 left-8 lg:left-16 flex items-center gap-4 z-10">
-            <div class="h-0.5 w-8 bg-dark-green"></div>
-            <p class="text-[10px] font-bold tracking-widest text-gray-600 uppercase">Smart Infrastructure | Stronger India</p>
+    <!-- Unified Footer Line -->
+    <div class="absolute bottom-0 w-full h-24 bg-gradient-to-t from-green-50 to-transparent z-0 pointer-events-none">
+        <div class="absolute bottom-6 left-8 lg:left-16 flex items-center gap-3 z-10">
+            <div class="h-0.5 w-6 bg-dark-green"></div>
+            <p class="text-[9px] font-bold tracking-widest text-gray-600 uppercase">Smart Infrastructure | Stronger India</p>
         </div>
     </div>
-
 </body>
 </html>
