@@ -3,99 +3,787 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>INFRA GATI - About Us</title>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Font -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: #f8fafc; }
-        .text-dark-green { color: #0f603c; }
-        .bg-dark-green { background-color: #0f603c; }
-        .blob-shape { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; background-color: #e8f5e9; }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #0b2921;
+            overflow-x: hidden;
+        }
+
+        .text-dark-green {
+            color: #0f603c;
+        }
+
+        .bg-dark-green {
+            background-color: #0f603c;
+        }
+
+        /* ---------------- NAVBAR ---------------- */
+
+        .navbar {
+            width: 100%;
+            min-height: 105px;
+            padding: 18px 5.5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border-bottom: 1px solid #eeeeee;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            position: relative;
+            z-index: 20;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        .logo-leaf {
+            font-size: 48px;
+            color: #138052;
+            transform: rotate(-10deg);
+        }
+
+        .logo-title {
+            font-size: 30px;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .logo-subtitle {
+            font-size: 9px;
+            letter-spacing: 4px;
+            color: #737373;
+            font-weight: 600;
+            margin-top: 7px;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 38px;
+            white-space: nowrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #202020;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #0f603c;
+        }
+
+        .nav-links a.active {
+            color: #0f603c;
+            font-weight: 700;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            height: 3px;
+            width: 48px;
+            background: #0f603c;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -5px;
+            border-radius: 5px;
+        }
+
+        .login-btn {
+            background: #075b3c;
+            color: white;
+            padding: 14px 44px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+
+        .login-btn:hover {
+            background: #064b32;
+        }
+
+        /* ---------------- MAIN ---------------- */
+
+        .about-section {
+            width: 100%;
+            max-width: 1450px;
+            margin: 0 auto;
+            padding: 48px 5.5% 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        /* ---------------- LEFT CONTENT ---------------- */
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .section-label-line {
+            width: 55px;
+            height: 3px;
+            background: #0f603c;
+            border-radius: 4px;
+        }
+
+        .section-label-text {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: #263d37;
+        }
+
+        .main-heading {
+            font-size: clamp(42px, 4.1vw, 64px);
+            line-height: 1.08;
+            font-weight: 800;
+            letter-spacing: -2px;
+            color: #071f19;
+            margin: 0 0 26px;
+            max-width: 650px;
+        }
+
+        .main-heading span {
+            color: #0f754f;
+        }
+
+        .description {
+            font-size: clamp(17px, 1.35vw, 22px);
+            line-height: 1.55;
+            color: #263b36;
+            max-width: 690px;
+            margin: 0;
+        }
+
+        /* ---------------- RIGHT IMAGE ---------------- */
+
+        .image-section {
+            min-height: 390px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .green-blob {
+            position: absolute;
+            width: 270px;
+            height: 300px;
+            background: #e5f5ed;
+            border-radius: 48% 52% 60% 40% / 45% 42% 58% 55%;
+            left: 10%;
+            top: -5%;
+            z-index: -1;
+        }
+
+        .green-blob-two {
+            position: absolute;
+            width: 260px;
+            height: 280px;
+            background: #e4f5ec;
+            border-radius: 55% 45% 40% 60%;
+            right: 0;
+            top: 15%;
+            z-index: -1;
+        }
+
+        .plant-image {
+            width: min(390px, 75%);
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .quote-box {
+            position: absolute;
+            right: 0;
+            top: 18%;
+            width: 220px;
+            min-height: 210px;
+            background: #e7f6ee;
+            border-radius: 28px;
+            padding: 38px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .quote-text {
+            color: #075b3c;
+            font-size: 22px;
+            line-height: 1.35;
+            font-weight: 700;
+        }
+
+        .quote-line {
+            width: 55px;
+            height: 3px;
+            background: #0f754f;
+            margin-top: 24px;
+        }
+
+        /* ---------------- MISSION / VISION / IMPACT ---------------- */
+
+        .info-section {
+            margin-top: 45px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid #e5e5e5;
+            padding-top: 30px;
+        }
+
+        .info-card {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            padding: 0 35px;
+            min-height: 100px;
+        }
+
+        .info-card:first-child {
+            padding-left: 0;
+        }
+
+        .info-card + .info-card {
+            border-left: 1px solid #dddddd;
+        }
+
+        .icon-circle {
+            width: 82px;
+            height: 82px;
+            min-width: 82px;
+            border-radius: 50%;
+            background: #e8f7ef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #08764c;
+            font-size: 32px;
+        }
+
+        .info-title {
+            font-size: 23px;
+            font-weight: 800;
+            color: #0b2921;
+            margin-bottom: 8px;
+        }
+
+        .info-text {
+            font-size: 16px;
+            line-height: 1.45;
+            color: #56635f;
+        }
+
+        /* ---------------- BOTTOM LANDSCAPE ---------------- */
+
+        .bottom-area {
+            width: 100%;
+            height: 135px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 20px;
+            background: #e6f6ee;
+        }
+
+        .wave-one {
+            position: absolute;
+            width: 120%;
+            height: 110px;
+            left: -10%;
+            top: -30px;
+            background: #d4eee2;
+            border-radius: 50% 50% 0 0;
+            transform: rotate(-2deg);
+        }
+
+        .wave-two {
+            position: absolute;
+            width: 120%;
+            height: 95px;
+            left: -10%;
+            top: 10px;
+            background: #c4e7d8;
+            border-radius: 50% 50% 0 0;
+            transform: rotate(2deg);
+        }
+
+        .bottom-content {
+            position: absolute;
+            left: 5.5%;
+            bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            z-index: 5;
+        }
+
+        .bottom-line {
+            width: 40px;
+            height: 3px;
+            background: #0f603c;
+        }
+
+        .bottom-text {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: #50635d;
+        }
+
+        /* ---------------- RESPONSIVE ---------------- */
+
+        @media (max-width: 1100px) {
+
+            .navbar {
+                padding-left: 3%;
+                padding-right: 3%;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .login-btn {
+                padding: 12px 25px;
+            }
+
+            .about-grid {
+                gap: 30px;
+            }
+
+            .quote-box {
+                right: -10px;
+                width: 190px;
+            }
+
+            .info-card {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 850px) {
+
+            .navbar {
+                min-height: auto;
+                flex-wrap: wrap;
+                gap: 18px;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                gap: 25px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-section {
+                padding-top: 35px;
+            }
+
+            .image-section {
+                min-height: 430px;
+            }
+
+            .info-section {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .info-card {
+                padding: 15px 0;
+                border-left: none !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .logo-title {
+                font-size: 24px;
+            }
+
+            .logo-leaf {
+                font-size: 38px;
+            }
+
+            .logo-subtitle {
+                font-size: 7px;
+                letter-spacing: 2px;
+            }
+
+            .nav-links {
+                gap: 13px;
+                overflow-x: auto;
+                justify-content: flex-start;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .login-btn {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+
+            .main-heading {
+                font-size: 40px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            .image-section {
+                min-height: 350px;
+            }
+
+            .plant-image {
+                width: 250px;
+            }
+
+            .quote-box {
+                width: 150px;
+                min-height: 160px;
+                padding: 20px;
+                right: -5px;
+            }
+
+            .quote-text {
+                font-size: 16px;
+            }
+
+            .icon-circle {
+                width: 65px;
+                height: 65px;
+                min-width: 65px;
+                font-size: 25px;
+            }
+
+            .info-title {
+                font-size: 19px;
+            }
+
+            .info-text {
+                font-size: 14px;
+            }
+
+            .bottom-area {
+                height: 100px;
+            }
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col relative">
 
-    <!-- NAVBAR (Unified) -->
-    <nav class="w-full px-8 lg:px-16 py-4 flex items-center justify-between z-50 bg-white shadow-sm border-b border-gray-100">
-        <a href="index.html" class="flex items-center gap-2 cursor-pointer">
-            <i class="fa-solid fa-leaf text-2xl text-green-600"></i>
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <!-- Logo -->
+        <a href="index.html" class="logo-section">
+
+            <i class="fa-solid fa-leaf logo-leaf"></i>
+
             <div>
-                <h1 class="text-xl font-extrabold tracking-tight text-gray-900 leading-none">INFRA GATI</h1>
-                <p class="text-[8px] tracking-widest uppercase font-semibold text-gray-500 mt-1">Land Today. A Better Tomorrow.</p>
+                <div class="logo-title">
+                    <span style="color:#071f19;">INFRA</span>
+                    <span style="color:#08764c;">GATI</span>
+                </div>
+
+                <div class="logo-subtitle">
+                    LAND TODAY. A BETTER TOMORROW.
+                </div>
             </div>
+
         </a>
-        <div class="hidden md:flex items-center gap-8 text-xs font-semibold text-gray-600">
-            <a href="index.html" class="hover:text-green-600 transition">Home</a>
-            <a href="about.html" class="text-gray-900 border-b-2 border-green-600 pb-1">About</a>
-            <a href="features.html" class="hover:text-green-600 transition">Features</a>
-            <a href="how_it_works.html" class="hover:text-green-600 transition">How It Works</a>
-            <a href="contact.html" class="hover:text-green-600 transition">Contact</a>
+
+
+        <!-- Navigation -->
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html" class="active">
+                About
+            </a>
+
+            <a href="features.html">
+                Features
+            </a>
+
+            <a href="how_it_works.html">
+                How It Works
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
         </div>
-        <div>
-            <a href="login_demo.html" class="bg-dark-green hover:bg-green-800 text-white px-6 py-2.5 rounded-lg font-bold text-xs transition-colors shadow-md">Login</a>
-        </div>
+
+
+        <!-- Login -->
+        <a href="login_demo.html" class="login-btn">
+            Login
+        </a>
+
     </nav>
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-grow flex flex-col lg:flex-row items-center justify-center px-8 lg:px-16 pt-10 pb-20 z-10 gap-12">
-        
-        <div class="w-[95%] lg:w-[85%] max-w-[1200px] flex flex-col lg:flex-row items-center gap-12">
-            
-            <!-- Left Section (Text Content) -->
-            <div class="w-full lg:w-1/2">
-                <!-- Unified Header Line -->
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="h-0.5 w-8 bg-green-600"></div>
-                    <p class="text-[10px] font-bold tracking-widest text-gray-500 uppercase">ABOUT US</p>
-                </div>
-                
-                <h2 class="text-4xl lg:text-5xl font-extrabold text-dark-green mb-5 tracking-tight leading-tight">
-                    Building a Smarter Tomorrow
-                </h2>
-                
-                <p class="text-xs text-gray-600 font-medium leading-relaxed mb-10 max-w-lg">
-                    INFRA GATI is an AI-powered platform designed to predict and prevent delays in land acquisition for infrastructure projects. We combine data, technology, and insight to help create faster, fairer, and more transparent processes for a stronger India.
-                </p>
 
-                <!-- 3 Icons Section -->
-                <div class="flex flex-col sm:flex-row gap-6 justify-between items-start border-t border-gray-200 pt-8">
-                    <div class="flex items-start gap-3 max-w-[160px]">
-                        <i class="fa-solid fa-bullseye text-2xl text-dark-green mt-1"></i>
-                        <div><h4 class="font-bold text-xs text-gray-900 mb-1">Our Mission</h4><p class="text-[10px] text-gray-500 font-medium leading-relaxed">Enable timely and fair land acquisition.</p></div>
+    <!-- ================= ABOUT SECTION ================= -->
+
+    <main>
+
+        <section class="about-section">
+
+            <div class="about-grid">
+
+                <!-- LEFT SIDE -->
+
+                <div>
+
+                    <div class="section-label">
+
+                        <div class="section-label-line"></div>
+
+                        <div class="section-label-text">
+                            ABOUT US
+                        </div>
+
                     </div>
-                    <div class="flex items-start gap-3 max-w-[160px]">
-                        <i class="fa-solid fa-eye text-2xl text-dark-green mt-1"></i>
-                        <div><h4 class="font-bold text-xs text-gray-900 mb-1">Our Vision</h4><p class="text-[10px] text-gray-500 font-medium leading-relaxed">Smoother infrastructure development.</p></div>
-                    </div>
-                    <div class="flex items-start gap-3 max-w-[160px]">
-                        <i class="fa-solid fa-users text-2xl text-dark-green mt-1"></i>
-                        <div><h4 class="font-bold text-xs text-gray-900 mb-1">Our Impact</h4><p class="text-[10px] text-gray-500 font-medium leading-relaxed">Reducing delays. Empowering communities.</p></div>
-                    </div>
+
+
+                    <h1 class="main-heading">
+
+                        Building a Smarter
+                        <br>
+
+                        <span>Tomorrow</span>
+
+                    </h1>
+
+
+                    <p class="description">
+
+                        INFRA GATI is an AI-powered platform designed to predict
+                        and prevent delays in land acquisition for infrastructure
+                        projects. We combine data, technology, and insight to help
+                        create faster, fairer, and more transparent processes for
+                        a stronger India.
+
+                    </p>
+
                 </div>
+
+
+                <!-- RIGHT SIDE -->
+
+                <div class="image-section">
+
+                    <div class="green-blob"></div>
+                    <div class="green-blob-two"></div>
+
+
+                    <img
+                        src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Hands holding plant"
+                        class="plant-image"
+                    >
+
+
+                    <div class="quote-box">
+
+                        <div class="quote-text">
+
+                            “Land today.
+                            <br>
+                            A better
+                            <br>
+                            tomorrow.”
+
+                        </div>
+
+                        <div class="quote-line"></div>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <!-- Right Section (Image & Quote) -->
-            <div class="w-full lg:w-1/2 relative flex justify-center items-center mt-10 lg:mt-0">
-                <div class="absolute w-[350px] h-[350px] blob-shape -z-10 opacity-70"></div>
-                <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Hands holding plant" 
-                     class="w-[300px] h-[300px] object-cover rounded-full shadow-2xl border-8 border-white">
-                <div class="absolute -right-2 lg:right-4 bg-green-50 px-5 py-6 rounded-2xl shadow-xl border border-green-100 max-w-[180px]">
-                    <h4 class="text-sm font-bold text-dark-green leading-snug">"Land today.<br>A better tomorrow."</h4>
-                    <div class="w-8 h-0.5 bg-green-500 mt-3"></div>
+
+            <!-- ================= MISSION / VISION / IMPACT ================= -->
+
+            <div class="info-section">
+
+
+                <!-- Mission -->
+
+                <div class="info-card">
+
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+
+                    <div>
+
+                        <div class="info-title">
+                            Our Mission
+                        </div>
+
+                        <div class="info-text">
+                            Enable timely and fair
+                            <br>
+                            land acquisition.
+                        </div>
+
+                    </div>
+
                 </div>
+
+
+                <!-- Vision -->
+
+                <div class="info-card">
+
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+
+                    <div>
+
+                        <div class="info-title">
+                            Our Vision
+                        </div>
+
+                        <div class="info-text">
+                            Smoother infrastructure
+                            <br>
+                            development for a better India.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Impact -->
+
+                <div class="info-card">
+
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div>
+
+                        <div class="info-title">
+                            Our Impact
+                        </div>
+
+                        <div class="info-text">
+                            Reducing delays.
+                            <br>
+                            Empowering communities.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= BOTTOM WAVE ================= -->
+
+        <!--
+            IMPORTANT:
+            This is NOT absolute.
+            Therefore it will NOT overlap the content
+            when Chrome is zoomed.
+        -->
+
+        <div class="bottom-area">
+
+            <div class="wave-one"></div>
+
+            <div class="wave-two"></div>
+
+
+            <div class="bottom-content">
+
+                <div class="bottom-line"></div>
+
+                <div class="bottom-text">
+                    SMART INFRASTRUCTURE
+                    <span style="margin:0 15px;">|</span>
+                    STRONGER INDIA
+                </div>
+
             </div>
 
         </div>
+
     </main>
 
-    <!-- Unified Footer Line -->
-    <div class="absolute bottom-0 w-full h-24 bg-gradient-to-t from-green-50 to-transparent z-0 pointer-events-none">
-        <div class="absolute bottom-6 left-8 lg:left-16 flex items-center gap-3 z-10">
-            <div class="h-0.5 w-6 bg-dark-green"></div>
-            <p class="text-[9px] font-bold tracking-widest text-gray-600 uppercase">Smart Infrastructure | Stronger India</p>
-        </div>
-    </div>
 </body>
 </html>

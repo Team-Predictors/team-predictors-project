@@ -1,125 +1,1124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INFRA GATI - Features</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: #f8fafc; }
-        .text-dark-green { color: #0f603c; }
-        .bg-dark-green { background-color: #0f603c; }
-        .feature-card { transition: all 0.3s ease; }
-        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col relative">
 
-    <!-- NAVBAR (Unified) -->
-    <nav class="w-full px-8 lg:px-16 py-4 flex items-center justify-between z-50 bg-white shadow-sm border-b border-gray-100">
-        <a href="index.html" class="flex items-center gap-2 cursor-pointer">
-            <i class="fa-solid fa-leaf text-2xl text-green-600"></i>
-            <div>
-                <h1 class="text-xl font-extrabold tracking-tight text-gray-900 leading-none">INFRA GATI</h1>
-                <p class="text-[8px] tracking-widest uppercase font-semibold text-gray-500 mt-1">Land Today. A Better Tomorrow.</p>
+    <title>INFRA GATI - Features</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+
+        /* =========================================
+           BASIC SETTINGS
+        ========================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fcfa;
+            color: #0d3527;
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================
+           COLORS
+        ========================================= */
+
+        .dark-green {
+            color: #075c3d;
+        }
+
+        .bg-dark-green {
+            background-color: #075c3d;
+        }
+
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+
+        .navbar {
+            width: 100%;
+            min-height: 105px;
+            background: white;
+            border-bottom: 1px solid #e7eee9;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 5.5%;
+        }
+
+
+        .navbar-inner {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+
+            gap: 30px;
+        }
+
+
+        /* =========================================
+           LOGO
+        ========================================= */
+
+        .logo {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            text-decoration: none;
+
+            flex-shrink: 0;
+        }
+
+
+        .logo-icon {
+            width: 58px;
+            height: 58px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .logo-icon i {
+            font-size: 50px;
+            color: #15905c;
+
+            transform: rotate(-15deg);
+        }
+
+
+        .logo-name {
+            font-size: 34px;
+            line-height: 1;
+
+            font-weight: 900;
+
+            letter-spacing: -1.5px;
+
+            color: #101c18;
+
+            white-space: nowrap;
+        }
+
+
+        .logo-name span {
+            color: #087a4d;
+        }
+
+
+        .tagline {
+            margin-top: 6px;
+
+            font-size: 8px;
+
+            font-weight: 600;
+
+            letter-spacing: 4px;
+
+            color: #7b8581;
+
+            white-space: nowrap;
+        }
+
+
+        /* =========================================
+           NAVIGATION
+        ========================================= */
+
+        .navigation {
+            margin-left: auto;
+
+            display: flex;
+            align-items: center;
+
+            gap: clamp(22px, 2.6vw, 42px);
+
+            white-space: nowrap;
+        }
+
+
+        .navigation a {
+            position: relative;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: 500;
+
+            color: #202522;
+
+            padding: 10px 0;
+
+            transition: 0.2s ease;
+        }
+
+
+        .navigation a:hover {
+            color: #087a4d;
+        }
+
+
+        .navigation a.active {
+            color: #087a4d;
+
+            font-weight: 700;
+        }
+
+
+        .navigation a.active::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+
+            bottom: 0;
+
+            height: 3px;
+
+            background: #087a4d;
+
+            border-radius: 5px;
+        }
+
+
+        /* =========================================
+           LOGIN BUTTON
+        ========================================= */
+
+        .login-button {
+            margin-left: 35px;
+
+            background: #075c3d;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 15px 38px;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+            box-shadow: 0 4px 10px rgba(7, 92, 61, 0.15);
+
+            transition: 0.2s ease;
+
+            flex-shrink: 0;
+        }
+
+
+        .login-button:hover {
+            background: #064d33;
+        }
+
+
+        /* =========================================
+           MAIN
+        ========================================= */
+
+        .main {
+            position: relative;
+
+            min-height: calc(100vh - 105px);
+
+            padding: 42px 5% 125px;
+
+            overflow: hidden;
+        }
+
+
+        .content {
+            position: relative;
+
+            z-index: 5;
+
+            max-width: 1450px;
+
+            margin: auto;
+        }
+
+
+        /* =========================================
+           SMALL HEADING
+        ========================================= */
+
+        .section-label {
+            display: flex;
+            align-items: center;
+
+            gap: 28px;
+
+            margin-bottom: 16px;
+        }
+
+
+        .section-label-line {
+            width: 56px;
+            height: 3px;
+
+            background: #118253;
+
+            flex-shrink: 0;
+        }
+
+
+        .section-label-text {
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 4px;
+
+            color: #60716a;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================================
+           MAIN HEADING
+        ========================================= */
+
+        .main-heading {
+            margin: 0;
+
+            font-size: clamp(42px, 4.3vw, 62px);
+
+            line-height: 1.05;
+
+            font-weight: 900;
+
+            letter-spacing: -2px;
+
+            color: #062d21;
+        }
+
+
+        .subtitle {
+            margin-top: 12px;
+
+            margin-bottom: 28px;
+
+            font-size: clamp(22px, 2vw, 31px);
+
+            line-height: 1.2;
+
+            font-weight: 500;
+
+            color: #337866;
+        }
+
+
+        /* =========================================
+           FEATURE GRID
+        ========================================= */
+
+        .feature-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 25px;
+
+            position: relative;
+
+            z-index: 5;
+        }
+
+
+        /* =========================================
+           FEATURE CARD
+        ========================================= */
+
+        .feature-card {
+            min-height: 215px;
+
+            padding: 22px 30px 24px;
+
+            border-radius: 9px;
+
+            background: rgba(237, 249, 244, 0.94);
+
+            border: 1px solid rgba(218, 239, 229, 0.9);
+
+            display: flex;
+
+            flex-direction: column;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 12px 25px rgba(15, 96, 60, 0.10);
+        }
+
+
+        /* =========================================
+           ICON CIRCLE
+        ========================================= */
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+
+            border-radius: 50%;
+
+            background: #ddf4e9;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 17px;
+
+            flex-shrink: 0;
+        }
+
+
+        .icon-circle i {
+            font-size: 34px;
+
+            color: #007348;
+        }
+
+
+        /* =========================================
+           CARD TEXT
+        ========================================= */
+
+        .feature-title {
+            margin: 0 0 8px;
+
+            font-size: 18px;
+
+            line-height: 1.25;
+
+            font-weight: 800;
+
+            color: #073a2a;
+        }
+
+
+        .feature-description {
+            margin: 0;
+
+            font-size: 14px;
+
+            line-height: 1.55;
+
+            font-weight: 500;
+
+            color: #4c7165;
+
+            max-width: 260px;
+        }
+
+
+        /* =========================================
+           DECORATIVE BOTTOM LANDSCAPE
+        ========================================= */
+
+        .landscape {
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            height: 135px;
+
+            z-index: 1;
+
+            pointer-events: none;
+
+            overflow: hidden;
+        }
+
+
+        .hill-back {
+            position: absolute;
+
+            left: -5%;
+            bottom: 0;
+
+            width: 110%;
+            height: 105px;
+
+            background: #e8f7f0;
+
+            border-radius: 50% 50% 0 0 / 40% 40% 0 0;
+
+            transform: rotate(-1deg);
+        }
+
+
+        .hill-middle {
+            position: absolute;
+
+            left: -10%;
+            bottom: -25px;
+
+            width: 120%;
+            height: 105px;
+
+            background: #d5eee4;
+
+            border-radius: 50% 50% 0 0 / 45% 45% 0 0;
+
+            transform: rotate(1deg);
+        }
+
+
+        .hill-front {
+            position: absolute;
+
+            left: -10%;
+            bottom: -50px;
+
+            width: 120%;
+            height: 100px;
+
+            background: #c4e6d9;
+
+            border-radius: 50% 50% 0 0 / 50% 50% 0 0;
+
+            transform: rotate(-1deg);
+        }
+
+
+        /* =========================================
+           SIMPLE TREES
+        ========================================= */
+
+        .tree {
+            position: absolute;
+
+            bottom: 34px;
+
+            width: 25px;
+            height: 38px;
+
+            opacity: 0.65;
+        }
+
+
+        .tree::before {
+            content: "";
+
+            position: absolute;
+
+            left: 7px;
+            bottom: 0;
+
+            width: 4px;
+            height: 15px;
+
+            background: #8bbba8;
+        }
+
+
+        .tree::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 24px;
+            height: 25px;
+
+            background: #9bd0bb;
+
+            border-radius: 50% 50% 45% 45%;
+        }
+
+
+        .tree-one {
+            left: 1%;
+        }
+
+
+        .tree-two {
+            right: 17%;
+            transform: scale(0.8);
+        }
+
+
+        .tree-three {
+            right: 5%;
+            transform: scale(0.65);
+        }
+
+
+        /* =========================================
+           SIMPLE CITY
+        ========================================= */
+
+        .city {
+            position: absolute;
+
+            right: 0;
+
+            bottom: 0;
+
+            width: 180px;
+
+            height: 100px;
+
+            opacity: 0.55;
+        }
+
+
+        .building {
+            position: absolute;
+
+            bottom: 0;
+
+            background: #b4dacc;
+        }
+
+
+        .building-one {
+            right: 20px;
+
+            width: 25px;
+            height: 70px;
+        }
+
+
+        .building-two {
+            right: 48px;
+
+            width: 35px;
+            height: 45px;
+        }
+
+
+        .building-three {
+            right: 83px;
+
+            width: 27px;
+            height: 58px;
+        }
+
+
+        .building-four {
+            right: 112px;
+
+            width: 32px;
+            height: 34px;
+        }
+
+
+        .building-five {
+            right: 145px;
+
+            width: 22px;
+            height: 50px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1250px) {
+
+            .navbar {
+                padding: 0 4%;
+            }
+
+            .logo-name {
+                font-size: 30px;
+            }
+
+            .navigation {
+                gap: 20px;
+            }
+
+            .login-button {
+                margin-left: 20px;
+                padding: 13px 28px;
+            }
+
+            .feature-grid {
+                gap: 18px;
+            }
+
+            .feature-card {
+                padding: 20px;
+            }
+
+        }
+
+
+        @media (max-width: 1000px) {
+
+            .navbar {
+                min-height: 90px;
+            }
+
+            .navigation {
+                gap: 15px;
+            }
+
+            .navigation a {
+                font-size: 13px;
+            }
+
+            .login-button {
+                padding: 12px 22px;
+                font-size: 13px;
+            }
+
+            .logo-name {
+                font-size: 27px;
+            }
+
+            .logo-icon {
+                width: 45px;
+            }
+
+            .logo-icon i {
+                font-size: 40px;
+            }
+
+            .tagline {
+                font-size: 6px;
+                letter-spacing: 3px;
+            }
+
+            .main {
+                padding-top: 35px;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 750px) {
+
+            .navigation {
+                display: none;
+            }
+
+            .navbar-inner {
+                justify-content: space-between;
+            }
+
+            .login-button {
+                margin-left: auto;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main {
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <nav class="navbar">
+
+        <div class="navbar-inner">
+
+
+            <!-- LOGO -->
+
+            <a href="index.html" class="logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+
+                <div>
+
+                    <div class="logo-name">
+                        INFRA <span>GATI</span>
+                    </div>
+
+                    <div class="tagline">
+                        LAND TODAY. A BETTER TOMORROW.
+                    </div>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- NAVIGATION -->
+
+            <div class="navigation">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="features.html" class="active">
+                    Features
+                </a>
+
+                <a href="how_it_works.html">
+                    How It Works
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
             </div>
-        </a>
-        <div class="hidden md:flex items-center gap-8 text-xs font-semibold text-gray-600">
-            <a href="index.html" class="hover:text-green-600 transition">Home</a>
-            <a href="about.html" class="hover:text-green-600 transition">About</a>
-            <a href="features.html" class="text-gray-900 border-b-2 border-green-600 pb-1">Features</a>
-            <a href="how_it_works.html" class="hover:text-green-600 transition">How It Works</a>
-            <a href="contact.html" class="hover:text-green-600 transition">Contact</a>
+
+
+
+            <!-- LOGIN -->
+
+            <a href="login_demo.html" class="login-button">
+                Login
+            </a>
+
+
         </div>
-        <div>
-            <a href="login_demo.html" class="bg-dark-green hover:bg-green-800 text-white px-6 py-2.5 rounded-lg font-bold text-xs transition-colors shadow-md">Login</a>
-        </div>
+
     </nav>
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-grow px-8 lg:px-24 pt-12 pb-24 z-10 relative flex justify-center">
-        
-        <div class="w-[95%] lg:w-[90%] max-w-[1400px]">
-            <div class="mb-12">
-                <!-- Unified Header Line -->
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="h-0.5 w-8 bg-green-600"></div>
-                    <p class="text-[10px] font-bold tracking-widest text-gray-500 uppercase">KEY FEATURES</p>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main">
+
+
+        <div class="content">
+
+
+            <!-- SMALL LABEL -->
+
+            <div class="section-label">
+
+                <div class="section-label-line"></div>
+
+                <div class="section-label-text">
+                    Key Features
                 </div>
-                <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-2 tracking-tight">Our Platform Highlights</h2>
-                <p class="text-xs text-gray-500 font-medium max-w-xl">Explore the powerful AI-driven tools that make INFRA GATI the perfect solution for land acquisition management.</p>
+
             </div>
 
-            <!-- Features Grid (Scaled down) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                <!-- Card 1 -->
-                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
-                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
+
+
+            <!-- HEADING -->
+
+            <h1 class="main-heading">
+                Key Features
+            </h1>
+
+
+
+            <!-- SUBTITLE -->
+
+            <div class="subtitle">
+                Technology for Timely Progress
+            </div>
+
+
+
+            <!-- =================================================
+                 FEATURE CARDS
+            ================================================= -->
+
+            <div class="feature-grid">
+
+
+                <!-- CARD 1 -->
+
+                <div class="feature-card">
+
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-chart-simple"></i>
                     </div>
-                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Delay Prediction</h3><p class="text-[10px] text-gray-600 font-medium">Identify potential bottlenecks early in the process.</p></div>
+
+                    <h2 class="feature-title">
+                        Delay Prediction
+                    </h2>
+
+                    <p class="feature-description">
+                        Predict potential delays using AI
+                        and historical data.
+                    </p>
+
                 </div>
-                <!-- Card 2 -->
-                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
-                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
+
+
+
+                <!-- CARD 2 -->
+
+                <div class="feature-card">
+
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-file-lines"></i>
                     </div>
-                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Risk Analysis</h3><p class="text-[10px] text-gray-600 font-medium">Evaluate litigation and compliance risks automatically.</p></div>
+
+                    <h2 class="feature-title">
+                        Risk Analysis
+                    </h2>
+
+                    <p class="feature-description">
+                        Identify high-risk projects
+                        and regions.
+                    </p>
+
                 </div>
-                <!-- Card 3 -->
-                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
-                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
-                        <i class="fa-solid fa-earth-americas"></i>
+
+
+
+                <!-- CARD 3 -->
+
+                <div class="feature-card">
+
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-location-dot"></i>
                     </div>
-                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Geo-Spatial Insights</h3><p class="text-[10px] text-gray-600 font-medium">Map and visualize critical land boundaries instantly.</p></div>
+
+                    <h2 class="feature-title">
+                        Geo-Spatial Insights
+                    </h2>
+
+                    <p class="feature-description">
+                        Visualize land data on
+                        interactive maps.
+                    </p>
+
                 </div>
-                <!-- Card 4 -->
-                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
-                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
-                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+
+
+
+                <!-- CARD 4 -->
+
+                <div class="feature-card">
+
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-users"></i>
                     </div>
-                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Real-time Analytics</h3><p class="text-[10px] text-gray-600 font-medium">Monitor project status with live data dashboards.</p></div>
+
+                    <h2 class="feature-title">
+                        Stakeholder Tracking
+                    </h2>
+
+                    <p class="feature-description">
+                        Monitor approvals and
+                        stakeholder involvement.
+                    </p>
+
                 </div>
-                <!-- Card 5 -->
-                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
-                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
-                        <i class="fa-solid fa-scale-balanced"></i>
+
+
+
+                <!-- CARD 5 -->
+
+                <div class="feature-card">
+
+                    <div class="icon-circle">
+                        <i class="fa-regular fa-bell"></i>
                     </div>
-                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Litigation Tracking</h3><p class="text-[10px] text-gray-600 font-medium">Manage and predict legal challenges with ML.</p></div>
+
+                    <h2 class="feature-title">
+                        Real-time Alerts
+                    </h2>
+
+                    <p class="feature-description">
+                        Get early warnings for
+                        possible delays.
+                    </p>
+
                 </div>
-                <!-- Card 6 -->
-                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
-                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
-                        <i class="fa-solid fa-file-contract"></i>
-                    </div>
-                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Document OCR</h3><p class="text-[10px] text-gray-600 font-medium">Digitize and extract text from old land records.</p></div>
-                </div>
-                <!-- Card 7 -->
-                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
-                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
-                        <i class="fa-solid fa-hand-holding-hand"></i>
-                    </div>
-                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Grievance Portal</h3><p class="text-[10px] text-gray-600 font-medium">Handle stakeholder concerns transparently.</p></div>
-                </div>
-                <!-- Card 8 -->
-                <div class="feature-card bg-green-50/80 p-6 rounded-2xl border border-green-100 flex flex-col justify-between min-h-[160px] cursor-pointer">
-                    <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-dark-green mb-4 shadow-sm text-sm">
+
+
+
+                <!-- CARD 6 -->
+
+                <div class="feature-card">
+
+                    <div class="icon-circle">
                         <i class="fa-solid fa-chart-pie"></i>
                     </div>
-                    <div><h3 class="text-sm font-bold text-gray-900 mb-1.5">Budget Optimization</h3><p class="text-[10px] text-gray-600 font-medium">Forecast financial requirements securely.</p></div>
+
+                    <h2 class="feature-title">
+                        Data-Driven Decisions
+                    </h2>
+
+                    <p class="feature-description">
+                        Support policy and planning
+                        with accurate insights.
+                    </p>
+
                 </div>
+
+
+
+                <!-- CARD 7 -->
+
+                <div class="feature-card">
+
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                    <h2 class="feature-title">
+                        Transparent Process
+                    </h2>
+
+                    <p class="feature-description">
+                        Build trust with
+                        clear and traceable data.
+                    </p>
+
+                </div>
+
+
+
+                <!-- CARD 8 -->
+
+                <div class="feature-card">
+
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+
+                    <h2 class="feature-title">
+                        Sustainable Development
+                    </h2>
+
+                    <p class="feature-description">
+                        Enable faster, fairer, and
+                        more responsible growth.
+                    </p>
+
+                </div>
+
+
             </div>
+
         </div>
+
+
+
+        <!-- =====================================================
+             BOTTOM LANDSCAPE
+        ====================================================== -->
+
+        <div class="landscape">
+
+
+            <div class="hill-back"></div>
+
+            <div class="hill-middle"></div>
+
+            <div class="hill-front"></div>
+
+
+            <!-- TREES -->
+
+            <div class="tree tree-one"></div>
+
+            <div class="tree tree-two"></div>
+
+            <div class="tree tree-three"></div>
+
+
+            <!-- CITY -->
+
+            <div class="city">
+
+                <div class="building building-one"></div>
+
+                <div class="building building-two"></div>
+
+                <div class="building building-three"></div>
+
+                <div class="building building-four"></div>
+
+                <div class="building building-five"></div>
+
+            </div>
+
+
+        </div>
+
+
     </main>
 
-    <!-- Unified Footer Line -->
-    <div class="absolute bottom-0 w-full h-24 bg-gradient-to-t from-green-50 to-transparent z-0 pointer-events-none">
-        <div class="absolute bottom-6 left-8 lg:left-16 flex items-center gap-3 z-10">
-            <div class="h-0.5 w-6 bg-dark-green"></div>
-            <p class="text-[9px] font-bold tracking-widest text-gray-600 uppercase">Smart Infrastructure | Stronger India</p>
-        </div>
-    </div>
+
 </body>
+
 </html>

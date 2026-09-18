@@ -4,107 +4,564 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INFRA GATI - Contact Us</title>
-    <!-- Tailwind CSS -->
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: #f8fafc; }
-        .text-dark-green { color: #0f603c; }
-        .bg-dark-green { background-color: #0f603c; }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            background: white;
+        }
+
+        .text-dark-green {
+            color: #0f603c;
+        }
+
+        .bg-dark-green {
+            background-color: #0f603c;
+        }
+
+        /* Bottom landscape */
+        .bottom-landscape {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 150px;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .wave-back {
+            position: absolute;
+            bottom: 0;
+            left: -5%;
+            width: 110%;
+            height: 105px;
+            background: #e2f5ec;
+            border-radius: 50% 50% 0 0 / 35% 35% 0 0;
+        }
+
+        .wave-front {
+            position: absolute;
+            bottom: -35px;
+            left: -5%;
+            width: 110%;
+            height: 100px;
+            background: #ccebdc;
+            border-radius: 50% 50% 0 0 / 45% 45% 0 0;
+        }
+
+        /* Right image */
+        .contact-image {
+            background-image:
+                linear-gradient(
+                    to bottom,
+                    rgba(255,255,255,0.05),
+                    rgba(15,96,60,0.18)
+                ),
+                url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .contact-input {
+            width: 100%;
+            background: #f8fcfa;
+            border: 1px solid #d7e9df;
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .contact-input:focus {
+            border-color: #0f603c;
+            box-shadow: 0 0 0 2px rgba(15,96,60,0.08);
+        }
     </style>
 </head>
+
 <body class="min-h-screen flex flex-col relative">
 
-    <!-- NAVBAR (Unified) -->
-    <nav class="w-full px-8 lg:px-16 py-4 flex items-center justify-between z-50 bg-white shadow-sm border-b border-gray-100">
-        <a href="index.html" class="flex items-center gap-2 cursor-pointer">
-            <i class="fa-solid fa-leaf text-2xl text-green-600"></i>
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="w-full h-[105px] px-8 lg:px-20 flex items-center justify-between
+                bg-white border-b border-gray-100 z-50 relative">
+
+        <!-- Logo -->
+        <a href="index.html"
+           class="flex items-center gap-3 cursor-pointer">
+
+            <i class="fa-solid fa-leaf text-[45px] text-green-600"></i>
+
             <div>
-                <h1 class="text-xl font-extrabold tracking-tight text-gray-900 leading-none">INFRA GATI</h1>
-                <p class="text-[8px] tracking-widest uppercase font-semibold text-gray-500 mt-1">Land Today. A Better Tomorrow.</p>
+                <h1 class="text-[30px] font-extrabold tracking-tight
+                           text-gray-900 leading-none">
+                    INFRA GATI
+                </h1>
+
+                <p class="text-[10px] tracking-[5px] uppercase
+                          font-semibold text-gray-500 mt-2">
+                    Land Today. A Better Tomorrow.
+                </p>
             </div>
         </a>
-        <div class="hidden md:flex items-center gap-8 text-xs font-semibold text-gray-600">
-            <a href="index.html" class="hover:text-green-600 transition">Home</a>
-            <a href="about.html" class="hover:text-green-600 transition">About</a>
-            <a href="features.html" class="hover:text-green-600 transition">Features</a>
-            <a href="how_it_works.html" class="hover:text-green-600 transition">How It Works</a>
-            <a href="contact.html" class="text-gray-900 border-b-2 border-green-600 pb-1">Contact</a>
+
+
+        <!-- Navigation -->
+        <div class="hidden md:flex items-center gap-10
+                    text-[15px] font-semibold text-gray-700">
+
+            <a href="index.html"
+               class="hover:text-green-600 transition">
+                Home
+            </a>
+
+            <a href="about.html"
+               class="hover:text-green-600 transition">
+                About
+            </a>
+
+            <a href="features.html"
+               class="hover:text-green-600 transition">
+                Features
+            </a>
+
+            <a href="how_it_works.html"
+               class="hover:text-green-600 transition">
+                How It Works
+            </a>
+
+            <a href="contact.html"
+               class="text-green-700 relative">
+                Contact
+
+                <span class="absolute -bottom-5 left-1/2
+                             -translate-x-1/2 w-12 h-[3px]
+                             bg-green-700 rounded-full"></span>
+            </a>
         </div>
-        <div>
-            <a href="login_demo.html" class="bg-dark-green hover:bg-green-800 text-white px-6 py-2.5 rounded-lg font-bold text-xs transition-colors shadow-md">Login</a>
-        </div>
+
+
+        <!-- Login -->
+        <a href="login_demo.html"
+           class="bg-dark-green hover:bg-green-800
+                  text-white px-8 py-3 rounded-lg
+                  font-bold text-sm transition shadow-md">
+            Login
+        </a>
+
     </nav>
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-grow px-4 lg:px-8 pt-8 pb-16 z-10 flex justify-center items-center">
-        
-        <div class="w-[95%] lg:w-[85%] max-w-[1200px] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
-            
-            <!-- LEFT COLUMN: Contact Info -->
-            <div class="w-full lg:w-[25%] bg-green-50/70 p-8 lg:p-10 flex flex-col justify-center border-r border-gray-100">
-                <h3 class="text-lg font-extrabold text-gray-900 mb-8">Get in Touch</h3>
-                
-                <div class="space-y-6">
-                    <div class="flex flex-col gap-2">
-                        <div class="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center text-dark-green text-sm"><i class="fa-solid fa-location-dot"></i></div>
-                        <h4 class="font-bold text-xs text-gray-900 mt-1">Our Address</h4>
-                        <p class="text-[11px] text-gray-500 font-medium">123 Smart City Tech Park,<br>New Delhi, India 110001</p>
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <div class="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center text-dark-green text-sm"><i class="fa-solid fa-phone"></i></div>
-                        <h4 class="font-bold text-xs text-gray-900 mt-1">Call Us</h4>
-                        <p class="text-[11px] text-gray-500 font-medium">+91 98765 43210</p>
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <div class="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center text-dark-green text-sm"><i class="fa-solid fa-envelope"></i></div>
-                        <h4 class="font-bold text-xs text-gray-900 mt-1">Email Us</h4>
-                        <p class="text-[11px] text-gray-500 font-medium">support@infragati.in</p>
-                    </div>
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="flex-1 relative z-10
+                 px-8 lg:px-20
+                 pt-12 lg:pt-14
+                 pb-[175px]">
+
+        <div class="max-w-[1400px] mx-auto
+                    grid grid-cols-1
+                    lg:grid-cols-[1fr_1.05fr_0.95fr]
+                    gap-10 lg:gap-12">
+
+
+            <!-- ================= LEFT ================= -->
+
+            <section class="pt-3">
+
+                <!-- Small heading -->
+
+                <div class="flex items-center gap-4 mb-5">
+
+                    <div class="w-14 h-[3px] bg-green-700"></div>
+
+                    <p class="text-[12px] font-bold
+                              tracking-[5px] text-gray-600">
+                        GET IN TOUCH
+                    </p>
+
                 </div>
-            </div>
 
-            <!-- MIDDLE COLUMN: Form -->
-            <div class="w-full lg:w-[45%] p-8 lg:p-12 bg-white flex flex-col justify-center">
-                <h2 class="text-2xl font-extrabold text-gray-900 mb-2">Send us a message</h2>
-                <p class="text-xs text-gray-500 mb-6 font-medium">We'd love to hear from you. Fill out the form and we'll be in touch.</p>
-                <form action="#" class="space-y-4">
-                    <div>
-                        <label class="block text-[10px] font-bold text-gray-700 mb-1.5 uppercase tracking-wide">Full Name</label>
-                        <input type="text" placeholder="John Doe" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-xs rounded-lg focus:ring-green-600 focus:border-green-600 block p-2.5 outline-none transition-colors font-medium">
+
+                <!-- Main heading -->
+
+                <h2 class="text-[44px] lg:text-[52px]
+                           leading-[1.05]
+                           font-extrabold
+                           text-gray-900
+                           tracking-tight">
+
+                    Let's Build a
+
+                    <span class="block text-dark-green">
+                        Better Tomorrow
+                    </span>
+
+                </h2>
+
+
+                <!-- Description -->
+
+                <p class="mt-7
+                          text-[18px]
+                          leading-relaxed
+                          text-gray-600
+                          max-w-[470px]">
+
+                    Have questions, suggestions, or collaboration
+                    ideas? We'd love to hear from you.
+
+                </p>
+
+
+                <!-- Contact details -->
+
+                <div class="mt-9 space-y-6">
+
+
+                    <!-- Email -->
+
+                    <div class="flex items-center gap-5">
+
+                        <div class="w-14 h-14 rounded-full
+                                    bg-green-100
+                                    flex items-center justify-center
+                                    text-dark-green text-xl">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h4 class="font-bold text-[16px]
+                                       text-gray-900">
+                                Email Us
+                            </h4>
+
+                            <p class="text-[15px] text-gray-600 mt-1">
+                                support@infragati.gov.in
+                            </p>
+
+                        </div>
+
                     </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-gray-700 mb-1.5 uppercase tracking-wide">Email Address</label>
-                        <input type="email" placeholder="john@example.com" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-xs rounded-lg focus:ring-green-600 focus:border-green-600 block p-2.5 outline-none transition-colors font-medium">
+
+
+                    <!-- Phone -->
+
+                    <div class="flex items-center gap-5">
+
+                        <div class="w-14 h-14 rounded-full
+                                    bg-green-100
+                                    flex items-center justify-center
+                                    text-dark-green text-xl">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h4 class="font-bold text-[16px]
+                                       text-gray-900">
+                                Call Us
+                            </h4>
+
+                            <p class="text-[15px] text-gray-600 mt-1">
+                                +91 11 2345 6789
+                            </p>
+
+                        </div>
+
                     </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-gray-700 mb-1.5 uppercase tracking-wide">Message</label>
-                        <textarea rows="4" placeholder="Write your message here..." class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-xs rounded-lg focus:ring-green-600 focus:border-green-600 block p-2.5 outline-none transition-colors resize-none font-medium"></textarea>
+
+
+                    <!-- Address -->
+
+                    <div class="flex items-center gap-5">
+
+                        <div class="w-14 h-14 rounded-full
+                                    bg-green-100
+                                    flex items-center justify-center
+                                    text-dark-green text-xl">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h4 class="font-bold text-[16px]
+                                       text-gray-900">
+                                Our Address
+                            </h4>
+
+                            <p class="text-[15px]
+                                      text-gray-600
+                                      leading-relaxed mt-1">
+                                Ministry of Rural Development<br>
+                                Government of India<br>
+                                New Delhi, India
+                            </p>
+
+                        </div>
+
                     </div>
-                    <button type="submit" class="w-full px-6 py-2.5 bg-[#0f603c] hover:bg-green-800 text-white font-bold rounded-lg text-xs transition-colors shadow-md mt-2">
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= MIDDLE FORM ================= -->
+
+            <section class="bg-[#f0faf5]
+                            rounded-2xl
+                            p-7 lg:p-9
+                            shadow-sm
+                            border border-green-50">
+
+                <h3 class="text-[27px]
+                           font-extrabold
+                           text-gray-900">
+                    Send Us a Message
+                </h3>
+
+
+                <form class="mt-7 space-y-4">
+
+
+                    <!-- Name -->
+
+                    <input
+                        type="text"
+                        placeholder="Your Name"
+                        class="contact-input"
+                    >
+
+
+                    <!-- Email -->
+
+                    <input
+                        type="email"
+                        placeholder="Your Email"
+                        class="contact-input"
+                    >
+
+
+                    <!-- Subject -->
+
+                    <input
+                        type="text"
+                        placeholder="Subject"
+                        class="contact-input"
+                    >
+
+
+                    <!-- Message -->
+
+                    <textarea
+                        rows="6"
+                        placeholder="Your Message"
+                        class="contact-input resize-none"></textarea>
+
+
+                    <!-- Button -->
+
+                    <button
+                        type="submit"
+                        class="w-full
+                               bg-[#0f603c]
+                               hover:bg-green-800
+                               text-white
+                               font-bold
+                               py-3.5
+                               rounded-lg
+                               text-[15px]
+                               transition
+                               shadow-md
+                               flex
+                               items-center
+                               justify-center
+                               gap-4">
+
                         Send Message
-                    </button>
-                </form>
-            </div>
 
-            <!-- RIGHT COLUMN: Picture -->
-            <div class="w-full lg:w-[30%] relative h-48 lg:h-auto hidden lg:block">
-                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Customer Support Team" class="absolute inset-0 w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-r from-green-900/50 to-green-900/10 mix-blend-multiply"></div>
-            </div>
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- ================= RIGHT IMAGE ================= -->
+
+            <section class="relative min-h-[520px]
+                            overflow-hidden
+                            contact-image">
+
+                <!-- White gradient -->
+
+                <div class="absolute inset-0
+                            bg-gradient-to-r
+                            from-white/20
+                            via-transparent
+                            to-transparent">
+                </div>
+
+
+                <!-- Quote -->
+
+                <div class="absolute top-8 left-8 right-6">
+
+                    <h3 class="text-[25px]
+                               leading-snug
+                               font-medium
+                               text-dark-green">
+
+                        "Smarter infrastructure<br>
+                        for stronger communities."
+
+                    </h3>
+
+                    <div class="w-16 h-[3px]
+                                bg-green-700 mt-5">
+                    </div>
+
+                </div>
+
+
+                <!-- Map pin -->
+
+                <div class="absolute top-[55%] left-[32%]
+                            w-16 h-16 rounded-full
+                            bg-white/90
+                            flex items-center justify-center
+                            text-green-700 text-3xl shadow-lg">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                </div>
+
+
+                <!-- Leaf icon -->
+
+                <div class="absolute top-[60%] right-[23%]
+                            w-14 h-14 rounded-full
+                            bg-white/90
+                            flex items-center justify-center
+                            text-green-700 text-xl shadow-lg">
+
+                    <i class="fa-solid fa-leaf"></i>
+
+                </div>
+
+
+                <!-- Analytics icon -->
+
+                <div class="absolute bottom-[27%] left-[48%]
+                            w-16 h-16 rounded-full
+                            bg-white/90
+                            flex items-center justify-center
+                            text-green-700 text-2xl shadow-lg">
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                </div>
+
+
+                <!-- People icon -->
+
+                <div class="absolute bottom-[15%] right-[20%]
+                            w-16 h-16 rounded-full
+                            bg-white/90
+                            flex items-center justify-center
+                            text-green-700 text-2xl shadow-lg">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+            </section>
 
         </div>
+
     </main>
 
-    <!-- Unified Footer Line -->
-    <div class="absolute bottom-0 w-full h-24 bg-gradient-to-t from-green-50 to-transparent z-0 pointer-events-none">
-        <div class="absolute bottom-6 left-8 lg:left-16 flex items-center gap-3 z-10">
-            <div class="h-0.5 w-6 bg-dark-green"></div>
-            <p class="text-[9px] font-bold tracking-widest text-gray-600 uppercase">Smart Infrastructure | Stronger India</p>
-        </div>
+
+    <!-- ================= BOTTOM LANDSCAPE ================= -->
+
+    <div class="bottom-landscape">
+
+        <div class="wave-back"></div>
+
+        <div class="wave-front"></div>
+
     </div>
+
+
+    <!-- ================= FOOTER TEXT ================= -->
+
+    <div class="absolute bottom-5
+                left-8 lg:left-20
+                right-8 lg:right-20
+                z-20
+                flex items-center justify-between">
+
+        <div class="flex items-center gap-5">
+
+            <div class="w-10 h-[2px] bg-dark-green"></div>
+
+            <p class="text-[10px]
+                      font-bold
+                      tracking-[4px]
+                      text-gray-600
+                      uppercase">
+
+                Smart Infrastructure
+                <span class="mx-2">|</span>
+                Stronger India
+
+            </p>
+
+        </div>
+
+
+        <div class="flex items-center gap-5">
+
+            <div class="w-10 h-[2px] bg-gray-500"></div>
+
+            <p class="text-[10px]
+                      font-bold
+                      tracking-[4px]
+                      text-gray-600">
+
+                05 / 03
+
+            </p>
+
+        </div>
+
+    </div>
+
 </body>
 </html>

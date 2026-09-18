@@ -1,121 +1,859 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INFRA GATI - Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: #f8fafc; }
-        .text-dark-green { color: #0f603c; }
-        .bg-dark-green { background-color: #0f603c; }
-        .hero-bg {
-            background-image: url('assets/home-bg.jpg');
-            background-size: cover;
-            background-position: center right;
-        }
-        .gradient-overlay {
-            background: linear-gradient(90deg, rgba(248,250,252,1) 0%, rgba(248,250,252,1) 35%, rgba(248,250,252,0) 100%);
-        }
-        .glass {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col relative">
 
-    <!-- NAVBAR (Unified) -->
-    <nav class="w-full px-8 lg:px-16 py-4 flex items-center justify-between z-50 bg-white shadow-sm border-b border-gray-100 absolute top-0">
-        <a href="index.html" class="flex items-center gap-2 cursor-pointer">
-            <i class="fa-solid fa-leaf text-2xl text-green-600"></i>
-            <div>
-                <h1 class="text-xl font-extrabold tracking-tight text-gray-900 leading-none">INFRA GATI</h1>
-                <p class="text-[8px] tracking-widest uppercase font-semibold text-gray-500 mt-1">Land Today. A Better Tomorrow.</p>
+    <title>INFRA GATI - Smart Infrastructure</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        /* ==============================
+           COLORS
+        ============================== */
+
+        .dark-green {
+            color: #075c3d;
+        }
+
+        .bg-dark-green {
+            background-color: #075c3d;
+        }
+
+        .bg-dark-green:hover {
+            background-color: #064b32;
+        }
+
+
+        /* ==============================
+           HERO IMAGE
+        ============================== */
+
+        .hero-image {
+            background-image: url("assets/home-bg.jpg");
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 100%;
+        }
+
+
+        /* ==============================
+           IMAGE WHITE FADE
+        ============================== */
+
+        .image-fade {
+            position: absolute;
+            inset: 0;
+
+            background: linear-gradient(
+                to right,
+                #f8fafc 0%,
+                rgba(248, 250, 252, 0.98) 7%,
+                rgba(248, 250, 252, 0.80) 18%,
+                rgba(248, 250, 252, 0.45) 32%,
+                rgba(248, 250, 252, 0.10) 48%,
+                rgba(248, 250, 252, 0) 65%
+            );
+        }
+
+
+        /* ==============================
+           GLASS CARDS
+        ============================== */
+
+        .glass-card {
+            background: rgba(55, 105, 82, 0.55);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+
+            border: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+
+        /* ==============================
+           DESKTOP NAVBAR
+        ============================== */
+
+        .navbar-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .navbar-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            white-space: nowrap;
+        }
+
+        .nav-links a {
+            white-space: nowrap;
+        }
+
+
+        /* ==============================
+           TABLET
+        ============================== */
+
+        @media (max-width: 1100px) {
+
+            .navbar-right {
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+        }
+
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 850px) {
+
+            .desktop-navigation {
+                display: none;
+            }
+
+            .mobile-login {
+                display: block;
+            }
+
+            .hero-section {
+                flex-direction: column;
+            }
+
+            .hero-content {
+                width: 100%;
+                padding: 60px 30px;
+            }
+
+            .hero-image-container {
+                width: 100%;
+                height: 500px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (min-width: 851px) {
+
+            .mobile-login {
+                display: none;
+            }
+
+        }
+
+
+        /* ==============================
+           SMALL MOBILE
+        ============================== */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 18px 20px;
+            }
+
+            .logo-title {
+                font-size: 25px;
+            }
+
+            .hero-content {
+                padding: 45px 22px;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .hero-description {
+                font-size: 17px;
+            }
+
+            .hero-image-container {
+                height: 400px;
+            }
+
+            .glass-card {
+                transform: scale(0.82);
+                transform-origin: right;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="w-full bg-white shadow-sm border-b border-gray-100">
+
+    <nav
+        class="navbar w-full min-h-[105px] px-8 lg:px-[78px] py-4 flex items-center">
+
+        <div class="navbar-content">
+
+
+            <!-- =========================
+                 LOGO
+            ========================= -->
+
+            <a href="index.html"
+                class="flex items-center gap-3 flex-shrink-0">
+
+                <!-- Leaf Logo -->
+
+                <div
+                    class="w-[50px] h-[55px] flex items-center justify-center">
+
+                    <i
+                        class="fa-solid fa-leaf text-[47px] text-green-700 rotate-[-15deg]">
+                    </i>
+
+                </div>
+
+
+                <!-- Logo Text -->
+
+                <div>
+
+                    <h1
+                        class="logo-title text-[34px] lg:text-[36px] font-extrabold tracking-tight text-gray-900 leading-none whitespace-nowrap">
+
+                        INFRA
+                        <span class="text-green-700">
+                            GATI
+                        </span>
+
+                    </h1>
+
+
+                    <p
+                        class="text-[8px] lg:text-[9px] tracking-[4px] uppercase text-gray-500 font-semibold mt-2 whitespace-nowrap">
+
+                        LAND TODAY. A BETTER TOMORROW.
+
+                    </p>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- =========================
+                 RIGHT SIDE
+            ========================= -->
+
+            <div class="navbar-right">
+
+
+                <!-- =========================
+                     NAVIGATION LINKS
+                ========================= -->
+
+                <div
+                    class="desktop-navigation nav-links text-[15px] font-medium">
+
+
+                    <!-- HOME -->
+
+                    <a href="index.html"
+                        class="text-green-700 font-bold border-b-[3px] border-green-700 pb-3">
+
+                        Home
+
+                    </a>
+
+
+                    <!-- ABOUT -->
+
+                    <a href="about.html"
+                        class="text-gray-800 hover:text-green-700 transition">
+
+                        About
+
+                    </a>
+
+
+                    <!-- FEATURES -->
+
+                    <a href="features.html"
+                        class="text-gray-800 hover:text-green-700 transition">
+
+                        Features
+
+                    </a>
+
+
+                    <!-- HOW IT WORKS -->
+
+                    <a href="how_it_works.html"
+                        class="text-gray-800 hover:text-green-700 transition">
+
+                        How It Works
+
+                    </a>
+
+
+                    <!-- CONTACT -->
+
+                    <a href="contact.html"
+                        class="text-gray-800 hover:text-green-700 transition">
+
+                        Contact
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- =========================
+                     LOGIN
+                ========================= -->
+
+                <a href="login_demo.html"
+                    class="bg-dark-green text-white px-8 py-3.5 rounded-xl font-bold text-[15px] shadow-md hover:shadow-lg transition whitespace-nowrap flex-shrink-0">
+
+                    Login
+
+                </a>
+
             </div>
-        </a>
-        <div class="hidden md:flex items-center gap-8 text-xs font-semibold text-gray-600">
-            <a href="index.html" class="text-gray-900 border-b-2 border-green-600 pb-1">Home</a>
-            <a href="about.html" class="hover:text-green-600 transition">About</a>
-            <a href="features.html" class="hover:text-green-600 transition">Features</a>
-            <a href="how_it_works.html" class="hover:text-green-600 transition">How It Works</a>
-            <a href="contact.html" class="hover:text-green-600 transition">Contact</a>
+
         </div>
-        <div>
-            <a href="login_demo.html" class="bg-dark-green hover:bg-green-800 text-white px-6 py-2.5 rounded-lg font-bold text-xs transition-colors shadow-md">Login</a>
-        </div>
+
     </nav>
 
-    <!-- HERO SECTION -->
-    <main class="relative flex-grow flex items-center pt-20 min-h-[90vh]">
-        <!-- Right Background Image -->
-        <div class="absolute inset-0 z-0 flex justify-end">
-            <div class="w-full md:w-3/4 lg:w-2/3 h-full hero-bg relative">
-                <div class="absolute inset-0 gradient-overlay"></div>
-                
-                <div class="absolute top-1/4 right-1/4 glass px-3 py-2.5 rounded-xl shadow-xl flex items-center gap-3 text-white">
-                    <div class="bg-white/20 p-2 rounded-full"><i class="fa-solid fa-chart-line text-sm"></i></div>
-                    <div><p class="text-xs font-bold">Land Insights</p><p class="text-[10px] opacity-90">Faster Approvals</p></div>
-                </div>
+</header>
 
-                <div class="absolute bottom-1/3 right-1/3 glass px-3 py-2.5 rounded-xl shadow-xl flex items-center gap-3 text-white">
-                    <div class="bg-white/20 p-2 rounded-full"><i class="fa-solid fa-leaf text-sm"></i></div>
-                    <div><p class="text-xs font-bold">Data for</p><p class="text-[10px] opacity-90">Development</p></div>
-                </div>
+
+
+<!-- =========================================================
+     HERO SECTION
+========================================================= -->
+
+<main
+    class="hero-section w-full min-h-[calc(100vh-105px)] flex overflow-hidden">
+
+
+    <!-- =====================================================
+         LEFT SIDE CONTENT
+    ===================================================== -->
+
+    <section
+        class="hero-content w-[52%] flex-shrink-0 px-8 lg:px-[78px] py-[65px] flex flex-col justify-center">
+
+
+        <!-- =========================
+             TOP LABEL
+        ========================= -->
+
+        <div
+            class="flex items-center gap-4 mb-7 flex-wrap">
+
+            <div
+                class="w-[55px] h-[3px] bg-green-700 flex-shrink-0">
             </div>
-        </div>
 
-        <!-- Left Text Content -->
-        <div class="w-full lg:w-1/2 px-8 lg:px-16 relative z-10">
-            <!-- Unified Header Line -->
-            <div class="flex items-center gap-3 mb-4">
-                <div class="h-0.5 w-8 bg-green-600"></div>
-                <p class="text-[10px] font-bold tracking-widest text-gray-500 uppercase">Smart Infrastructure | Stronger India</p>
-            </div>
 
-            <h1 class="text-5xl lg:text-6xl font-black text-dark-green leading-[1.1] mb-5 tracking-tight">
-                Predict.<br>Prevent.<br>Progress.
-            </h1>
-            
-            <p class="text-sm text-gray-600 mb-8 max-w-md font-medium leading-relaxed">
-                AI-powered early detection of land acquisition delays.
+            <p
+                class="text-[11px] font-bold tracking-[3px] text-gray-500 uppercase whitespace-nowrap">
+
+                Smart Infrastructure
+
             </p>
 
-            <div class="flex flex-col sm:flex-row gap-3 mb-16">
-                <a href="#" class="bg-dark-green hover:bg-green-800 text-white px-6 py-3 rounded-lg font-bold text-xs transition-colors shadow-lg flex items-center justify-center gap-2">
-                    Explore Projects <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="#" class="bg-white hover:bg-gray-50 text-dark-green border-2 border-gray-200 px-6 py-3 rounded-lg font-bold text-xs transition-colors flex items-center justify-center gap-2">
-                    Learn More <i class="fa-solid fa-arrow-right"></i>
-                </a>
+
+            <span class="text-gray-400">
+                |
+            </span>
+
+
+            <p
+                class="text-[11px] font-bold tracking-[3px] text-gray-500 uppercase whitespace-nowrap">
+
+                Stronger India
+
+            </p>
+
+        </div>
+
+
+
+        <!-- =========================
+             MAIN HEADING
+        ========================= -->
+
+        <h1
+            class="hero-title text-[clamp(48px,4.5vw,74px)] font-black leading-[1.08] tracking-[-2px] text-gray-950">
+
+            Predict.
+            <br>
+
+            Prevent.
+            <br>
+
+            <span class="text-green-700">
+
+                Progress.
+
+            </span>
+
+        </h1>
+
+
+
+        <!-- =========================
+             DESCRIPTION
+        ========================= -->
+
+        <p
+            class="hero-description mt-7 text-[20px] text-gray-700 max-w-[600px] leading-relaxed font-medium">
+
+            AI-powered early detection of land acquisition delays.
+
+        </p>
+
+
+
+        <!-- =========================
+             BUTTONS
+        ========================= -->
+
+        <div
+            class="flex flex-wrap gap-4 mt-8">
+
+
+            <!-- EXPLORE PROJECTS -->
+
+            <a href="projects.html"
+                class="bg-dark-green text-white px-8 py-4 rounded-xl font-bold text-[15px] flex items-center justify-center gap-4 shadow-lg hover:shadow-xl transition whitespace-nowrap">
+
+                Explore Projects
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+
+            <!-- LEARN MORE -->
+
+            <a href="how_it_works.html"
+                class="bg-white text-green-800 border-2 border-green-700 px-8 py-4 rounded-xl font-bold text-[15px] flex items-center justify-center gap-4 hover:bg-green-50 transition whitespace-nowrap">
+
+                Learn More
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================================
+             THREE FEATURE CARDS
+        ================================================= -->
+
+        <div
+            class="feature-grid grid grid-cols-3 gap-6 mt-14 max-w-[820px]">
+
+
+            <!-- =========================
+                 FEATURE 1
+            ========================= -->
+
+            <div
+                class="flex items-start gap-3">
+
+                <div
+                    class="min-w-[52px] h-[52px] rounded-full bg-green-100 flex items-center justify-center">
+
+                    <i
+                        class="fa-solid fa-chart-simple text-green-700 text-lg">
+                    </i>
+
+                </div>
+
+
+                <div>
+
+                    <h3
+                        class="font-bold text-[14px] text-gray-900 mb-1">
+
+                        Faster Projects
+
+                    </h3>
+
+
+                    <p
+                        class="text-[12px] text-gray-500 leading-relaxed">
+
+                        Reduce delays with
+                        data-driven insights.
+
+                    </p>
+
+                </div>
+
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pr-6">
-                <div class="flex items-start gap-3">
-                    <div class="bg-green-100 p-2.5 rounded-lg text-green-700 mt-0.5"><i class="fa-solid fa-chart-simple text-sm"></i></div>
-                    <div><h3 class="font-bold text-xs text-gray-900 mb-1">Faster Projects</h3><p class="text-[10px] text-gray-500 font-medium">Reduce delays with insights.</p></div>
-                </div>
-                <div class="flex items-start gap-3">
-                    <div class="bg-green-100 p-2.5 rounded-lg text-green-700 mt-0.5"><i class="fa-solid fa-leaf text-sm"></i></div>
-                    <div><h3 class="font-bold text-xs text-gray-900 mb-1">Transparent Process</h3><p class="text-[10px] text-gray-500 font-medium">More accountability in acquisition.</p></div>
-                </div>
-                <div class="flex items-start gap-3">
-                    <div class="bg-green-100 p-2.5 rounded-lg text-green-700 mt-0.5"><i class="fa-solid fa-users text-sm"></i></div>
-                    <div><h3 class="font-bold text-xs text-gray-900 mb-1">Better Communities</h3><p class="text-[10px] text-gray-500 font-medium">Enabling sustainable growth.</p></div>
-                </div>
-            </div>
-        </div>
-    </main>
 
-    <!-- Unified Footer Line -->
-    <div class="absolute bottom-0 w-full h-24 bg-gradient-to-t from-green-50 to-transparent z-0 pointer-events-none">
-        <div class="absolute bottom-6 left-8 lg:left-16 flex items-center gap-3 z-10">
-            <div class="h-0.5 w-6 bg-dark-green"></div>
-            <p class="text-[9px] font-bold tracking-widest text-gray-600 uppercase">Smart Infrastructure | Stronger India</p>
+
+            <!-- =========================
+                 FEATURE 2
+            ========================= -->
+
+            <div
+                class="flex items-start gap-3">
+
+                <div
+                    class="min-w-[52px] h-[52px] rounded-full bg-green-100 flex items-center justify-center">
+
+                    <i
+                        class="fa-solid fa-leaf text-green-700 text-lg">
+                    </i>
+
+                </div>
+
+
+                <div>
+
+                    <h3
+                        class="font-bold text-[14px] text-gray-900 mb-1">
+
+                        Transparent Process
+
+                    </h3>
+
+
+                    <p
+                        class="text-[12px] text-gray-500 leading-relaxed">
+
+                        More accountability
+                        in acquisition.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 FEATURE 3
+            ========================= -->
+
+            <div
+                class="flex items-start gap-3">
+
+                <div
+                    class="min-w-[52px] h-[52px] rounded-full bg-green-100 flex items-center justify-center">
+
+                    <i
+                        class="fa-solid fa-users text-green-700 text-lg">
+                    </i>
+
+                </div>
+
+
+                <div>
+
+                    <h3
+                        class="font-bold text-[14px] text-gray-900 mb-1">
+
+                        Better Communities
+
+                    </h3>
+
+
+                    <p
+                        class="text-[12px] text-gray-500 leading-relaxed">
+
+                        Enabling sustainable
+                        growth for all.
+
+                    </p>
+
+                </div>
+
+            </div>
+
         </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         RIGHT SIDE IMAGE
+    ===================================================== -->
+
+    <section
+        class="hero-image-container relative w-[48%] min-h-[calc(100vh-105px)] overflow-hidden flex-shrink-0">
+
+
+        <!-- BACKGROUND IMAGE -->
+
+        <div
+            class="hero-image absolute inset-0">
+        </div>
+
+
+        <!-- WHITE GRADIENT -->
+
+        <div
+            class="image-fade">
+        </div>
+
+
+
+        <!-- =================================================
+             LOCATION PIN 1
+        ================================================= -->
+
+        <div
+            class="absolute top-[19%] left-[27%] text-white text-[48px] drop-shadow-lg">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+        </div>
+
+
+
+        <!-- LOCATION PIN 2 -->
+
+        <div
+            class="absolute top-[39%] left-[18%] text-white text-[38px] drop-shadow-lg">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+        </div>
+
+
+
+        <!-- LOCATION PIN 3 -->
+
+        <div
+            class="absolute top-[55%] left-[24%] text-white text-[36px] drop-shadow-lg">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+        </div>
+
+
+
+        <!-- LOCATION PIN 4 -->
+
+        <div
+            class="absolute top-[55%] right-[23%] text-white text-[56px] drop-shadow-lg">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+        </div>
+
+
+
+        <!-- =================================================
+             LAND INSIGHTS CARD
+        ================================================= -->
+
+        <div
+            class="glass-card absolute top-[20%] right-[6%] rounded-xl px-5 py-4 text-white shadow-xl">
+
+            <div class="flex items-center gap-3">
+
+
+                <div
+                    class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+
+                    <i
+                        class="fa-solid fa-chart-simple">
+                    </i>
+
+                </div>
+
+
+                <div>
+
+                    <p
+                        class="font-bold text-[14px]">
+
+                        Land Insights
+
+                    </p>
+
+
+                    <p
+                        class="text-[12px] mt-1">
+
+                        Faster Approvals
+
+                    </p>
+
+
+                    <p
+                        class="text-[12px]">
+
+                        Fewer Delays
+
+                    </p>
+
+
+                    <p
+                        class="text-[12px]">
+
+                        Stronger Infrastructure
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             DATA FOR DEVELOPMENT CARD
+        ================================================= -->
+
+        <div
+            class="glass-card absolute bottom-[15%] right-[7%] rounded-xl px-5 py-4 text-white shadow-xl">
+
+            <div class="flex items-center gap-3">
+
+
+                <div
+                    class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+
+                    <i
+                        class="fa-solid fa-leaf">
+                    </i>
+
+                </div>
+
+
+                <div>
+
+                    <p
+                        class="font-bold text-[14px]">
+
+                        Data for
+
+                    </p>
+
+
+                    <p
+                        class="text-[12px]">
+
+                        Development
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================================
+     BOTTOM DECORATION
+========================================================= -->
+
+<footer
+    class="w-full h-[70px] bg-gradient-to-t from-green-50 to-transparent flex items-center px-8 lg:px-[78px]">
+
+    <div
+        class="flex items-center gap-4">
+
+        <div
+            class="w-8 h-[3px] bg-green-700">
+        </div>
+
+
+        <p
+            class="text-[9px] font-bold tracking-[4px] text-gray-600 uppercase">
+
+            Building A Smarter Tomorrow
+
+        </p>
+
     </div>
+
+</footer>
+
+
 </body>
+
 </html>

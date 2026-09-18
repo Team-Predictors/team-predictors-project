@@ -3,109 +3,814 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>INFRA GATI - How It Works</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; overflow-x: hidden; background-color: #f8fafc; }
-        .text-dark-green { color: #0f603c; }
-        .bg-dark-green { background-color: #0f603c; }
-        .step-card { transition: all 0.3s ease; }
-        .step-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
-        .step-number { background-color: #e8f5e9; color: #0f603c; }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .dark-green {
+            color: #075f43;
+        }
+
+        .green-bg {
+            background: #075f43;
+        }
+
+        /* =========================
+           STEP ICONS
+        ========================= */
+
+        .step-icon {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: #e7f6ef;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #087c55;
+            font-size: 46px;
+
+            margin: auto;
+        }
+
+        .arrow {
+            color: #087c55;
+            font-size: 38px;
+        }
+
+
+        /* =========================
+           BOTTOM LANDSCAPE
+           IMPORTANT:
+           It is NOT absolute.
+           It has its own space.
+        ========================= */
+
+        .landscape {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .hill-back {
+            position: absolute;
+            left: -5%;
+            bottom: 35px;
+
+            width: 110%;
+            height: 85px;
+
+            background: #dff1e9;
+
+            border-radius: 50% 50% 0 0;
+        }
+
+        .hill-middle {
+            position: absolute;
+            left: -8%;
+            bottom: 15px;
+
+            width: 116%;
+            height: 65px;
+
+            background: #c3e4d6;
+
+            border-radius: 50% 50% 0 0;
+        }
+
+        .hill-front {
+            position: absolute;
+            left: -8%;
+            bottom: -30px;
+
+            width: 116%;
+            height: 65px;
+
+            background: #075f43;
+
+            border-radius: 50% 50% 0 0;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 767px) {
+
+            .desktop-steps {
+                display: none;
+            }
+
+            .mobile-steps {
+                display: block;
+            }
+
+            .landscape {
+                height: 100px;
+            }
+
+            .step-icon {
+                width: 110px;
+                height: 110px;
+                font-size: 38px;
+            }
+
+        }
+
+
+        @media (min-width: 768px) {
+
+            .mobile-steps {
+                display: none;
+            }
+
+        }
+
     </style>
 </head>
-<body class="min-h-screen flex flex-col relative">
 
-    <!-- NAVBAR (Unified) -->
-    <nav class="w-full px-8 lg:px-16 py-4 flex items-center justify-between z-50 bg-white shadow-sm border-b border-gray-100">
-        <a href="index.html" class="flex items-center gap-2 cursor-pointer">
-            <i class="fa-solid fa-leaf text-2xl text-green-600"></i>
-            <div>
-                <h1 class="text-xl font-extrabold tracking-tight text-gray-900 leading-none">INFRA GATI</h1>
-                <p class="text-[8px] tracking-widest uppercase font-semibold text-gray-500 mt-1">Land Today. A Better Tomorrow.</p>
-            </div>
-        </a>
-        <div class="hidden md:flex items-center gap-8 text-xs font-semibold text-gray-600">
-            <a href="index.html" class="hover:text-green-600 transition">Home</a>
-            <a href="about.html" class="hover:text-green-600 transition">About</a>
-            <a href="features.html" class="hover:text-green-600 transition">Features</a>
-            <a href="how_it_works.html" class="text-gray-900 border-b-2 border-green-600 pb-1">How It Works</a>
-            <a href="contact.html" class="hover:text-green-600 transition">Contact</a>
-        </div>
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="w-full bg-white border-b border-gray-100
+            h-[105px]
+            px-8 lg:px-[5.5%]
+            flex items-center
+            relative z-50">
+
+
+    <!-- LOGO -->
+
+    <a href="index.html"
+       class="flex items-center gap-3 shrink-0">
+
+        <i class="fa-solid fa-leaf
+                  text-[43px]
+                  text-green-700">
+        </i>
+
         <div>
-            <a href="login_demo.html" class="bg-dark-green hover:bg-green-800 text-white px-6 py-2.5 rounded-lg font-bold text-xs transition-colors shadow-md">Login</a>
-        </div>
-    </nav>
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-grow px-8 lg:px-24 pt-12 pb-24 z-10 relative flex justify-center">
-        
-        <div class="w-[95%] lg:w-[90%] max-w-[1200px]">
-            <!-- Header Section -->
-            <div class="text-center mb-16">
-                <!-- Unified Header Line -->
-                <div class="flex items-center justify-center gap-3 mb-4">
-                    <div class="h-0.5 w-6 bg-green-600"></div>
-                    <p class="text-[10px] font-bold tracking-widest text-gray-500 uppercase">HOW IT WORKS</p>
-                    <div class="h-0.5 w-6 bg-green-600"></div>
+            <h1 class="text-[31px] lg:text-[34px]
+                       font-extrabold
+                       tracking-tight
+                       text-gray-900
+                       leading-none">
+
+                INFRA <span class="text-green-700">GATI</span>
+
+            </h1>
+
+            <p class="text-[9px]
+                      tracking-[4px]
+                      uppercase
+                      font-semibold
+                      text-gray-500
+                      mt-2">
+
+                LAND TODAY. A BETTER TOMORROW.
+
+            </p>
+
+        </div>
+
+    </a>
+
+
+    <!-- NAV LINKS -->
+
+    <div class="hidden md:flex
+                items-center
+                ml-auto
+                gap-9 lg:gap-10
+                text-[15px] lg:text-[17px]
+                font-medium
+                text-gray-800">
+
+        <a href="index.html"
+           class="hover:text-green-700 transition">
+            Home
+        </a>
+
+        <a href="about.html"
+           class="hover:text-green-700 transition">
+            About
+        </a>
+
+        <a href="features.html"
+           class="hover:text-green-700 transition">
+            Features
+        </a>
+
+        <a href="how_it_works.html"
+           class="text-green-700
+                  font-semibold
+                  border-b-[3px]
+                  border-green-700
+                  pb-3">
+            How It Works
+        </a>
+
+        <a href="contact.html"
+           class="hover:text-green-700 transition">
+            Contact
+        </a>
+
+    </div>
+
+
+    <!-- LOGIN -->
+
+    <a href="login_demo.html"
+       class="ml-9 lg:ml-12
+              bg-[#075f43]
+              hover:bg-green-800
+              text-white
+              px-8 lg:px-10
+              py-3.5
+              rounded-lg
+              font-bold
+              text-[15px]
+              shadow-md
+              whitespace-nowrap">
+
+        Login
+
+    </a>
+
+</nav>
+
+
+
+<!-- =====================================================
+     PAGE
+===================================================== -->
+
+<div class="min-h-[calc(100vh-105px)]
+            flex
+            flex-col">
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================= -->
+
+    <main class="flex-1
+                 px-8
+                 lg:px-[5.8%]
+                 pt-10
+                 lg:pt-11
+                 pb-5">
+
+
+        <!-- HEADER -->
+
+        <div class="mb-7">
+
+
+            <!-- Small heading -->
+
+            <div class="flex items-center gap-4 mb-3">
+
+                <div class="w-12 h-[3px]
+                            bg-green-700">
                 </div>
-                <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-3 tracking-tight">Simple Steps to Smarter Infrastructure</h2>
-                <p class="text-xs text-gray-500 font-medium max-w-xl mx-auto">From data gathering to actionable insights, see how INFRA GATI transforms the land acquisition process seamlessly.</p>
+
+                <p class="text-[12px]
+                          font-bold
+                          tracking-[5px]
+                          text-gray-600
+                          uppercase">
+
+                    HOW IT WORKS
+
+                </p>
+
             </div>
 
-            <!-- Timeline Section -->
-            <div class="relative max-w-5xl mx-auto mt-8">
-                <!-- Connecting Line -->
-                <div class="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-green-200 -translate-y-1/2 z-0"></div>
 
-                <!-- Steps Grid -->
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-5 relative z-10">
-                    
-                    <!-- Step 1 -->
-                    <div class="step-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 relative flex flex-col items-center text-center">
-                        <div class="step-number w-12 h-12 rounded-full flex items-center justify-center text-lg font-black mb-4 border-4 border-white shadow-sm absolute -top-6">1</div>
-                        <div class="bg-gray-50 w-full rounded-xl py-4 mb-4 mt-3 flex justify-center text-dark-green"><i class="fa-solid fa-file-arrow-up text-2xl"></i></div>
-                        <h3 class="text-sm font-bold text-gray-900 mb-2">Data Input</h3>
-                        <p class="text-[10px] text-gray-500 font-medium leading-relaxed">Input historical records, spatial data, and project specifics into the platform.</p>
+            <!-- Main heading -->
+
+            <h2 class="text-[44px]
+                       lg:text-[58px]
+                       font-black
+                       leading-[1.05]
+                       tracking-tight
+                       text-[#082e26]">
+
+                From Data to
+                <span class="text-green-700">
+                    Decisions
+                </span>
+
+            </h2>
+
+
+            <!-- Subtitle -->
+
+            <p class="text-[21px]
+                      lg:text-[25px]
+                      text-[#52746e]
+                      mt-3
+                      font-medium">
+
+                A simple process. A bigger impact.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             DESKTOP STEPS
+        ================================================= -->
+
+        <div class="desktop-steps
+                    max-w-[1450px]
+                    mx-auto
+                    mt-5">
+
+
+            <div class="grid
+                        grid-cols-[1fr_55px_1fr_55px_1fr_55px_1fr]
+                        items-start
+                        gap-1">
+
+
+                <!-- ================= STEP 1 ================= -->
+
+                <div class="text-center">
+
+                    <div class="step-icon">
+
+                        <i class="fa-solid fa-database"></i>
+
                     </div>
 
-                    <!-- Step 2 -->
-                    <div class="step-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 relative flex flex-col items-center text-center">
-                        <div class="step-number w-12 h-12 rounded-full flex items-center justify-center text-lg font-black mb-4 border-4 border-white shadow-sm absolute -top-6">2</div>
-                        <div class="bg-gray-50 w-full rounded-xl py-4 mb-4 mt-3 flex justify-center text-dark-green"><i class="fa-solid fa-brain text-2xl"></i></div>
-                        <h3 class="text-sm font-bold text-gray-900 mb-2">AI Processing</h3>
-                        <p class="text-[10px] text-gray-500 font-medium leading-relaxed">Our machine learning models analyze patterns, extract documents, and evaluate risks.</p>
-                    </div>
 
-                    <!-- Step 3 -->
-                    <div class="step-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 relative flex flex-col items-center text-center">
-                        <div class="step-number w-12 h-12 rounded-full flex items-center justify-center text-lg font-black mb-4 border-4 border-white shadow-sm absolute -top-6">3</div>
-                        <div class="bg-gray-50 w-full rounded-xl py-4 mb-4 mt-3 flex justify-center text-dark-green"><i class="fa-solid fa-map-location-dot text-2xl"></i></div>
-                        <h3 class="text-sm font-bold text-gray-900 mb-2">Actionable Insights</h3>
-                        <p class="text-[10px] text-gray-500 font-medium leading-relaxed">Receive detailed predictions and visualization on an interactive dashboard.</p>
-                    </div>
+                    <h3 class="text-[21px]
+                               lg:text-[25px]
+                               font-extrabold
+                               text-[#082e26]
+                               mt-4">
 
-                    <!-- Step 4 -->
-                    <div class="step-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 relative flex flex-col items-center text-center">
-                        <div class="step-number w-12 h-12 rounded-full flex items-center justify-center text-lg font-black mb-4 border-4 border-white shadow-sm absolute -top-6">4</div>
-                        <div class="bg-gray-50 w-full rounded-xl py-4 mb-4 mt-3 flex justify-center text-dark-green"><i class="fa-solid fa-shield-check text-2xl"></i></div>
-                        <h3 class="text-sm font-bold text-gray-900 mb-2">Proactive Measures</h3>
-                        <p class="text-[10px] text-gray-500 font-medium leading-relaxed">Take timely steps to prevent delays, manage grievances, and ensure smooth progress.</p>
-                    </div>
+                        1. Collect Data
+
+                    </h3>
+
+
+                    <p class="text-[15px]
+                              lg:text-[18px]
+                              leading-[1.45]
+                              text-[#52746e]
+                              mt-2
+                              max-w-[300px]
+                              mx-auto">
+
+                        Gather data from government
+                        sources, land records, and
+                        project documents.
+
+                    </p>
 
                 </div>
+
+
+                <!-- ARROW -->
+
+                <div class="flex
+                            justify-center
+                            pt-[52px]">
+
+                    <i class="fa-solid fa-arrow-right arrow"></i>
+
+                </div>
+
+
+
+                <!-- ================= STEP 2 ================= -->
+
+                <div class="text-center">
+
+                    <div class="step-icon">
+
+                        <i class="fa-solid fa-gear"></i>
+
+                    </div>
+
+
+                    <h3 class="text-[21px]
+                               lg:text-[25px]
+                               font-extrabold
+                               text-[#082e26]
+                               mt-4">
+
+                        2. Analyze
+
+                    </h3>
+
+
+                    <p class="text-[15px]
+                              lg:text-[18px]
+                              leading-[1.45]
+                              text-[#52746e]
+                              mt-2
+                              max-w-[300px]
+                              mx-auto">
+
+                        Use AI/ML models to detect
+                        patterns and predict potential
+                        delays.
+
+                    </p>
+
+                </div>
+
+
+                <!-- ARROW -->
+
+                <div class="flex
+                            justify-center
+                            pt-[52px]">
+
+                    <i class="fa-solid fa-arrow-right arrow"></i>
+
+                </div>
+
+
+
+                <!-- ================= STEP 3 ================= -->
+
+                <div class="text-center">
+
+                    <div class="step-icon">
+
+                        <i class="fa-solid fa-file-image"></i>
+
+                    </div>
+
+
+                    <h3 class="text-[21px]
+                               lg:text-[25px]
+                               font-extrabold
+                               text-[#082e26]
+                               mt-4">
+
+                        3. Visualize
+
+                    </h3>
+
+
+                    <p class="text-[15px]
+                              lg:text-[18px]
+                              leading-[1.45]
+                              text-[#52746e]
+                              mt-2
+                              max-w-[300px]
+                              mx-auto">
+
+                        View insights on interactive
+                        dashboards and maps.
+
+                    </p>
+
+                </div>
+
+
+                <!-- ARROW -->
+
+                <div class="flex
+                            justify-center
+                            pt-[52px]">
+
+                    <i class="fa-solid fa-arrow-right arrow"></i>
+
+                </div>
+
+
+
+                <!-- ================= STEP 4 ================= -->
+
+                <div class="text-center">
+
+                    <div class="step-icon">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                    </div>
+
+
+                    <h3 class="text-[21px]
+                               lg:text-[25px]
+                               font-extrabold
+                               text-[#082e26]
+                               mt-4">
+
+                        4. Take Action
+
+                    </h3>
+
+
+                    <p class="text-[15px]
+                              lg:text-[18px]
+                              leading-[1.45]
+                              text-[#52746e]
+                              mt-2
+                              max-w-[310px]
+                              mx-auto">
+
+                        Enable timely interventions
+                        and informed decision-making.
+
+                    </p>
+
+                </div>
+
             </div>
+
+
+
+            <!-- =================================================
+                 MESSAGE BOX
+            ================================================= -->
+
+            <div class="flex
+                        justify-center
+                        mt-7">
+
+                <div class="bg-[#e8f6f0]
+                            border border-green-100
+                            rounded-xl
+                            px-12
+                            py-3
+                            text-center
+                            w-[650px]
+                            max-w-full">
+
+                    <p class="text-[19px]
+                              lg:text-[22px]
+                              font-extrabold
+                              text-[#075f43]">
+
+                        Turning data into development.
+
+                    </p>
+
+                </div>
+
+            </div>
+
         </div>
+
+
+
+        <!-- =================================================
+             MOBILE
+        ================================================= -->
+
+        <div class="mobile-steps mt-6">
+
+
+            <div class="bg-white
+                        rounded-2xl
+                        p-6
+                        border
+                        border-gray-100
+                        shadow-sm
+                        mb-5">
+
+                <div class="step-icon mb-4">
+                    <i class="fa-solid fa-database"></i>
+                </div>
+
+                <h3 class="text-xl
+                           font-bold
+                           text-center">
+
+                    1. Collect Data
+
+                </h3>
+
+                <p class="text-gray-500
+                          text-center
+                          mt-2">
+
+                    Gather data from government
+                    sources, land records, and
+                    project documents.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="bg-white
+                        rounded-2xl
+                        p-6
+                        border
+                        border-gray-100
+                        shadow-sm
+                        mb-5">
+
+                <div class="step-icon mb-4">
+                    <i class="fa-solid fa-gear"></i>
+                </div>
+
+                <h3 class="text-xl
+                           font-bold
+                           text-center">
+
+                    2. Analyze
+
+                </h3>
+
+                <p class="text-gray-500
+                          text-center
+                          mt-2">
+
+                    Use AI/ML models to detect
+                    patterns and predict potential
+                    delays.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="bg-white
+                        rounded-2xl
+                        p-6
+                        border
+                        border-gray-100
+                        shadow-sm
+                        mb-5">
+
+                <div class="step-icon mb-4">
+                    <i class="fa-solid fa-file-image"></i>
+                </div>
+
+                <h3 class="text-xl
+                           font-bold
+                           text-center">
+
+                    3. Visualize
+
+                </h3>
+
+                <p class="text-gray-500
+                          text-center
+                          mt-2">
+
+                    View insights on interactive
+                    dashboards and maps.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="bg-white
+                        rounded-2xl
+                        p-6
+                        border
+                        border-gray-100
+                        shadow-sm">
+
+                <div class="step-icon mb-4">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <h3 class="text-xl
+                           font-bold
+                           text-center">
+
+                    4. Take Action
+
+                </h3>
+
+                <p class="text-gray-500
+                          text-center
+                          mt-2">
+
+                    Enable timely interventions
+                    and informed decision-making.
+
+                </p>
+
+            </div>
+
+
+            <div class="bg-[#e8f6f0]
+                        rounded-xl
+                        px-5
+                        py-4
+                        text-center
+                        mt-6">
+
+                <p class="font-bold
+                          text-green-800">
+
+                    Turning data into development.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
     </main>
 
-    <!-- Unified Footer Line -->
-    <div class="absolute bottom-0 w-full h-24 bg-gradient-to-t from-green-50 to-transparent z-0 pointer-events-none">
-        <div class="absolute bottom-6 left-8 lg:left-16 flex items-center gap-3 z-10">
-            <div class="h-0.5 w-6 bg-dark-green"></div>
-            <p class="text-[9px] font-bold tracking-widest text-gray-600 uppercase">Smart Infrastructure | Stronger India</p>
+
+
+    <!-- =====================================================
+         BOTTOM LANDSCAPE
+
+         THIS IS NOW NORMAL FLOW.
+         IT CANNOT OVERLAP MAIN CONTENT.
+    ====================================================== -->
+
+    <div class="landscape">
+
+        <div class="hill-back"></div>
+
+        <div class="hill-middle"></div>
+
+        <div class="hill-front"></div>
+
+
+        <!-- Bottom label -->
+
+        <div class="absolute
+                    bottom-5
+                    left-8
+                    lg:left-[5.8%]
+                    flex
+                    items-center
+                    gap-4
+                    z-10">
+
+            <div class="w-10
+                        h-[2px]
+                        bg-white">
+            </div>
+
+            <p class="text-[10px]
+                      lg:text-[11px]
+                      font-bold
+                      tracking-[4px]
+                      text-white
+                      uppercase">
+
+                SMART INFRASTRUCTURE
+                <span class="mx-2">|</span>
+                STRONGER INDIA
+
+            </p>
+
         </div>
+
     </div>
+
+</div>
+
 </body>
 </html>
