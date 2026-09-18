@@ -246,142 +246,32 @@
 
 <header class="w-full bg-white shadow-sm border-b border-gray-100">
 
-    <nav
-        class="navbar w-full min-h-[105px] px-8 lg:px-[78px] py-4 flex items-center">
-
-        <div class="navbar-content">
-
-
-            <!-- =========================
-                 LOGO
-            ========================= -->
-
-            <a href="index.html"
-                class="flex items-center gap-3 flex-shrink-0">
-
-                <!-- Leaf Logo -->
-
-                <div
-                    class="w-[50px] h-[55px] flex items-center justify-center">
-
-                    <i
-                        class="fa-solid fa-leaf text-[47px] text-green-700 rotate-[-15deg]">
-                    </i>
-
-                </div>
-
-
-                <!-- Logo Text -->
-
-                <div>
-
-                    <h1
-                        class="logo-title text-[34px] lg:text-[36px] font-extrabold tracking-tight text-gray-900 leading-none whitespace-nowrap">
-
-                        INFRA
-                        <span class="text-green-700">
-                            GATI
-                        </span>
-
-                    </h1>
-
-
-                    <p
-                        class="text-[8px] lg:text-[9px] tracking-[4px] uppercase text-gray-500 font-semibold mt-2 whitespace-nowrap">
-
-                        LAND TODAY. A BETTER TOMORROW.
-
-                    </p>
-
-                </div>
-
-            </a>
-
-
-
-            <!-- =========================
-                 RIGHT SIDE
-            ========================= -->
-
-            <div class="navbar-right">
-
-
-                <!-- =========================
-                     NAVIGATION LINKS
-                ========================= -->
-
-                <div
-                    class="desktop-navigation nav-links text-[15px] font-medium">
-
-
-                    <!-- HOME -->
-
-                    <a href="index.html"
-                        class="text-green-700 font-bold border-b-[3px] border-green-700 pb-3">
-
-                        Home
-
-                    </a>
-
-
-                    <!-- ABOUT -->
-
-                    <a href="about.html"
-                        class="text-gray-800 hover:text-green-700 transition">
-
-                        About
-
-                    </a>
-
-
-                    <!-- FEATURES -->
-
-                    <a href="features.html"
-                        class="text-gray-800 hover:text-green-700 transition">
-
-                        Features
-
-                    </a>
-
-
-                    <!-- HOW IT WORKS -->
-
-                    <a href="how_it_works.html"
-                        class="text-gray-800 hover:text-green-700 transition">
-
-                        How It Works
-
-                    </a>
-
-
-                    <!-- CONTACT -->
-
-                    <a href="contact.html"
-                        class="text-gray-800 hover:text-green-700 transition">
-
-                        Contact
-
-                    </a>
-
-                </div>
-
-
-
-                <!-- =========================
-                     LOGIN
-                ========================= -->
-
-                <a href="login_demo.html"
-                    class="bg-dark-green text-white px-8 py-3.5 rounded-xl font-bold text-[15px] shadow-md hover:shadow-lg transition whitespace-nowrap flex-shrink-0">
-
-                    Login
-
-                </a>
-
+        <!-- UNIFIED BIG NAVBAR -->
+    <nav class="w-full h-[105px] px-8 lg:px-20 flex items-center justify-between bg-white border-b border-gray-100 z-50 relative shrink-0">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 cursor-pointer">
+            <i class="fa-solid fa-leaf text-[45px] text-green-600"></i>
+            <div>
+                <h1 class="text-[30px] font-extrabold tracking-tight text-gray-900 leading-none" style="font-family: 'Inter', sans-serif;">INFRA GATI</h1>
+                <p class="text-[10px] tracking-[5px] uppercase font-semibold text-gray-500 mt-1.5" style="font-family: 'Inter', sans-serif;">Land Today. A Better Tomorrow.</p>
             </div>
+        </a>
 
+        <!-- Links -->
+        <div class="hidden lg:flex items-center gap-10 text-[14px] font-bold text-gray-700" style="font-family: 'Inter', sans-serif;">
+            <a href="index.html" class="text-green-700 border-b-[3px] border-green-700 pb-1 hover:text-green-700 transition">Home</a>
+            <a href="about.html" class=" hover:text-green-700 transition">About</a>
+            <a href="features.html" class=" hover:text-green-700 transition">Features</a>
+            <a href="how_it_works.html" class=" hover:text-green-700 transition">How It Works</a>
+            <a href="contact.html" class=" hover:text-green-700 transition">Contact</a>
         </div>
 
+        <!-- Button -->
+        <div>
+            <a href="login_demo.html" class="bg-[#126f43] hover:bg-green-800 text-white px-8 py-3 rounded-md font-bold text-[14px] transition-colors shadow-md" style="font-family: 'Inter', sans-serif;">
+                Login
+            </a>
+        </div>
     </nav>
 
 </header>
