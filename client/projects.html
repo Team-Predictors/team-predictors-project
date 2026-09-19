@@ -1,1966 +1,517 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>INFRA GATI - Dashboard</title>
-
-    <!-- Tailwind CSS -->
+    <title>INFRA GATI - Projects</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- FontAwesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    >
-
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
-
-        /* =====================================================
-           GENERAL
-        ===================================================== */
-
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            background-color: #f8fafc;
+        body { font-family: 'Inter', sans-serif; background-color: #f4f7f6; overflow: hidden; }
+        .sidebar-active { background-color: #126f43; border-left: 4px solid #4ade80; }
+        .sidebar-item:hover:not(.sidebar-active) { background-color: rgba(255,255,255,0.05); }
+        .tab-active { border-bottom: 2px solid #0f603c; color: #0f603c; font-weight: 600; }
+        .tab-inactive { color: #6b7280; font-weight: 500; }
+        .tab-inactive:hover { color: #374151; }
+        .project-item-active { background-color: #f0fdf4; border: 1px solid #bbf7d0; }
+        .project-item:hover:not(.project-item-active) { background-color: #f9fafb; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Stepper styles */
+        .step-line {
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            bottom: -8px;
+            width: 2px;
+            background-color: #e5e7eb;
+            z-index: 0;
         }
-
-        .text-dark-green {
-            color: #0f603c;
-        }
-
-        .bg-dark-green {
+        .step-line-active {
             background-color: #0f603c;
         }
-
-
-        /* =====================================================
-           SIDEBAR
-        ===================================================== */
-
-        .sidebar-active {
-            background-color: #15803d;
-            border-left: 4px solid #4ade80;
-        }
-
-
-        /* =====================================================
-           CARDS
-        ===================================================== */
-
-        .glass-card {
-            background: white;
-
-            border-radius: 1rem;
-
-            box-shadow:
-                0 4px 6px -1px rgba(0, 0, 0, 0.05);
-
-            border: 1px solid #f1f5f9;
-        }
-
-
-        /* =====================================================
-           KPI CARDS
-        ===================================================== */
-
-        .stat-card {
-            transition: all 0.2s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-2px);
-
-            box-shadow:
-                0 10px 20px -5px rgba(0,0,0,0.08);
-        }
-
-
-        /* =====================================================
-           PROGRESS BAR
-        ===================================================== */
-
-        .progress-bar {
-            height: 7px;
-
-            border-radius: 999px;
-
-            background: #e5e7eb;
-
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-
-            border-radius: 999px;
-        }
-
-
-        /* =====================================================
-           ACTIVITY
-        ===================================================== */
-
-        .activity-item {
-            transition: background 0.2s ease;
-        }
-
-        .activity-item:hover {
-            background: #f8fafc;
-        }
-
-
-        /* =====================================================
-           MAP
-        ===================================================== */
-
-        .india-map {
-            width: 100%;
-            height: 275px;
-
-            object-fit: contain;
-        }
-
-
-        /* =====================================================
-           TABLE
-        ===================================================== */
-
-        .dashboard-table th {
-            font-size: 9px;
-
-            color: #94a3b8;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.05em;
-
-            font-weight: 700;
-        }
-
-        .dashboard-table td {
-            font-size: 10px;
-
-            color: #475569;
-        }
-
-
-        /* =====================================================
-           RESPONSIVE
-        ===================================================== */
-
-        @media (max-width: 900px) {
-
-            .desktop-sidebar {
-                width: 220px;
-            }
-
-        }
-
     </style>
-
 </head>
+<body class="flex h-screen text-gray-800">
 
-
-<body class="flex h-screen overflow-hidden">
-
-
-    <!-- =====================================================
-         SIDEBAR
-    ===================================================== -->
-
-    <aside
-        class="desktop-sidebar w-64 bg-dark-green text-white flex flex-col h-full hidden md:flex transition-all z-20 shadow-2xl shrink-0"
-    >
-
-
-        <!-- LOGO -->
-
-        <div
-            class="h-16 flex items-center gap-3 px-6 bg-[#0a462b] border-b border-[#0f603c]"
-        >
-
-            <i class="fa-solid fa-leaf text-xl text-green-400"></i>
-
+    <!-- SIDEBAR -->
+    <aside class="w-[240px] bg-[#0c5936] text-white flex flex-col h-full shrink-0 z-20">
+        <!-- Logo -->
+        <div class="h-20 flex items-center gap-3 px-6 shrink-0">
+            <i class="fa-solid fa-leaf text-2xl text-green-400"></i>
             <div>
-
-                <h1
-                    class="text-sm font-extrabold tracking-tight text-white leading-none"
-                >
-                    INFRA GATI
-                </h1>
-
-                <p
-                    class="text-[7px] tracking-widest uppercase font-semibold text-green-200 mt-1"
-                >
-                    Admin Panel
-                </p>
-
+                <h1 class="text-lg font-extrabold tracking-tight text-white leading-none">INFRA GATI</h1>
+                <p class="text-[7px] tracking-widest uppercase font-semibold text-green-200 mt-1">Land Today. A Better Tomorrow.</p>
             </div>
-
         </div>
 
-
-
-        <!-- NAVIGATION -->
-
-        <nav
-            class="flex-1 overflow-y-auto py-6 flex flex-col gap-1 px-3"
-        >
-
-            <p
-                class="px-3 text-[9px] font-bold tracking-widest text-green-300 uppercase mb-2"
-            >
-                Main Menu
-            </p>
-
-
-            <!-- DASHBOARD ACTIVE -->
-
-            <a
-                href="dashboard.html"
-                class="sidebar-active flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-white transition-colors"
-            >
-
-                <i class="fa-solid fa-border-all w-5"></i>
-
-                Dashboard
-
+        <!-- Navigation -->
+        <nav class="flex-1 py-4 flex flex-col gap-1 px-3">
+            <a href="dashboard.html" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+                <i class="fa-solid fa-house w-5 text-center text-green-200"></i> Dashboard
             </a>
-
-
-            <!-- MAP VIEW -->
-
-            <a
-                href="maps.html"
-                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors"
-            >
-
-                <i class="fa-solid fa-map-location-dot w-5"></i>
-
-                Map View
-
+            <a href="projects.html" class="sidebar-active flex items-center gap-3 px-3 py-2.5 rounded-r-lg text-sm font-medium text-white transition-colors ml-[-12px] pl-[15px]">
+                <i class="fa-solid fa-folder-open w-5 text-center"></i> Projects
             </a>
-
-
-            <!-- PROJECTS -->
-
-            <a
-                href="projects.html"
-                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors"
-            >
-
-                <i class="fa-solid fa-building-flag w-5"></i>
-
-                Projects
-
+            <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+                <i class="fa-regular fa-file-lines w-5 text-center text-green-200"></i> Land Records
             </a>
-
-
-            <!-- DELAY ANALYTICS -->
-
-            <a
-                href="analytics.html"
-                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors"
-            >
-
-                <i class="fa-solid fa-chart-line w-5"></i>
-
-                Delay Analytics
-
+            <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+                <i class="fa-solid fa-chart-simple w-5 text-center text-green-200"></i> Analytics
             </a>
-
-
-            <!-- LITIGATION -->
-
-            <a
-                href="#"
-                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors"
-            >
-
-                <i class="fa-solid fa-scale-balanced w-5"></i>
-
-                Litigation
-
+            <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+                <i class="fa-solid fa-map w-5 text-center text-green-200"></i> Maps
             </a>
-
-
-            <!-- GRIEVANCES -->
-
-            <a
-                href="#"
-                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors"
-            >
-
-                <i class="fa-solid fa-users w-5"></i>
-
-                Grievances
-
+            <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+                <i class="fa-solid fa-file-contract w-5 text-center text-green-200"></i> Reports
             </a>
-
+            <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+                <i class="fa-solid fa-user-group w-5 text-center text-green-200"></i> Users
+            </a>
+            <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+                <i class="fa-solid fa-gear w-5 text-center text-green-200"></i> Settings
+            </a>
         </nav>
-
-
-
-        <!-- BOTTOM -->
-
-        <div
-            class="p-4 border-t border-[#15803d]"
-        >
-
-            <!-- SETTINGS -->
-
-            <a
-                href="settings.html"
-                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors"
-            >
-
-                <i class="fa-solid fa-gear w-5"></i>
-
-                Settings
-
-            </a>
-
-
-            <!-- LOGOUT -->
-
-            <a
-                href="index.html"
-                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-green-100 hover:bg-[#15803d]/50 transition-colors mt-1 text-red-300 hover:text-red-100"
-            >
-
-                <i class="fa-solid fa-arrow-right-from-bracket w-5"></i>
-
-                Log out
-
-            </a>
-
+        
+        <!-- Bottom Logo -->
+        <div class="p-6 shrink-0 mt-auto">
+            <i class="fa-solid fa-leaf text-3xl text-green-400 mb-2 opacity-80"></i>
+            <p class="text-xs text-green-100 font-medium">Land Today.<br>A Better Tomorrow.</p>
         </div>
-
     </aside>
 
-
-
-    <!-- =====================================================
-         MAIN CONTENT
-    ===================================================== -->
-
-    <div
-        class="flex-1 flex flex-col h-full relative overflow-y-auto"
-    >
-
-
-        <!-- =================================================
-             TOP NAVBAR
-        ================================================= -->
-
-        <header
-            class="h-16 bg-white shadow-sm flex items-center justify-between px-8 z-10 border-b border-gray-100 shrink-0 sticky top-0"
-        >
-
-
-            <!-- SEARCH -->
-
-            <div class="relative w-96">
-
-                <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-                >
-
-                    <i
-                        class="fa-solid fa-magnifying-glass text-gray-400 text-xs"
-                    ></i>
-
+    <!-- MAIN CONTENT AREA -->
+    <div class="flex-1 flex flex-col h-full overflow-hidden bg-[#f4f7f6]">
+        
+        <!-- TOP NAVBAR -->
+        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
+            <!-- Search -->
+            <div class="relative w-[400px]">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm"></i>
                 </div>
-
-
-                <input
-                    type="text"
-                    placeholder="Search projects, locations, villages..."
-                    class="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 text-gray-900 text-xs rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors"
-                >
-
+                <input type="text" placeholder="Search projects, locations, villages..." class="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors">
             </div>
 
-
-
-            <!-- RIGHT SIDE -->
-
-            <div
-                class="flex items-center gap-6"
-            >
-
-
-                <!-- NOTIFICATION -->
-
-                <button
-                    class="relative text-gray-500 hover:text-dark-green transition-colors"
-                >
-
-                    <i
-                        class="fa-regular fa-bell text-lg"
-                    ></i>
-
-                    <span
-                        class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-red-500 border-2 border-white rounded-full"
-                    ></span>
-
+            <!-- Right Actions -->
+            <div class="flex items-center gap-6">
+                <button class="relative text-gray-500 hover:text-gray-700 transition-colors">
+                    <i class="fa-regular fa-bell text-lg"></i>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 border border-white rounded-full"></span>
                 </button>
-
-
-
-                <!-- USER -->
-
-                <div
-                    class="flex items-center gap-3 border-l border-gray-200 pl-6"
-                >
-
-                    <!-- STATIC USER AVATAR -->
-
-                    <div
-                        class="w-8 h-8 rounded-full shadow-sm bg-[#0f603c] text-white flex items-center justify-center text-[11px] font-bold"
-                    >
-                        U
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-[#0c5936] text-white font-bold flex items-center justify-center text-sm shadow-sm">U</div>
+                    <div class="hidden md:block leading-tight">
+                        <p class="text-sm font-bold text-gray-900">User</p>
+                        <p class="text-[10px] text-gray-500 font-medium">Administrator</p>
                     </div>
-
-
-                    <div class="hidden md:block">
-
-                        <p
-                            class="text-xs font-bold text-gray-900 leading-none"
-                        >
-                            User
-                        </p>
-
-                        <p
-                            class="text-[9px] text-gray-500 mt-0.5"
-                        >
-                            Administrator
-                        </p>
-
-                    </div>
-
+                    <i class="fa-solid fa-chevron-down text-gray-400 text-xs ml-1"></i>
                 </div>
-
             </div>
-
         </header>
 
-
-
-        <!-- =================================================
-             DASHBOARD CONTENT
-        ================================================= -->
-
-        <main
-            class="p-8 w-full max-w-7xl mx-auto"
-        >
-
-
-            <!-- PAGE HEADING -->
-
-            <div
-                class="flex justify-between items-end mb-6"
-            >
-
+        <!-- DASHBOARD SCROLLABLE CONTENT -->
+        <main class="flex-1 overflow-y-auto p-6 md:p-8">
+            
+            <!-- Header -->
+            <div class="flex justify-between items-start mb-6">
                 <div>
-
-                    <h2
-                        class="text-2xl font-extrabold text-gray-900 tracking-tight"
-                    >
-                        Dashboard
-                    </h2>
-
-                    <p
-                        class="text-xs text-gray-500 font-medium mt-1"
-                    >
-                        Welcome back, User! Here's an overview of ongoing land acquisition projects.
-                    </p>
-
+                    <h2 class="text-2xl font-extrabold text-gray-900 tracking-tight">Projects</h2>
+                    <p class="text-sm text-gray-500 font-medium mt-1">Search, filter and manage all land acquisition projects.</p>
                 </div>
-
-
-                <!-- ADD PROJECT -->
-
-                <button
-                    onclick="location.href='projects.html'"
-                    class="bg-dark-green hover:bg-green-800 text-white px-5 py-2.5 rounded-lg font-bold text-xs transition-colors shadow-md flex items-center gap-2"
-                >
-
-                    <i class="fa-solid fa-plus"></i>
-
-                    Add New Project
-
+                <button class="bg-[#0c5936] hover:bg-green-800 text-white px-4 py-2.5 rounded-lg font-bold text-sm transition-colors shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-plus"></i> Add New Project
                 </button>
-
             </div>
 
-
-
-            <!-- =================================================
-                 STATISTICS
-            ================================================= -->
-
-            <div
-                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6"
-            >
-
-
-                <!-- TOTAL PROJECTS -->
-
-                <div
-                    class="glass-card stat-card p-5"
-                >
-
-                    <div
-                        class="flex items-center justify-between"
-                    >
-
-                        <div>
-
-                            <p
-                                class="text-[10px] font-bold text-gray-400 uppercase tracking-wide"
-                            >
-                                Total Projects
-                            </p>
-
-                            <h3
-                                class="text-2xl font-extrabold text-gray-900 mt-2"
-                            >
-                                124
-                            </h3>
-
-                            <p
-                                class="text-[9px] text-gray-500 mt-1"
-                            >
-                                All registered projects
-                            </p>
-
-                        </div>
-
-
-                        <div
-                            class="w-11 h-11 rounded-xl bg-green-50 text-dark-green flex items-center justify-center"
-                        >
-
-                            <i
-                                class="fa-solid fa-file-lines text-lg"
-                            ></i>
-
-                        </div>
-
+            <!-- Filters Bar -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-6 flex flex-wrap items-end gap-4">
+                <div class="flex-1 min-w-[150px]">
+                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">Ministry</label>
+                    <div class="relative">
+                        <select class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+                            <option>All Ministries</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-3 top-3 text-gray-400 text-xs pointer-events-none"></i>
                     </div>
-
                 </div>
-
-
-
-                <!-- ONGOING -->
-
-                <div
-                    class="glass-card stat-card p-5"
-                >
-
-                    <div
-                        class="flex items-center justify-between"
-                    >
-
-                        <div>
-
-                            <p
-                                class="text-[10px] font-bold text-gray-400 uppercase tracking-wide"
-                            >
-                                Ongoing
-                            </p>
-
-                            <h3
-                                class="text-2xl font-extrabold text-gray-900 mt-2"
-                            >
-                                47
-                            </h3>
-
-                            <p
-                                class="text-[9px] text-gray-500 mt-1"
-                            >
-                                Currently in progress
-                            </p>
-
-                        </div>
-
-
-                        <div
-                            class="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center"
-                        >
-
-                            <i
-                                class="fa-solid fa-clock text-lg"
-                            ></i>
-
-                        </div>
-
+                <div class="flex-1 min-w-[150px]">
+                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">Type of Project</label>
+                    <div class="relative">
+                        <select class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+                            <option>All Project Types</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-3 top-3 text-gray-400 text-xs pointer-events-none"></i>
                     </div>
-
                 </div>
-
-
-
-                <!-- COMPLETED -->
-
-                <div
-                    class="glass-card stat-card p-5"
-                >
-
-                    <div
-                        class="flex items-center justify-between"
-                    >
-
-                        <div>
-
-                            <p
-                                class="text-[10px] font-bold text-gray-400 uppercase tracking-wide"
-                            >
-                                Completed
-                            </p>
-
-                            <h3
-                                class="text-2xl font-extrabold text-gray-900 mt-2"
-                            >
-                                62
-                            </h3>
-
-                            <p
-                                class="text-[9px] text-gray-500 mt-1"
-                            >
-                                Successfully completed
-                            </p>
-
-                        </div>
-
-
-                        <div
-                            class="w-11 h-11 rounded-xl bg-green-50 text-green-600 flex items-center justify-center"
-                        >
-
-                            <i
-                                class="fa-solid fa-circle-check text-lg"
-                            ></i>
-
-                        </div>
-
+                <div class="flex-1 min-w-[150px]">
+                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">State</label>
+                    <div class="relative">
+                        <select class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+                            <option>All States</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-3 top-3 text-gray-400 text-xs pointer-events-none"></i>
                     </div>
-
                 </div>
-
-
-
-                <!-- DELAYED -->
-
-                <div
-                    class="glass-card stat-card p-5"
-                >
-
-                    <div
-                        class="flex items-center justify-between"
-                    >
-
-                        <div>
-
-                            <p
-                                class="text-[10px] font-bold text-gray-400 uppercase tracking-wide"
-                            >
-                                Delayed
-                            </p>
-
-                            <h3
-                                class="text-2xl font-extrabold text-gray-900 mt-2"
-                            >
-                                15
-                            </h3>
-
-                            <p
-                                class="text-[9px] text-gray-500 mt-1"
-                            >
-                                Requires attention
-                            </p>
-
+                <div class="flex-[1.5] min-w-[200px]">
+                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">Search</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs"></i>
                         </div>
-
-
-                        <div
-                            class="w-11 h-11 rounded-xl bg-red-50 text-red-600 flex items-center justify-center"
-                        >
-
-                            <i
-                                class="fa-solid fa-triangle-exclamation text-lg"
-                            ></i>
-
-                        </div>
-
+                        <input type="text" placeholder="Search project name..." class="w-full pl-9 pr-3 py-2 bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors">
                     </div>
-
                 </div>
-
             </div>
 
+            <!-- Main Split Layout -->
+            <div class="flex flex-col lg:flex-row gap-6 h-[calc(100vh-270px)] min-h-[600px]">
+                
+                <!-- LEFT COLUMN: Project List -->
+                <div class="w-full lg:w-[350px] bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col shrink-0 overflow-hidden h-full">
+                    <div class="p-4 border-b border-gray-100 font-bold text-gray-800">
+                        Project List (5)
+                    </div>
+                    <div class="flex-1 overflow-y-auto p-2 scrollbar-hide space-y-1">
+                        
+                        <!-- Item 1 -->
+                        <div class="project-item p-3 rounded-lg flex items-center gap-3 cursor-pointer">
+                            <div class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-road text-lg"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-center mb-0.5">
+                                    <h4 class="font-bold text-sm text-gray-900 truncate">Expressway Project</h4>
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-blue-600">In Progress</span>
+                                </div>
+                                <p class="text-[11px] text-gray-500 truncate mb-0.5">Expressway</p>
+                                <p class="text-[10px] text-gray-400 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Uttar Pradesh</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                        </div>
 
+                        <!-- Item 2 -->
+                        <div class="project-item p-3 rounded-lg flex items-center gap-3 cursor-pointer">
+                            <div class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-industry text-lg"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-center mb-0.5">
+                                    <h4 class="font-bold text-sm text-gray-900 truncate">Greenfield Project</h4>
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-orange-50 text-orange-600">Planning</span>
+                                </div>
+                                <p class="text-[11px] text-gray-500 truncate mb-0.5">Greenfield</p>
+                                <p class="text-[10px] text-gray-400 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Maharashtra</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                        </div>
 
-            <!-- =================================================
-                 MAIN DASHBOARD GRID
-            ================================================= -->
+                        <!-- Item 3 -->
+                        <div class="project-item p-3 rounded-lg flex items-center gap-3 cursor-pointer">
+                            <div class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-train-subway text-lg"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-center mb-0.5">
+                                    <h4 class="font-bold text-sm text-gray-900 truncate">Metro Project</h4>
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-blue-600">In Progress</span>
+                                </div>
+                                <p class="text-[11px] text-gray-500 truncate mb-0.5">Metro</p>
+                                <p class="text-[10px] text-gray-400 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Delhi</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                        </div>
 
-            <div
-                class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6"
-            >
+                        <!-- Item 4 (Active) -->
+                        <div class="project-item-active p-3 rounded-lg flex items-center gap-3 cursor-pointer">
+                            <div class="w-10 h-10 rounded-lg bg-white shadow-sm text-[#0c5936] border border-green-100 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-water text-lg"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-center mb-0.5">
+                                    <h4 class="font-bold text-sm text-gray-900 truncate">Canal Project</h4>
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-green-100 text-green-700">Active</span>
+                                </div>
+                                <p class="text-[11px] text-gray-500 truncate mb-0.5">Canal</p>
+                                <p class="text-[10px] text-gray-500 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Rajasthan</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-green-600 text-xs"></i>
+                        </div>
 
-
-                <!-- =================================================
-                     PROJECT PROGRESS
-                ================================================= -->
-
-                <div
-                    class="glass-card p-5"
-                >
-
-                    <div
-                        class="flex items-center justify-between mb-3"
-                    >
-
-                        <div>
-
-                            <h3
-                                class="text-sm font-bold text-gray-900"
-                            >
-                                Project Progress
-                            </h3>
-
-                            <p
-                                class="text-[9px] text-gray-500 mt-1"
-                            >
-                                Current project status
-                            </p>
-
+                        <!-- Item 5 -->
+                        <div class="project-item p-3 rounded-lg flex items-center gap-3 cursor-pointer">
+                            <div class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-road-bridge text-lg"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-center mb-0.5">
+                                    <h4 class="font-bold text-sm text-gray-900 truncate">NHAI Highway</h4>
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-orange-50 text-orange-600">Planning</span>
+                                </div>
+                                <p class="text-[11px] text-gray-500 truncate mb-0.5">Highway</p>
+                                <p class="text-[10px] text-gray-400 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Madhya Pradesh</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
                         </div>
 
                     </div>
-
-
-                    <div
-                        class="relative h-64 flex items-center justify-center"
-                    >
-
-                        <canvas
-                            id="projectChart"
-                        ></canvas>
-
-
-                        <!-- CENTER -->
-
-                        <div
-                            class="absolute text-center"
-                        >
-
-                            <p
-                                class="text-2xl font-extrabold text-gray-900"
-                            >
-                                124
-                            </p>
-
-                            <p
-                                class="text-[9px] text-gray-500"
-                            >
-                                Total Projects
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- LEGEND -->
-
-                    <div
-                        class="flex justify-center gap-4 mt-2"
-                    >
-
-                        <div
-                            class="flex items-center gap-1.5"
-                        >
-
-                            <span
-                                class="w-2 h-2 rounded-full bg-[#0f603c]"
-                            ></span>
-
-                            <span
-                                class="text-[9px] text-gray-500"
-                            >
-                                Ongoing
-                            </span>
-
-                        </div>
-
-
-                        <div
-                            class="flex items-center gap-1.5"
-                        >
-
-                            <span
-                                class="w-2 h-2 rounded-full bg-[#3b82f6]"
-                            ></span>
-
-                            <span
-                                class="text-[9px] text-gray-500"
-                            >
-                                Completed
-                            </span>
-
-                        </div>
-
-
-                        <div
-                            class="flex items-center gap-1.5"
-                        >
-
-                            <span
-                                class="w-2 h-2 rounded-full bg-[#ef4444]"
-                            ></span>
-
-                            <span
-                                class="text-[9px] text-gray-500"
-                            >
-                                Delayed
-                            </span>
-
-                        </div>
-
-                    </div>
-
                 </div>
 
-
-
-                <!-- =================================================
-                     PROJECTS BY STATE
-                ================================================= -->
-
-                <div
-                    class="glass-card p-5"
-                >
-
-                    <div
-                        class="flex items-center justify-between"
-                    >
-
-                        <div>
-
-                            <h3
-                                class="text-sm font-bold text-gray-900"
-                            >
-                                Projects by State
-                            </h3>
-
-                            <p
-                                class="text-[9px] text-gray-500 mt-1"
-                            >
-                                Project distribution across India
-                            </p>
-
+                <!-- RIGHT COLUMN: Project Details -->
+                <div class="flex-1 bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col h-full overflow-hidden">
+                    
+                    <!-- Detail Header -->
+                    <div class="p-6 pb-0 border-b border-gray-100 shrink-0">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-green-50 text-[#0c5936] flex items-center justify-center">
+                                    <i class="fa-solid fa-water text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h2 class="text-2xl font-bold text-gray-900 leading-tight">Canal Project</h2>
+                                    <p class="text-sm text-gray-500 flex items-center gap-2 mt-1">Canal <span class="text-gray-300">|</span> <i class="fa-solid fa-location-dot text-gray-400"></i> Rajasthan</p>
+                                </div>
+                            </div>
+                            <div class="bg-green-50 px-4 py-2 rounded-lg flex items-center gap-3 border border-green-100">
+                                <span class="text-xs font-semibold text-gray-600">Overall Delay Risk</span>
+                                <div class="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded shadow-sm border border-gray-100">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                                    <span class="text-xs font-black text-gray-800">LOW</span>
+                                </div>
+                            </div>
                         </div>
 
-                        <a
-                            href="maps.html"
-                            class="text-[9px] font-bold text-dark-green"
-                        >
-                            View Map →
-                        </a>
-
+                        <!-- Tabs -->
+                        <div class="flex items-center gap-8 text-sm">
+                            <a href="#" class="tab-active pb-3">Overview</a>
+                            <a href="#" class="tab-inactive pb-3 transition-colors">Land Acquisition</a>
+                            <a href="#" class="tab-inactive pb-3 transition-colors">GIS Analysis</a>
+                            <a href="#" class="tab-inactive pb-3 transition-colors">Documents</a>
+                            <a href="#" class="tab-inactive pb-3 transition-colors">Updates</a>
+                        </div>
                     </div>
 
+                    <!-- Detail Content (Scrollable) -->
+                    <div class="flex-1 overflow-y-auto p-6 scrollbar-hide">
+                        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                            
+                            <!-- Left: Project Stages -->
+                            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+                                <div class="flex justify-between items-center mb-6">
+                                    <h3 class="font-bold text-gray-900">Project Stages</h3>
+                                    <span class="text-xs font-bold text-gray-500">Delay Risk</span>
+                                </div>
+                                
+                                <div class="relative space-y-6">
+                                    <!-- Step 1 -->
+                                    <div class="relative z-10 flex items-start gap-4">
+                                        <div class="step-line step-line-active"></div>
+                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">1</div>
+                                        <div class="flex-1">
+                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">Notification</h4>
+                                            <p class="text-[11px] text-gray-500">Issue of preliminary notification</p>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                            <span class="text-[10px] font-bold text-gray-700">LOW</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Step 2 -->
+                                    <div class="relative z-10 flex items-start gap-4">
+                                        <div class="step-line"></div>
+                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">2</div>
+                                        <div class="flex-1">
+                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">Survey</h4>
+                                            <p class="text-[11px] text-gray-500">Field survey and land measurement</p>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-orange-50 border border-orange-100 shrink-0">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+                                            <span class="text-[10px] font-bold text-orange-600">MEDIUM</span>
+                                        </div>
+                                    </div>
 
-                    <!-- MAP -->
+                                    <!-- Step 3 -->
+                                    <div class="relative z-10 flex items-start gap-4">
+                                        <div class="step-line"></div>
+                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">3</div>
+                                        <div class="flex-1">
+                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">Objection</h4>
+                                            <p class="text-[11px] text-gray-500">Hearing of objections</p>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                            <span class="text-[10px] font-bold text-gray-700">LOW</span>
+                                        </div>
+                                    </div>
 
-                    <div
-                        class="flex items-center justify-center mt-2"
-                    >
+                                    <!-- Step 4 -->
+                                    <div class="relative z-10 flex items-start gap-4">
+                                        <div class="step-line"></div>
+                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">4</div>
+                                        <div class="flex-1">
+                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">Compensation</h4>
+                                            <p class="text-[11px] text-gray-500">Compensation calculation & disbursal</p>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                            <span class="text-[10px] font-bold text-gray-700">LOW</span>
+                                        </div>
+                                    </div>
 
-                        <img
-                            src="https://commons.wikimedia.org/wiki/Special:FilePath/India-map-en.svg"
-                            alt="India Map"
-                            class="india-map"
-                        >
+                                    <!-- Step 5 -->
+                                    <div class="relative z-10 flex items-start gap-4">
+                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">5</div>
+                                        <div class="flex-1">
+                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">Possession</h4>
+                                            <p class="text-[11px] text-gray-500">Handover of land</p>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                            <span class="text-[10px] font-bold text-gray-700">LOW</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <!-- Right: Map -->
+                            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm flex flex-col">
+                                <div class="flex justify-between items-center mb-4 shrink-0">
+                                    <h3 class="font-bold text-gray-900">Project Area Map</h3>
+                                    <a href="#" class="text-xs font-bold text-[#0c5936] hover:underline flex items-center gap-1">View Full Map <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                                <div class="flex-1 bg-gray-100 rounded-lg relative overflow-hidden min-h-[250px]">
+                                    <!-- Map Placeholder -->
+                                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-80" alt="Map">
+                                    <div class="absolute inset-0 bg-white/40"></div>
+                                    
+                                    <!-- Drawing some fake map elements on top to mimic the UI -->
+                                    <!-- Start Point -->
+                                    <div class="absolute top-[20%] left-[20%]">
+                                        <div class="bg-[#0c5936] text-white text-[9px] font-bold px-2 py-0.5 rounded-full absolute -top-5 -left-4 whitespace-nowrap">Start Point</div>
+                                        <div class="w-3 h-3 bg-blue-600 rounded-full border-2 border-white shadow"></div>
+                                    </div>
+                                    <!-- End Point -->
+                                    <div class="absolute bottom-[30%] right-[20%]">
+                                        <div class="bg-red-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full absolute -top-5 -left-3 whitespace-nowrap">End Point</div>
+                                        <div class="w-3 h-3 bg-red-500 rounded-full border-2 border-white shadow"></div>
+                                    </div>
+                                    <!-- Fake Line connecting them -->
+                                    <svg class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
+                                        <path d="M 20% 20% Q 50% 50% 80% 70%" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="6,4"></path>
+                                        <!-- Fake buffer zone -->
+                                        <path d="M 18% 18% Q 48% 48% 78% 68% L 82% 72% Q 52% 52% 22% 22% Z" fill="rgba(74, 222, 128, 0.3)" stroke="rgba(74, 222, 128, 0.5)" stroke-width="1"></path>
+                                    </svg>
+                                    
+                                    <!-- Zoom controls -->
+                                    <div class="absolute bottom-3 right-3 bg-white rounded shadow flex flex-col border border-gray-200">
+                                        <button class="w-6 h-6 flex items-center justify-center text-gray-600 hover:bg-gray-50 border-b border-gray-200"><i class="fa-solid fa-plus text-[10px]"></i></button>
+                                        <button class="w-6 h-6 flex items-center justify-center text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-minus text-[10px]"></i></button>
+                                    </div>
+
+                                    <!-- Map Legend overlay -->
+                                    <div class="absolute top-3 right-3 bg-white/90 backdrop-blur p-2 rounded shadow-sm border border-gray-200 text-[9px]">
+                                        <div class="flex items-center gap-1.5 mb-1">
+                                            <div class="w-3 h-0.5 bg-blue-600"></div><span class="text-gray-700 font-medium">Project Alignment</span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 mb-1">
+                                            <div class="w-3 h-2 bg-green-200 border border-green-300"></div><span class="text-gray-700 font-medium">Buffer Zone</span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-orange-400"></div><span class="text-gray-700 font-medium">Major Villages</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+                            
+                            <!-- GIS Clearance -->
+                            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+                                <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-1.5">GIS Based Land Clearance <i class="fa-regular fa-circle-question text-gray-400 text-xs"></i></h3>
+                                <div class="grid grid-cols-4 gap-3 mb-4">
+                                    <div class="bg-green-50/50 p-3 rounded-lg border border-green-100 text-center flex flex-col items-center justify-center">
+                                        <i class="fa-solid fa-leaf text-green-600 text-lg mb-2"></i>
+                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">Government Land</p>
+                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">65%</p>
+                                        <p class="text-[10px] font-bold text-green-700">Clear</p>
+                                    </div>
+                                    <div class="bg-orange-50/50 p-3 rounded-lg border border-orange-100 text-center flex flex-col items-center justify-center">
+                                        <i class="fa-solid fa-house text-orange-500 text-lg mb-2"></i>
+                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">Private Land</p>
+                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">20%</p>
+                                        <p class="text-[10px] font-bold text-orange-600 leading-tight">Verification Required</p>
+                                    </div>
+                                    <div class="bg-red-50/50 p-3 rounded-lg border border-red-100 text-center flex flex-col items-center justify-center">
+                                        <i class="fa-solid fa-tree text-red-500 text-lg mb-2"></i>
+                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">Protected Land</p>
+                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">10%</p>
+                                        <p class="text-[10px] font-bold text-red-600 leading-tight">Clearance Required</p>
+                                    </div>
+                                    <div class="bg-purple-50/50 p-3 rounded-lg border border-purple-100 text-center flex flex-col items-center justify-center">
+                                        <i class="fa-solid fa-people-group text-purple-600 text-lg mb-2"></i>
+                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">Tribal Land</p>
+                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">5%</p>
+                                        <p class="text-[10px] font-bold text-purple-700 leading-tight">Special Clearance</p>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50/50 border border-blue-100 p-3 rounded-lg flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-info text-blue-500 mt-0.5 text-sm"></i>
+                                    <p class="text-[11px] text-blue-800 font-medium leading-relaxed">GIS analysis indicates that the project area contains protected land and tribal land. Additional clearances may be required from respective authorities.</p>
+                                </div>
+                            </div>
+
+                            <!-- Delay Prediction -->
+                            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm h-full flex flex-col">
+                                <h3 class="font-bold text-gray-900 mb-4">Delay Prediction</h3>
+                                
+                                <div class="flex justify-between items-start mb-6">
+                                    <div class="flex items-start gap-3">
+                                        <div class="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
+                                            <i class="fa-regular fa-calendar-days text-gray-500 text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wide">Predicted Delay</p>
+                                            <p class="text-2xl font-black text-gray-900 leading-none mt-1">2 Months</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wide mb-1.5">Risk Level</p>
+                                        <div class="flex items-center justify-end gap-1.5">
+                                            <div class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></div>
+                                            <span class="text-sm font-black text-gray-900">LOW</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-3 pt-2 mb-6">
+                                    <div class="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
+                                        <i class="fa-solid fa-list-check text-gray-500 text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wide">Main Risk Factors</p>
+                                        <p class="text-sm font-bold text-gray-900 mt-1">Survey / Objection</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-auto bg-green-50 p-4 rounded-lg border border-green-100 flex items-start gap-3">
+                                    <i class="fa-regular fa-lightbulb text-green-600 mt-0.5 text-lg"></i>
+                                    <p class="text-xs text-green-800 font-semibold leading-relaxed">Project is likely to be completed within expected timeline with minimal delays.</p>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
-
-
-                    <!-- MAP LEGEND -->
-
-                    <div
-                        class="flex justify-center gap-4 mt-1"
-                    >
-
-                        <div
-                            class="flex items-center gap-1"
-                        >
-
-                            <span
-                                class="w-2.5 h-2.5 rounded bg-[#006b45]"
-                            ></span>
-
-                            <span
-                                class="text-[8px] text-gray-500"
-                            >
-                                High
-                            </span>
-
-                        </div>
-
-
-                        <div
-                            class="flex items-center gap-1"
-                        >
-
-                            <span
-                                class="w-2.5 h-2.5 rounded bg-[#4caf80]"
-                            ></span>
-
-                            <span
-                                class="text-[8px] text-gray-500"
-                            >
-                                Medium
-                            </span>
-
-                        </div>
-
-
-                        <div
-                            class="flex items-center gap-1"
-                        >
-
-                            <span
-                                class="w-2.5 h-2.5 rounded bg-[#b8e3cd]"
-                            ></span>
-
-                            <span
-                                class="text-[8px] text-gray-500"
-                            >
-                                Low
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- =================================================
-                     RECENT ACTIVITY
-                ================================================= -->
-
-                <div
-                    class="glass-card"
-                >
-
-                    <div
-                        class="p-5 flex items-center justify-between"
-                    >
-
-                        <div>
-
-                            <h3
-                                class="text-sm font-bold text-gray-900"
-                            >
-                                Recent Activity
-                            </h3>
-
-                            <p
-                                class="text-[9px] text-gray-500 mt-1"
-                            >
-                                Latest updates
-                            </p>
-
-                        </div>
-
-
-                        <a
-                            href="#"
-                            class="text-[9px] font-bold text-dark-green"
-                        >
-                            View All →
-                        </a>
-
-                    </div>
-
-
-                    <!-- ACTIVITY 1 -->
-
-                    <div
-                        class="activity-item px-5 py-3 border-t border-gray-100 flex items-center gap-3"
-                    >
-
-                        <div
-                            class="w-8 h-8 rounded-lg bg-green-50 text-dark-green flex items-center justify-center shrink-0"
-                        >
-
-                            <i
-                                class="fa-solid fa-building text-xs"
-                            ></i>
-
-                        </div>
-
-
-                        <div class="flex-1">
-
-                            <p
-                                class="text-[10px] font-semibold text-gray-800"
-                            >
-                                New project added
-                            </p>
-
-                            <p
-                                class="text-[9px] text-gray-500 mt-0.5"
-                            >
-                                Greenfield Expressway
-                            </p>
-
-                        </div>
-
-
-                        <span
-                            class="text-[8px] text-gray-400"
-                        >
-                            2h ago
-                        </span>
-
-                    </div>
-
-
-
-                    <!-- ACTIVITY 2 -->
-
-                    <div
-                        class="activity-item px-5 py-3 border-t border-gray-100 flex items-center gap-3"
-                    >
-
-                        <div
-                            class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0"
-                        >
-
-                            <i
-                                class="fa-solid fa-file-lines text-xs"
-                            ></i>
-
-                        </div>
-
-
-                        <div class="flex-1">
-
-                            <p
-                                class="text-[10px] font-semibold text-gray-800"
-                            >
-                                Land record updated
-                            </p>
-
-                            <p
-                                class="text-[9px] text-gray-500 mt-0.5"
-                            >
-                                Village: Rampur
-                            </p>
-
-                        </div>
-
-
-                        <span
-                            class="text-[8px] text-gray-400"
-                        >
-                            5h ago
-                        </span>
-
-                    </div>
-
-
-
-                    <!-- ACTIVITY 3 -->
-
-                    <div
-                        class="activity-item px-5 py-3 border-t border-gray-100 flex items-center gap-3"
-                    >
-
-                        <div
-                            class="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center shrink-0"
-                        >
-
-                            <i
-                                class="fa-solid fa-chart-column text-xs"
-                            ></i>
-
-                        </div>
-
-
-                        <div class="flex-1">
-
-                            <p
-                                class="text-[10px] font-semibold text-gray-800"
-                            >
-                                Report generated
-                            </p>
-
-                            <p
-                                class="text-[9px] text-gray-500 mt-0.5"
-                            >
-                                Monthly Progress Report
-                            </p>
-
-                        </div>
-
-
-                        <span
-                            class="text-[8px] text-gray-400"
-                        >
-                            1d ago
-                        </span>
-
-                    </div>
-
-
-
-                    <!-- ACTIVITY 4 -->
-
-                    <div
-                        class="activity-item px-5 py-3 border-t border-gray-100 flex items-center gap-3"
-                    >
-
-                        <div
-                            class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center shrink-0"
-                        >
-
-                            <i
-                                class="fa-solid fa-user-plus text-xs"
-                            ></i>
-
-                        </div>
-
-
-                        <div class="flex-1">
-
-                            <p
-                                class="text-[10px] font-semibold text-gray-800"
-                            >
-                                User added
-                            </p>
-
-                            <p
-                                class="text-[9px] text-gray-500 mt-0.5"
-                            >
-                                New administrator account
-                            </p>
-
-                        </div>
-
-
-                        <span
-                            class="text-[8px] text-gray-400"
-                        >
-                            2d ago
-                        </span>
-
-                    </div>
-
                 </div>
 
             </div>
-
-
-
-            <!-- =================================================
-                 RECENT PROJECTS
-            ================================================= -->
-
-            <div
-                class="glass-card mb-6"
-            >
-
-
-                <!-- HEADER -->
-
-                <div
-                    class="p-5 flex items-center justify-between"
-                >
-
-                    <div>
-
-                        <h3
-                            class="text-sm font-bold text-gray-900"
-                        >
-                            Recent Projects
-                        </h3>
-
-                        <p
-                            class="text-[9px] text-gray-500 mt-1"
-                        >
-                            Latest infrastructure projects
-                        </p>
-
-                    </div>
-
-
-                    <a
-                        href="projects.html"
-                        class="text-[9px] font-bold text-dark-green"
-                    >
-                        View All →
-                    </a>
-
-                </div>
-
-
-
-                <!-- TABLE -->
-
-                <div class="overflow-x-auto">
-
-                    <table
-                        class="w-full dashboard-table"
-                    >
-
-                        <thead>
-
-                            <tr
-                                class="border-t border-b border-gray-100"
-                            >
-
-                                <th
-                                    class="text-left px-5 py-3"
-                                >
-                                    Project
-                                </th>
-
-                                <th
-                                    class="text-left px-5 py-3"
-                                >
-                                    State
-                                </th>
-
-                                <th
-                                    class="text-left px-5 py-3"
-                                >
-                                    Type
-                                </th>
-
-                                <th
-                                    class="text-left px-5 py-3"
-                                >
-                                    Progress
-                                </th>
-
-                                <th
-                                    class="text-left px-5 py-3"
-                                >
-                                    Status
-                                </th>
-
-                                <th
-                                    class="text-left px-5 py-3"
-                                >
-                                    Action
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-
-                        <tbody>
-
-
-                            <!-- PROJECT 1 -->
-
-                            <tr
-                                class="border-b border-gray-100 hover:bg-gray-50"
-                            >
-
-                                <td
-                                    class="px-5 py-3 font-semibold text-gray-800"
-                                >
-                                    Greenfield Expressway
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-                                    Uttar Pradesh
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-                                    Infrastructure
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <div class="flex items-center gap-2">
-
-                                        <div
-                                            class="progress-bar w-24"
-                                        >
-
-                                            <div
-                                                class="progress-fill bg-[#0f603c]"
-                                                style="width:75%"
-                                            ></div>
-
-                                        </div>
-
-                                        <span
-                                            class="text-[9px] font-bold text-gray-600"
-                                        >
-                                            75%
-                                        </span>
-
-                                    </div>
-
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <span
-                                        class="px-2 py-1 rounded-md bg-blue-50 text-blue-600 text-[8px] font-bold"
-                                    >
-                                        Ongoing
-                                    </span>
-
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <button
-                                        class="text-gray-400 hover:text-dark-green"
-                                    >
-
-                                        <i
-                                            class="fa-solid fa-ellipsis"
-                                        ></i>
-
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-
-
-                            <!-- PROJECT 2 -->
-
-                            <tr
-                                class="border-b border-gray-100 hover:bg-gray-50"
-                            >
-
-                                <td
-                                    class="px-5 py-3 font-semibold text-gray-800"
-                                >
-                                    Rural Housing Development
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-                                    Bihar
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-                                    Housing
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <div class="flex items-center gap-2">
-
-                                        <div
-                                            class="progress-bar w-24"
-                                        >
-
-                                            <div
-                                                class="progress-fill bg-[#0f603c]"
-                                                style="width:100%"
-                                            ></div>
-
-                                        </div>
-
-                                        <span
-                                            class="text-[9px] font-bold text-gray-600"
-                                        >
-                                            100%
-                                        </span>
-
-                                    </div>
-
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <span
-                                        class="px-2 py-1 rounded-md bg-green-50 text-green-600 text-[8px] font-bold"
-                                    >
-                                        Completed
-                                    </span>
-
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <button
-                                        class="text-gray-400 hover:text-dark-green"
-                                    >
-
-                                        <i
-                                            class="fa-solid fa-ellipsis"
-                                        ></i>
-
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-
-
-                            <!-- PROJECT 3 -->
-
-                            <tr
-                                class="border-b border-gray-100 hover:bg-gray-50"
-                            >
-
-                                <td
-                                    class="px-5 py-3 font-semibold text-gray-800"
-                                >
-                                    Industrial Corridor
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-                                    Maharashtra
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-                                    Industrial
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <div class="flex items-center gap-2">
-
-                                        <div
-                                            class="progress-bar w-24"
-                                        >
-
-                                            <div
-                                                class="progress-fill bg-[#ef4444]"
-                                                style="width:40%"
-                                            ></div>
-
-                                        </div>
-
-                                        <span
-                                            class="text-[9px] font-bold text-gray-600"
-                                        >
-                                            40%
-                                        </span>
-
-                                    </div>
-
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <span
-                                        class="px-2 py-1 rounded-md bg-red-50 text-red-600 text-[8px] font-bold"
-                                    >
-                                        Delayed
-                                    </span>
-
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <button
-                                        class="text-gray-400 hover:text-dark-green"
-                                    >
-
-                                        <i
-                                            class="fa-solid fa-ellipsis"
-                                        ></i>
-
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-
-
-                            <!-- PROJECT 4 -->
-
-                            <tr
-                                class="border-b border-gray-100 hover:bg-gray-50"
-                            >
-
-                                <td
-                                    class="px-5 py-3 font-semibold text-gray-800"
-                                >
-                                    Smart Village Initiative
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-                                    Odisha
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-                                    Rural Development
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <div class="flex items-center gap-2">
-
-                                        <div
-                                            class="progress-bar w-24"
-                                        >
-
-                                            <div
-                                                class="progress-fill bg-[#0f603c]"
-                                                style="width:60%"
-                                            ></div>
-
-                                        </div>
-
-                                        <span
-                                            class="text-[9px] font-bold text-gray-600"
-                                        >
-                                            60%
-                                        </span>
-
-                                    </div>
-
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <span
-                                        class="px-2 py-1 rounded-md bg-blue-50 text-blue-600 text-[8px] font-bold"
-                                    >
-                                        Ongoing
-                                    </span>
-
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <button
-                                        class="text-gray-400 hover:text-dark-green"
-                                    >
-
-                                        <i
-                                            class="fa-solid fa-ellipsis"
-                                        ></i>
-
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-
-
-                            <!-- PROJECT 5 -->
-
-                            <tr
-                                class="hover:bg-gray-50"
-                            >
-
-                                <td
-                                    class="px-5 py-3 font-semibold text-gray-800"
-                                >
-                                    Urban Expansion Plan
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-                                    Madhya Pradesh
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-                                    Urban
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <div class="flex items-center gap-2">
-
-                                        <div
-                                            class="progress-bar w-24"
-                                        >
-
-                                            <div
-                                                class="progress-fill bg-[#0f603c]"
-                                                style="width:100%"
-                                            ></div>
-
-                                        </div>
-
-                                        <span
-                                            class="text-[9px] font-bold text-gray-600"
-                                        >
-                                            100%
-                                        </span>
-
-                                    </div>
-
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <span
-                                        class="px-2 py-1 rounded-md bg-green-50 text-green-600 text-[8px] font-bold"
-                                    >
-                                        Completed
-                                    </span>
-
-                                </td>
-
-                                <td
-                                    class="px-5 py-3"
-                                >
-
-                                    <button
-                                        class="text-gray-400 hover:text-dark-green"
-                                    >
-
-                                        <i
-                                            class="fa-solid fa-ellipsis"
-                                        ></i>
-
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 QUICK ACTIONS
-            ================================================= -->
-
-            <div
-                class="grid grid-cols-2 md:grid-cols-4 gap-4"
-            >
-
-
-                <!-- ADD PROJECT -->
-
-                <button
-                    onclick="location.href='projects.html'"
-                    class="glass-card p-4 flex items-center gap-3 hover:border-green-200 hover:bg-green-50 transition-colors text-left"
-                >
-
-                    <div
-                        class="w-9 h-9 rounded-lg bg-green-50 text-dark-green flex items-center justify-center"
-                    >
-
-                        <i
-                            class="fa-solid fa-plus text-sm"
-                        ></i>
-
-                    </div>
-
-                    <div>
-
-                        <p
-                            class="text-[10px] font-bold text-gray-800"
-                        >
-                            Add Project
-                        </p>
-
-                        <p
-                            class="text-[8px] text-gray-500 mt-0.5"
-                        >
-                            Create new project
-                        </p>
-
-                    </div>
-
-                </button>
-
-
-
-                <!-- LAND RECORD -->
-
-                <button
-                    class="glass-card p-4 flex items-center gap-3 hover:border-green-200 hover:bg-green-50 transition-colors text-left"
-                >
-
-                    <div
-                        class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center"
-                    >
-
-                        <i
-                            class="fa-solid fa-file-circle-plus text-sm"
-                        ></i>
-
-                    </div>
-
-                    <div>
-
-                        <p
-                            class="text-[10px] font-bold text-gray-800"
-                        >
-                            Land Record
-                        </p>
-
-                        <p
-                            class="text-[8px] text-gray-500 mt-0.5"
-                        >
-                            Add land record
-                        </p>
-
-                    </div>
-
-                </button>
-
-
-
-                <!-- REPORT -->
-
-                <button
-                    class="glass-card p-4 flex items-center gap-3 hover:border-green-200 hover:bg-green-50 transition-colors text-left"
-                >
-
-                    <div
-                        class="w-9 h-9 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center"
-                    >
-
-                        <i
-                            class="fa-solid fa-file-export text-sm"
-                        ></i>
-
-                    </div>
-
-                    <div>
-
-                        <p
-                            class="text-[10px] font-bold text-gray-800"
-                        >
-                            Generate Report
-                        </p>
-
-                        <p
-                            class="text-[8px] text-gray-500 mt-0.5"
-                        >
-                            Create new report
-                        </p>
-
-                    </div>
-
-                </button>
-
-
-
-                <!-- MAP -->
-
-                <button
-                    onclick="location.href='maps.html'"
-                    class="glass-card p-4 flex items-center gap-3 hover:border-green-200 hover:bg-green-50 transition-colors text-left"
-                >
-
-                    <div
-                        class="w-9 h-9 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center"
-                    >
-
-                        <i
-                            class="fa-solid fa-map-location-dot text-sm"
-                        ></i>
-
-                    </div>
-
-                    <div>
-
-                        <p
-                            class="text-[10px] font-bold text-gray-800"
-                        >
-                            Project Map
-                        </p>
-
-                        <p
-                            class="text-[8px] text-gray-500 mt-0.5"
-                        >
-                            Open map view
-                        </p>
-
-                    </div>
-
-                </button>
-
-            </div>
-
 
         </main>
-
     </div>
 
-
-
-    <!-- =====================================================
-         CHART JAVASCRIPT
-    ===================================================== -->
-
-    <script>
-
-        const ctx =
-            document.getElementById('projectChart');
-
-
-        new Chart(ctx, {
-
-            type: 'doughnut',
-
-            data: {
-
-                labels: [
-                    'Ongoing',
-                    'Completed',
-                    'Delayed'
-                ],
-
-                datasets: [
-
-                    {
-
-                        data: [
-                            47,
-                            62,
-                            15
-                        ],
-
-                        backgroundColor: [
-                            '#0f603c',
-                            '#3b82f6',
-                            '#ef4444'
-                        ],
-
-                        borderWidth: 0,
-
-                        hoverOffset: 5
-
-                    }
-
-                ]
-
-            },
-
-
-            options: {
-
-                responsive: true,
-
-                maintainAspectRatio: false,
-
-                cutout: '72%',
-
-                plugins: {
-
-                    legend: {
-                        display: false
-                    },
-
-                    tooltip: {
-
-                        callbacks: {
-
-                            label: function(context) {
-
-                                return (
-                                    context.label +
-                                    ': ' +
-                                    context.raw +
-                                    ' projects'
-                                );
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        });
-
-    </script>
-
-
 </body>
-
 </html>
