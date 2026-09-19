@@ -3,514 +3,1376 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>INFRA GATI - Projects</title>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Font -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f4f7f6; overflow: hidden; }
-        .sidebar-active { background-color: #126f43; border-left: 4px solid #4ade80; }
-        .sidebar-item:hover:not(.sidebar-active) { background-color: rgba(255,255,255,0.05); }
-        .tab-active { border-bottom: 2px solid #0f603c; color: #0f603c; font-weight: 600; }
-        .tab-inactive { color: #6b7280; font-weight: 500; }
-        .tab-inactive:hover { color: #374151; }
-        .project-item-active { background-color: #f0fdf4; border: 1px solid #bbf7d0; }
-        .project-item:hover:not(.project-item-active) { background-color: #f9fafb; }
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* Stepper styles */
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6;
+            overflow: hidden;
+        }
+
+        .sidebar-active {
+            background-color: #126f43;
+            border-left: 4px solid #4ade80;
+        }
+
+        .sidebar-item:hover:not(.sidebar-active) {
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .tab-active {
+            border-bottom: 2px solid #0f603c;
+            color: #0f603c;
+            font-weight: 600;
+        }
+
+        .tab-inactive {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .tab-inactive:hover {
+            color: #374151;
+        }
+
+        .project-item:hover:not(.project-item-active) {
+            background-color: #f9fafb;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Project stage line */
         .step-line {
             position: absolute;
             left: 11px;
             top: 24px;
             bottom: -8px;
             width: 2px;
-            background-color: #e5e7eb;
+            background-color: #0c5936;
             z-index: 0;
         }
-        .step-line-active {
-            background-color: #0f603c;
+
+        /* Map */
+        .map-background {
+            background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1000&q=85');
+            background-size: cover;
+            background-position: center;
         }
     </style>
 </head>
+
 <body class="flex h-screen text-gray-800">
 
+    <!-- ========================================================= -->
     <!-- SIDEBAR -->
+    <!-- ========================================================= -->
+
     <aside class="w-[240px] bg-[#0c5936] text-white flex flex-col h-full shrink-0 z-20">
+
         <!-- Logo -->
         <div class="h-20 flex items-center gap-3 px-6 shrink-0">
+
             <i class="fa-solid fa-leaf text-2xl text-green-400"></i>
+
             <div>
-                <h1 class="text-lg font-extrabold tracking-tight text-white leading-none">INFRA GATI</h1>
-                <p class="text-[7px] tracking-widest uppercase font-semibold text-green-200 mt-1">Land Today. A Better Tomorrow.</p>
+                <h1 class="text-lg font-extrabold tracking-tight text-white leading-none">
+                    INFRA GATI
+                </h1>
+
+                <p class="text-[7px] tracking-widest uppercase font-semibold text-green-200 mt-1">
+                    Land Today. A Better Tomorrow.
+                </p>
             </div>
+
         </div>
+
 
         <!-- Navigation -->
         <nav class="flex-1 py-4 flex flex-col gap-1 px-3">
-            <a href="dashboard.html" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
-                <i class="fa-solid fa-house w-5 text-center text-green-200"></i> Dashboard
+
+            <!-- Dashboard -->
+            <a href="dashboard.html?v=42"
+               class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+
+                <i class="fa-solid fa-house w-5 text-center text-green-200"></i>
+
+                Dashboard
             </a>
-            <a href="projects.html" class="sidebar-active flex items-center gap-3 px-3 py-2.5 rounded-r-lg text-sm font-medium text-white transition-colors ml-[-12px] pl-[15px]">
-                <i class="fa-solid fa-folder-open w-5 text-center"></i> Projects
+
+
+            <!-- Projects -->
+            <a href="projects.html?v=42"
+               class="sidebar-active flex items-center gap-3 px-3 py-2.5 rounded-r-lg text-sm font-medium text-white transition-colors ml-[-12px] pl-[15px]">
+
+                <i class="fa-solid fa-folder-open w-5 text-center"></i>
+
+                Projects
             </a>
-            <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
-                <i class="fa-regular fa-file-lines w-5 text-center text-green-200"></i> Land Records
+
+
+            <!-- Land Records -->
+            <a href="#"
+               class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+
+                <i class="fa-regular fa-file-lines w-5 text-center text-green-200"></i>
+
+                Land Records
             </a>
-            <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
-                <i class="fa-solid fa-chart-simple w-5 text-center text-green-200"></i> Analytics
+
+
+            <!-- Analytics -->
+            <a href="#"
+               class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+
+                <i class="fa-solid fa-chart-simple w-5 text-center text-green-200"></i>
+
+                Analytics
             </a>
-            <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
-                <i class="fa-solid fa-map w-5 text-center text-green-200"></i> Maps
+
+
+            <!-- Maps -->
+            <a href="#"
+               class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+
+                <i class="fa-solid fa-map w-5 text-center text-green-200"></i>
+
+                Maps
             </a>
-            <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
-                <i class="fa-solid fa-file-contract w-5 text-center text-green-200"></i> Reports
+
+
+            <!-- Reports -->
+            <a href="#"
+               class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+
+                <i class="fa-solid fa-file-contract w-5 text-center text-green-200"></i>
+
+                Reports
             </a>
-            <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
-                <i class="fa-solid fa-user-group w-5 text-center text-green-200"></i> Users
+
+
+            <!-- Users -->
+            <a href="#"
+               class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+
+                <i class="fa-solid fa-user-group w-5 text-center text-green-200"></i>
+
+                Users
             </a>
-            <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
-                <i class="fa-solid fa-gear w-5 text-center text-green-200"></i> Settings
+
+
+            <!-- Settings -->
+            <a href="#"
+               class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+
+                <i class="fa-solid fa-gear w-5 text-center text-green-200"></i>
+
+                Settings
             </a>
+
         </nav>
-        
+
+
         <!-- Bottom Logo -->
         <div class="p-6 shrink-0 mt-auto">
+
             <i class="fa-solid fa-leaf text-3xl text-green-400 mb-2 opacity-80"></i>
-            <p class="text-xs text-green-100 font-medium">Land Today.<br>A Better Tomorrow.</p>
+
+            <p class="text-xs text-green-100 font-medium">
+                Land Today.<br>
+                A Better Tomorrow.
+            </p>
+
         </div>
+
     </aside>
 
-    <!-- MAIN CONTENT AREA -->
+
+    <!-- ========================================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ========================================================= -->
+
     <div class="flex-1 flex flex-col h-full overflow-hidden bg-[#f4f7f6]">
-        
+
+
+        <!-- ===================================================== -->
         <!-- TOP NAVBAR -->
+        <!-- ===================================================== -->
+
         <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
+
             <!-- Search -->
             <div class="relative w-[400px]">
+
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+
                     <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm"></i>
+
                 </div>
-                <input type="text" placeholder="Search projects, locations, villages..." class="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors">
+
+                <input
+                    type="text"
+                    placeholder="Search projects, locations, villages..."
+                    class="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors"
+                >
+
             </div>
 
-            <!-- Right Actions -->
+
+            <!-- Right side -->
             <div class="flex items-center gap-6">
+
+                <!-- Notification -->
                 <button class="relative text-gray-500 hover:text-gray-700 transition-colors">
+
                     <i class="fa-regular fa-bell text-lg"></i>
+
                     <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 border border-white rounded-full"></span>
+
                 </button>
+
+
+                <!-- User -->
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-[#0c5936] text-white font-bold flex items-center justify-center text-sm shadow-sm">U</div>
-                    <div class="hidden md:block leading-tight">
-                        <p class="text-sm font-bold text-gray-900">User</p>
-                        <p class="text-[10px] text-gray-500 font-medium">Administrator</p>
+
+                    <div class="w-8 h-8 rounded-full bg-[#0c5936] text-white font-bold flex items-center justify-center text-sm shadow-sm">
+                        U
                     </div>
+
+                    <div class="hidden md:block leading-tight">
+
+                        <p class="text-sm font-bold text-gray-900">
+                            User
+                        </p>
+
+                        <p class="text-[10px] text-gray-500 font-medium">
+                            Administrator
+                        </p>
+
+                    </div>
+
                     <i class="fa-solid fa-chevron-down text-gray-400 text-xs ml-1"></i>
+
                 </div>
+
             </div>
+
         </header>
 
-        <!-- DASHBOARD SCROLLABLE CONTENT -->
+
+        <!-- ===================================================== -->
+        <!-- MAIN SCROLLABLE AREA -->
+        <!-- ===================================================== -->
+
         <main class="flex-1 overflow-y-auto p-6 md:p-8">
-            
-            <!-- Header -->
+
+
+            <!-- ================================================= -->
+            <!-- PAGE HEADER -->
+            <!-- ================================================= -->
+
             <div class="flex justify-between items-start mb-6">
+
                 <div>
-                    <h2 class="text-2xl font-extrabold text-gray-900 tracking-tight">Projects</h2>
-                    <p class="text-sm text-gray-500 font-medium mt-1">Search, filter and manage all land acquisition projects.</p>
+
+                    <h2 class="text-2xl font-extrabold text-gray-900 tracking-tight">
+                        Projects
+                    </h2>
+
+                    <p class="text-sm text-gray-500 font-medium mt-1">
+                        Search, filter and manage all land acquisition projects.
+                    </p>
+
                 </div>
-                <button class="bg-[#0c5936] hover:bg-green-800 text-white px-4 py-2.5 rounded-lg font-bold text-sm transition-colors shadow-sm flex items-center gap-2">
-                    <i class="fa-solid fa-plus"></i> Add New Project
+
+
+                <!-- Add Project -->
+                <button
+                    class="bg-[#0c5936] hover:bg-green-800 text-white px-4 py-2.5 rounded-lg font-bold text-sm transition-colors shadow-sm flex items-center gap-2">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add New Project
+
                 </button>
+
             </div>
 
-            <!-- Filters Bar -->
+
+            <!-- ================================================= -->
+            <!-- FILTER BAR -->
+            <!-- ================================================= -->
+
             <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-6 flex flex-wrap items-end gap-4">
+
+
+                <!-- Ministry -->
                 <div class="flex-1 min-w-[150px]">
-                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">Ministry</label>
+
+                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">
+                        Ministry
+                    </label>
+
                     <div class="relative">
-                        <select class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+
+                        <select
+                            class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+
                             <option>All Ministries</option>
+                            <option>Ministry of Road Transport</option>
+                            <option>Ministry of Railways</option>
+                            <option>Ministry of Water Resources</option>
+
                         </select>
+
                         <i class="fa-solid fa-chevron-down absolute right-3 top-3 text-gray-400 text-xs pointer-events-none"></i>
+
                     </div>
+
                 </div>
+
+
+                <!-- Project Type -->
                 <div class="flex-1 min-w-[150px]">
-                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">Type of Project</label>
+
+                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">
+                        Type of Project
+                    </label>
+
                     <div class="relative">
-                        <select class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+
+                        <select
+                            class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+
                             <option>All Project Types</option>
+                            <option>Expressway</option>
+                            <option>Metro</option>
+                            <option>Canal</option>
+                            <option>Highway</option>
+                            <option>Greenfield</option>
+
                         </select>
+
                         <i class="fa-solid fa-chevron-down absolute right-3 top-3 text-gray-400 text-xs pointer-events-none"></i>
+
                     </div>
+
                 </div>
+
+
+                <!-- State -->
                 <div class="flex-1 min-w-[150px]">
-                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">State</label>
+
+                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">
+                        State
+                    </label>
+
                     <div class="relative">
-                        <select class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+
+                        <select
+                            class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+
                             <option>All States</option>
+                            <option>Rajasthan</option>
+                            <option>Uttar Pradesh</option>
+                            <option>Maharashtra</option>
+                            <option>Delhi</option>
+                            <option>Madhya Pradesh</option>
+
                         </select>
+
                         <i class="fa-solid fa-chevron-down absolute right-3 top-3 text-gray-400 text-xs pointer-events-none"></i>
+
                     </div>
+
                 </div>
+
+
+                <!-- Search -->
                 <div class="flex-[1.5] min-w-[200px]">
-                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">Search</label>
+
+                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">
+                        Search
+                    </label>
+
                     <div class="relative">
+
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+
                             <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs"></i>
+
                         </div>
-                        <input type="text" placeholder="Search project name..." class="w-full pl-9 pr-3 py-2 bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors">
+
+                        <input
+                            type="text"
+                            placeholder="Search project name..."
+                            class="w-full pl-9 pr-3 py-2 bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors"
+                        >
+
                     </div>
+
                 </div>
+
             </div>
 
-            <!-- Main Split Layout -->
+
+            <!-- ================================================= -->
+            <!-- MAIN PROJECT SECTION -->
+            <!-- ================================================= -->
+
             <div class="flex flex-col lg:flex-row gap-6 h-[calc(100vh-270px)] min-h-[600px]">
-                
-                <!-- LEFT COLUMN: Project List -->
+
+
+                <!-- ================================================= -->
+                <!-- LEFT PROJECT LIST -->
+                <!-- ================================================= -->
+
                 <div class="w-full lg:w-[350px] bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col shrink-0 overflow-hidden h-full">
+
+
+                    <!-- List heading -->
                     <div class="p-4 border-b border-gray-100 font-bold text-gray-800">
+
                         Project List (5)
+
                     </div>
+
+
+                    <!-- List -->
                     <div class="flex-1 overflow-y-auto p-2 scrollbar-hide space-y-1">
-                        
-                        <!-- Item 1 -->
-                        <div class="project-item p-3 rounded-lg flex items-center gap-3 cursor-pointer">
+
+
+                        <!-- Project 1 -->
+                        <div class="p-3 rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50">
+
                             <div class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+
                                 <i class="fa-solid fa-road text-lg"></i>
+
                             </div>
+
                             <div class="flex-1 min-w-0">
+
                                 <div class="flex justify-between items-center mb-0.5">
-                                    <h4 class="font-bold text-sm text-gray-900 truncate">Expressway Project</h4>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-blue-600">In Progress</span>
+
+                                    <h4 class="font-bold text-sm text-gray-900 truncate">
+                                        Expressway Project
+                                    </h4>
+
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-blue-600">
+                                        In Progress
+                                    </span>
+
                                 </div>
-                                <p class="text-[11px] text-gray-500 truncate mb-0.5">Expressway</p>
-                                <p class="text-[10px] text-gray-400 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Uttar Pradesh</p>
+
+                                <p class="text-[11px] text-gray-500 truncate mb-0.5">
+                                    Expressway
+                                </p>
+
+                                <p class="text-[10px] text-gray-400 flex items-center gap-1">
+
+                                    <i class="fa-solid fa-location-dot"></i>
+
+                                    Uttar Pradesh
+
+                                </p>
+
                             </div>
+
                             <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+
                         </div>
 
-                        <!-- Item 2 -->
-                        <div class="project-item p-3 rounded-lg flex items-center gap-3 cursor-pointer">
+
+                        <!-- Project 2 -->
+                        <div class="p-3 rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50">
+
                             <div class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+
                                 <i class="fa-solid fa-industry text-lg"></i>
+
                             </div>
+
                             <div class="flex-1 min-w-0">
+
                                 <div class="flex justify-between items-center mb-0.5">
-                                    <h4 class="font-bold text-sm text-gray-900 truncate">Greenfield Project</h4>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-orange-50 text-orange-600">Planning</span>
+
+                                    <h4 class="font-bold text-sm text-gray-900 truncate">
+                                        Greenfield Project
+                                    </h4>
+
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-orange-50 text-orange-600">
+                                        Planning
+                                    </span>
+
                                 </div>
-                                <p class="text-[11px] text-gray-500 truncate mb-0.5">Greenfield</p>
-                                <p class="text-[10px] text-gray-400 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Maharashtra</p>
+
+                                <p class="text-[11px] text-gray-500 truncate mb-0.5">
+                                    Greenfield
+                                </p>
+
+                                <p class="text-[10px] text-gray-400 flex items-center gap-1">
+
+                                    <i class="fa-solid fa-location-dot"></i>
+
+                                    Maharashtra
+
+                                </p>
+
                             </div>
+
                             <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+
                         </div>
 
-                        <!-- Item 3 -->
-                        <div class="project-item p-3 rounded-lg flex items-center gap-3 cursor-pointer">
+
+                        <!-- Project 3 -->
+                        <div class="p-3 rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50">
+
                             <div class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+
                                 <i class="fa-solid fa-train-subway text-lg"></i>
+
                             </div>
+
                             <div class="flex-1 min-w-0">
+
                                 <div class="flex justify-between items-center mb-0.5">
-                                    <h4 class="font-bold text-sm text-gray-900 truncate">Metro Project</h4>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-blue-600">In Progress</span>
+
+                                    <h4 class="font-bold text-sm text-gray-900 truncate">
+                                        Metro Project
+                                    </h4>
+
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-blue-600">
+                                        In Progress
+                                    </span>
+
                                 </div>
-                                <p class="text-[11px] text-gray-500 truncate mb-0.5">Metro</p>
-                                <p class="text-[10px] text-gray-400 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Delhi</p>
+
+                                <p class="text-[11px] text-gray-500 truncate mb-0.5">
+                                    Metro
+                                </p>
+
+                                <p class="text-[10px] text-gray-400 flex items-center gap-1">
+
+                                    <i class="fa-solid fa-location-dot"></i>
+
+                                    Delhi
+
+                                </p>
+
                             </div>
+
                             <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+
                         </div>
 
-                        <!-- Item 4 (Active) -->
-                        <div class="project-item-active p-3 rounded-lg flex items-center gap-3 cursor-pointer">
+
+                        <!-- Project 4 ACTIVE -->
+                        <div class="bg-green-50 border border-green-300 p-3 rounded-lg flex items-center gap-3 cursor-pointer">
+
                             <div class="w-10 h-10 rounded-lg bg-white shadow-sm text-[#0c5936] border border-green-100 flex items-center justify-center shrink-0">
+
                                 <i class="fa-solid fa-water text-lg"></i>
+
                             </div>
+
                             <div class="flex-1 min-w-0">
+
                                 <div class="flex justify-between items-center mb-0.5">
-                                    <h4 class="font-bold text-sm text-gray-900 truncate">Canal Project</h4>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-green-100 text-green-700">Active</span>
+
+                                    <h4 class="font-bold text-sm text-gray-900 truncate">
+                                        Canal Project
+                                    </h4>
+
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-green-100 text-green-700">
+                                        Active
+                                    </span>
+
                                 </div>
-                                <p class="text-[11px] text-gray-500 truncate mb-0.5">Canal</p>
-                                <p class="text-[10px] text-gray-500 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Rajasthan</p>
+
+                                <p class="text-[11px] text-gray-500 truncate mb-0.5">
+                                    Canal
+                                </p>
+
+                                <p class="text-[10px] text-gray-500 flex items-center gap-1">
+
+                                    <i class="fa-solid fa-location-dot"></i>
+
+                                    Rajasthan
+
+                                </p>
+
                             </div>
+
                             <i class="fa-solid fa-chevron-right text-green-600 text-xs"></i>
+
                         </div>
 
-                        <!-- Item 5 -->
-                        <div class="project-item p-3 rounded-lg flex items-center gap-3 cursor-pointer">
+
+                        <!-- Project 5 -->
+                        <div class="p-3 rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50">
+
                             <div class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+
                                 <i class="fa-solid fa-road-bridge text-lg"></i>
+
                             </div>
+
                             <div class="flex-1 min-w-0">
+
                                 <div class="flex justify-between items-center mb-0.5">
-                                    <h4 class="font-bold text-sm text-gray-900 truncate">NHAI Highway</h4>
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-orange-50 text-orange-600">Planning</span>
+
+                                    <h4 class="font-bold text-sm text-gray-900 truncate">
+                                        NHAI Highway
+                                    </h4>
+
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-orange-50 text-orange-600">
+                                        Planning
+                                    </span>
+
                                 </div>
-                                <p class="text-[11px] text-gray-500 truncate mb-0.5">Highway</p>
-                                <p class="text-[10px] text-gray-400 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Madhya Pradesh</p>
+
+                                <p class="text-[11px] text-gray-500 truncate mb-0.5">
+                                    Highway
+                                </p>
+
+                                <p class="text-[10px] text-gray-400 flex items-center gap-1">
+
+                                    <i class="fa-solid fa-location-dot"></i>
+
+                                    Madhya Pradesh
+
+                                </p>
+
                             </div>
+
                             <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+
                         </div>
 
                     </div>
+
                 </div>
 
-                <!-- RIGHT COLUMN: Project Details -->
+
+                <!-- ================================================= -->
+                <!-- RIGHT PROJECT DETAILS -->
+                <!-- ================================================= -->
+
                 <div class="flex-1 bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col h-full overflow-hidden">
-                    
+
+
                     <!-- Detail Header -->
                     <div class="p-6 pb-0 border-b border-gray-100 shrink-0">
+
+
+                        <!-- Project title -->
                         <div class="flex justify-between items-start mb-6">
+
+
                             <div class="flex items-center gap-4">
+
+
                                 <div class="w-12 h-12 rounded-xl bg-green-50 text-[#0c5936] flex items-center justify-center">
+
                                     <i class="fa-solid fa-water text-2xl"></i>
+
                                 </div>
+
+
                                 <div>
-                                    <h2 class="text-2xl font-bold text-gray-900 leading-tight">Canal Project</h2>
-                                    <p class="text-sm text-gray-500 flex items-center gap-2 mt-1">Canal <span class="text-gray-300">|</span> <i class="fa-solid fa-location-dot text-gray-400"></i> Rajasthan</p>
+
+                                    <h2 class="text-2xl font-bold text-gray-900 leading-tight">
+                                        Canal Project
+                                    </h2>
+
+                                    <p class="text-sm text-gray-500 flex items-center gap-2 mt-1">
+
+                                        Canal
+
+                                        <span class="text-gray-300">|</span>
+
+                                        <i class="fa-solid fa-location-dot text-gray-400"></i>
+
+                                        Rajasthan
+
+                                    </p>
+
                                 </div>
+
                             </div>
+
+
+                            <!-- Risk -->
                             <div class="bg-green-50 px-4 py-2 rounded-lg flex items-center gap-3 border border-green-100">
-                                <span class="text-xs font-semibold text-gray-600">Overall Delay Risk</span>
+
+                                <span class="text-xs font-semibold text-gray-600">
+                                    Overall Delay Risk
+                                </span>
+
                                 <div class="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded shadow-sm border border-gray-100">
+
                                     <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
-                                    <span class="text-xs font-black text-gray-800">LOW</span>
+
+                                    <span class="text-xs font-black text-gray-800">
+                                        LOW
+                                    </span>
+
                                 </div>
+
                             </div>
+
                         </div>
+
 
                         <!-- Tabs -->
                         <div class="flex items-center gap-8 text-sm">
-                            <a href="#" class="tab-active pb-3">Overview</a>
-                            <a href="#" class="tab-inactive pb-3 transition-colors">Land Acquisition</a>
-                            <a href="#" class="tab-inactive pb-3 transition-colors">GIS Analysis</a>
-                            <a href="#" class="tab-inactive pb-3 transition-colors">Documents</a>
-                            <a href="#" class="tab-inactive pb-3 transition-colors">Updates</a>
+
+                            <a href="#" class="tab-active pb-3">
+                                Overview
+                            </a>
+
+                            <a href="#" class="tab-inactive pb-3 transition-colors">
+                                Land Acquisition
+                            </a>
+
+                            <a href="#" class="tab-inactive pb-3 transition-colors">
+                                GIS Analysis
+                            </a>
+
+                            <a href="#" class="tab-inactive pb-3 transition-colors">
+                                Documents
+                            </a>
+
+                            <a href="#" class="tab-inactive pb-3 transition-colors">
+                                Updates
+                            </a>
+
                         </div>
+
                     </div>
 
-                    <!-- Detail Content (Scrollable) -->
+
+                    <!-- Detail Content -->
                     <div class="flex-1 overflow-y-auto p-6 scrollbar-hide">
+
+
+                        <!-- ================================================= -->
+                        <!-- STAGES + MAP -->
+                        <!-- ================================================= -->
+
                         <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
-                            
-                            <!-- Left: Project Stages -->
+
+
+                            <!-- PROJECT STAGES -->
                             <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+
                                 <div class="flex justify-between items-center mb-6">
-                                    <h3 class="font-bold text-gray-900">Project Stages</h3>
-                                    <span class="text-xs font-bold text-gray-500">Delay Risk</span>
+
+                                    <h3 class="font-bold text-gray-900">
+                                        Project Stages
+                                    </h3>
+
+                                    <span class="text-xs font-bold text-gray-500">
+                                        Delay Risk
+                                    </span>
+
                                 </div>
-                                
+
+
                                 <div class="relative space-y-6">
+
+
                                     <!-- Step 1 -->
                                     <div class="relative z-10 flex items-start gap-4">
-                                        <div class="step-line step-line-active"></div>
-                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">1</div>
+
+                                        <div class="step-line"></div>
+
+                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
+                                            1
+                                        </div>
+
                                         <div class="flex-1">
-                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">Notification</h4>
-                                            <p class="text-[11px] text-gray-500">Issue of preliminary notification</p>
+
+                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">
+                                                Notification
+                                            </h4>
+
+                                            <p class="text-[11px] text-gray-500">
+                                                Issue of preliminary notification
+                                            </p>
+
                                         </div>
+
                                         <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
+
                                             <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
-                                            <span class="text-[10px] font-bold text-gray-700">LOW</span>
+
+                                            <span class="text-[10px] font-bold text-gray-700">
+                                                LOW
+                                            </span>
+
                                         </div>
+
                                     </div>
-                                    
+
+
                                     <!-- Step 2 -->
                                     <div class="relative z-10 flex items-start gap-4">
+
                                         <div class="step-line"></div>
-                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">2</div>
+
+                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
+                                            2
+                                        </div>
+
                                         <div class="flex-1">
-                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">Survey</h4>
-                                            <p class="text-[11px] text-gray-500">Field survey and land measurement</p>
+
+                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">
+                                                Survey
+                                            </h4>
+
+                                            <p class="text-[11px] text-gray-500">
+                                                Field survey and land measurement
+                                            </p>
+
                                         </div>
+
                                         <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-orange-50 border border-orange-100 shrink-0">
+
                                             <div class="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
-                                            <span class="text-[10px] font-bold text-orange-600">MEDIUM</span>
+
+                                            <span class="text-[10px] font-bold text-orange-600">
+                                                MEDIUM
+                                            </span>
+
                                         </div>
+
                                     </div>
+
 
                                     <!-- Step 3 -->
                                     <div class="relative z-10 flex items-start gap-4">
+
                                         <div class="step-line"></div>
-                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">3</div>
+
+                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
+                                            3
+                                        </div>
+
                                         <div class="flex-1">
-                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">Objection</h4>
-                                            <p class="text-[11px] text-gray-500">Hearing of objections</p>
+
+                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">
+                                                Objection
+                                            </h4>
+
+                                            <p class="text-[11px] text-gray-500">
+                                                Hearing of objections
+                                            </p>
+
                                         </div>
+
                                         <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
+
                                             <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
-                                            <span class="text-[10px] font-bold text-gray-700">LOW</span>
+
+                                            <span class="text-[10px] font-bold text-gray-700">
+                                                LOW
+                                            </span>
+
                                         </div>
+
                                     </div>
+
 
                                     <!-- Step 4 -->
                                     <div class="relative z-10 flex items-start gap-4">
+
                                         <div class="step-line"></div>
-                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">4</div>
+
+                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
+                                            4
+                                        </div>
+
                                         <div class="flex-1">
-                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">Compensation</h4>
-                                            <p class="text-[11px] text-gray-500">Compensation calculation & disbursal</p>
+
+                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">
+                                                Compensation
+                                            </h4>
+
+                                            <p class="text-[11px] text-gray-500">
+                                                Compensation calculation & disbursal
+                                            </p>
+
                                         </div>
+
                                         <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
+
                                             <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
-                                            <span class="text-[10px] font-bold text-gray-700">LOW</span>
+
+                                            <span class="text-[10px] font-bold text-gray-700">
+                                                LOW
+                                            </span>
+
                                         </div>
+
                                     </div>
+
 
                                     <!-- Step 5 -->
                                     <div class="relative z-10 flex items-start gap-4">
-                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">5</div>
+
+                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
+                                            5
+                                        </div>
+
                                         <div class="flex-1">
-                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">Possession</h4>
-                                            <p class="text-[11px] text-gray-500">Handover of land</p>
+
+                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">
+                                                Possession
+                                            </h4>
+
+                                            <p class="text-[11px] text-gray-500">
+                                                Handover of land
+                                            </p>
+
                                         </div>
+
                                         <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
+
                                             <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
-                                            <span class="text-[10px] font-bold text-gray-700">LOW</span>
+
+                                            <span class="text-[10px] font-bold text-gray-700">
+                                                LOW
+                                            </span>
+
                                         </div>
+
                                     </div>
+
                                 </div>
+
                             </div>
 
-                            <!-- Right: Map -->
+
+                            <!-- ================================================= -->
+                            <!-- MAP -->
+                            <!-- ================================================= -->
+
                             <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm flex flex-col">
+
                                 <div class="flex justify-between items-center mb-4 shrink-0">
-                                    <h3 class="font-bold text-gray-900">Project Area Map</h3>
-                                    <a href="#" class="text-xs font-bold text-[#0c5936] hover:underline flex items-center gap-1">View Full Map <i class="fa-solid fa-arrow-right"></i></a>
+
+                                    <h3 class="font-bold text-gray-900">
+                                        Project Area Map
+                                    </h3>
+
+                                    <a href="#"
+                                       class="text-xs font-bold text-[#0c5936] hover:underline flex items-center gap-1">
+
+                                        View Full Map
+
+                                        <i class="fa-solid fa-arrow-right"></i>
+
+                                    </a>
+
                                 </div>
-                                <div class="flex-1 bg-gray-100 rounded-lg relative overflow-hidden min-h-[250px]">
-                                    <!-- Map Placeholder -->
-                                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-80" alt="Map">
-                                    <div class="absolute inset-0 bg-white/40"></div>
-                                    
-                                    <!-- Drawing some fake map elements on top to mimic the UI -->
-                                    <!-- Start Point -->
-                                    <div class="absolute top-[20%] left-[20%]">
-                                        <div class="bg-[#0c5936] text-white text-[9px] font-bold px-2 py-0.5 rounded-full absolute -top-5 -left-4 whitespace-nowrap">Start Point</div>
-                                        <div class="w-3 h-3 bg-blue-600 rounded-full border-2 border-white shadow"></div>
+
+
+                                <div class="flex-1 rounded-lg relative overflow-hidden min-h-[250px] map-background">
+
+
+                                    <!-- Light overlay -->
+                                    <div class="absolute inset-0 bg-white/30"></div>
+
+
+                                    <!-- Green Buffer Zone -->
+                                    <div
+                                        class="absolute w-[75%] h-[48%] bg-green-400/25 border border-green-400/40 rounded-[45%] rotate-[20deg] top-[25%] left-[12%]">
                                     </div>
-                                    <!-- End Point -->
-                                    <div class="absolute bottom-[30%] right-[20%]">
-                                        <div class="bg-red-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full absolute -top-5 -left-3 whitespace-nowrap">End Point</div>
-                                        <div class="w-3 h-3 bg-red-500 rounded-full border-2 border-white shadow"></div>
-                                    </div>
-                                    <!-- Fake Line connecting them -->
-                                    <svg class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
-                                        <path d="M 20% 20% Q 50% 50% 80% 70%" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="6,4"></path>
-                                        <!-- Fake buffer zone -->
-                                        <path d="M 18% 18% Q 48% 48% 78% 68% L 82% 72% Q 52% 52% 22% 22% Z" fill="rgba(74, 222, 128, 0.3)" stroke="rgba(74, 222, 128, 0.5)" stroke-width="1"></path>
+
+
+                                    <!-- Blue route -->
+                                    <svg
+                                        class="absolute inset-0 w-full h-full"
+                                        viewBox="0 0 800 400"
+                                        preserveAspectRatio="none">
+
+                                        <path
+                                            d="M130 100
+                                               C200 130, 250 180, 320 170
+                                               C390 160, 410 220, 470 215
+                                               C540 210, 570 280, 650 270"
+                                            fill="none"
+                                            stroke="#2563eb"
+                                            stroke-width="6"
+                                            stroke-linecap="round"
+                                        />
+
                                     </svg>
-                                    
+
+
+                                    <!-- Start Point -->
+                                    <div class="absolute top-[22%] left-[17%]">
+
+                                        <div class="bg-[#0c5936] text-white text-[9px] font-bold px-2 py-1 rounded-full absolute -top-7 -left-5 whitespace-nowrap shadow">
+                                            Start Point
+                                        </div>
+
+                                        <div class="w-3 h-3 bg-blue-600 rounded-full border-2 border-white shadow"></div>
+
+                                    </div>
+
+
+                                    <!-- End Point -->
+                                    <div class="absolute bottom-[25%] right-[17%]">
+
+                                        <div class="bg-red-500 text-white text-[9px] font-bold px-2 py-1 rounded-full absolute -top-7 -left-4 whitespace-nowrap shadow">
+                                            End Point
+                                        </div>
+
+                                        <div class="w-3 h-3 bg-red-500 rounded-full border-2 border-white shadow"></div>
+
+                                    </div>
+
+
+                                    <!-- Village points -->
+                                    <div class="absolute top-[35%] left-[30%] w-2 h-2 bg-orange-400 rounded-full"></div>
+
+                                    <div class="absolute top-[55%] left-[43%] w-2 h-2 bg-orange-400 rounded-full"></div>
+
+                                    <div class="absolute top-[40%] left-[55%] w-2 h-2 bg-orange-400 rounded-full"></div>
+
+                                    <div class="absolute bottom-[35%] right-[30%] w-2 h-2 bg-orange-400 rounded-full"></div>
+
+
+                                    <!-- Map Labels -->
+                                    <span class="absolute top-[30%] left-[68%] text-[11px] font-semibold text-gray-700">
+                                        Bikaner
+                                    </span>
+
+                                    <span class="absolute bottom-[25%] left-[35%] text-[11px] font-semibold text-gray-700">
+                                        Nagaur
+                                    </span>
+
+                                    <span class="absolute bottom-[10%] left-[8%] text-[11px] font-semibold text-gray-700">
+                                        Jodhpur
+                                    </span>
+
+
+                                    <!-- Legend -->
+                                    <div class="absolute top-3 right-3 bg-white/95 backdrop-blur p-2.5 rounded shadow-sm border border-gray-200 text-[9px]">
+
+                                        <div class="flex items-center gap-1.5 mb-1.5">
+
+                                            <div class="w-4 h-0.5 bg-blue-600"></div>
+
+                                            <span class="text-gray-700 font-medium">
+                                                Project Alignment
+                                            </span>
+
+                                        </div>
+
+                                        <div class="flex items-center gap-1.5 mb-1.5">
+
+                                            <div class="w-4 h-2 bg-green-200 border border-green-300"></div>
+
+                                            <span class="text-gray-700 font-medium">
+                                                Buffer Zone
+                                            </span>
+
+                                        </div>
+
+                                        <div class="flex items-center gap-1.5">
+
+                                            <div class="w-2 h-2 rounded-full bg-orange-400"></div>
+
+                                            <span class="text-gray-700 font-medium">
+                                                Major Villages
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+
                                     <!-- Zoom controls -->
                                     <div class="absolute bottom-3 right-3 bg-white rounded shadow flex flex-col border border-gray-200">
-                                        <button class="w-6 h-6 flex items-center justify-center text-gray-600 hover:bg-gray-50 border-b border-gray-200"><i class="fa-solid fa-plus text-[10px]"></i></button>
-                                        <button class="w-6 h-6 flex items-center justify-center text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-minus text-[10px]"></i></button>
+
+                                        <button
+                                            class="w-7 h-7 flex items-center justify-center text-gray-600 hover:bg-gray-50 border-b border-gray-200">
+
+                                            <i class="fa-solid fa-plus text-[10px]"></i>
+
+                                        </button>
+
+                                        <button
+                                            class="w-7 h-7 flex items-center justify-center text-gray-600 hover:bg-gray-50">
+
+                                            <i class="fa-solid fa-minus text-[10px]"></i>
+
+                                        </button>
+
                                     </div>
 
-                                    <!-- Map Legend overlay -->
-                                    <div class="absolute top-3 right-3 bg-white/90 backdrop-blur p-2 rounded shadow-sm border border-gray-200 text-[9px]">
-                                        <div class="flex items-center gap-1.5 mb-1">
-                                            <div class="w-3 h-0.5 bg-blue-600"></div><span class="text-gray-700 font-medium">Project Alignment</span>
-                                        </div>
-                                        <div class="flex items-center gap-1.5 mb-1">
-                                            <div class="w-3 h-2 bg-green-200 border border-green-300"></div><span class="text-gray-700 font-medium">Buffer Zone</span>
-                                        </div>
-                                        <div class="flex items-center gap-1.5">
-                                            <div class="w-1.5 h-1.5 rounded-full bg-orange-400"></div><span class="text-gray-700 font-medium">Major Villages</span>
-                                        </div>
-                                    </div>
                                 </div>
+
                             </div>
 
                         </div>
+
+
+                        <!-- ================================================= -->
+                        <!-- GIS + DELAY -->
+                        <!-- ================================================= -->
 
                         <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
-                            
-                            <!-- GIS Clearance -->
+
+
+                            <!-- GIS CLEARANCE -->
                             <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
-                                <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-1.5">GIS Based Land Clearance <i class="fa-regular fa-circle-question text-gray-400 text-xs"></i></h3>
+
+                                <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-1.5">
+
+                                    GIS Based Land Clearance
+
+                                    <i class="fa-regular fa-circle-question text-gray-400 text-xs"></i>
+
+                                </h3>
+
+
                                 <div class="grid grid-cols-4 gap-3 mb-4">
+
+
+                                    <!-- Government -->
                                     <div class="bg-green-50/50 p-3 rounded-lg border border-green-100 text-center flex flex-col items-center justify-center">
+
                                         <i class="fa-solid fa-leaf text-green-600 text-lg mb-2"></i>
-                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">Government Land</p>
-                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">65%</p>
-                                        <p class="text-[10px] font-bold text-green-700">Clear</p>
+
+                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">
+                                            Government Land
+                                        </p>
+
+                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">
+                                            65%
+                                        </p>
+
+                                        <p class="text-[10px] font-bold text-green-700">
+                                            Clear
+                                        </p>
+
                                     </div>
+
+
+                                    <!-- Private -->
                                     <div class="bg-orange-50/50 p-3 rounded-lg border border-orange-100 text-center flex flex-col items-center justify-center">
+
                                         <i class="fa-solid fa-house text-orange-500 text-lg mb-2"></i>
-                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">Private Land</p>
-                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">20%</p>
-                                        <p class="text-[10px] font-bold text-orange-600 leading-tight">Verification Required</p>
+
+                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">
+                                            Private Land
+                                        </p>
+
+                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">
+                                            20%
+                                        </p>
+
+                                        <p class="text-[10px] font-bold text-orange-600 leading-tight">
+                                            Verification Required
+                                        </p>
+
                                     </div>
+
+
+                                    <!-- Protected -->
                                     <div class="bg-red-50/50 p-3 rounded-lg border border-red-100 text-center flex flex-col items-center justify-center">
+
                                         <i class="fa-solid fa-tree text-red-500 text-lg mb-2"></i>
-                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">Protected Land</p>
-                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">10%</p>
-                                        <p class="text-[10px] font-bold text-red-600 leading-tight">Clearance Required</p>
+
+                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">
+                                            Protected Land
+                                        </p>
+
+                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">
+                                            10%
+                                        </p>
+
+                                        <p class="text-[10px] font-bold text-red-600 leading-tight">
+                                            Clearance Required
+                                        </p>
+
                                     </div>
+
+
+                                    <!-- Tribal -->
                                     <div class="bg-purple-50/50 p-3 rounded-lg border border-purple-100 text-center flex flex-col items-center justify-center">
+
                                         <i class="fa-solid fa-people-group text-purple-600 text-lg mb-2"></i>
-                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">Tribal Land</p>
-                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">5%</p>
-                                        <p class="text-[10px] font-bold text-purple-700 leading-tight">Special Clearance</p>
+
+                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">
+                                            Tribal Land
+                                        </p>
+
+                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">
+                                            5%
+                                        </p>
+
+                                        <p class="text-[10px] font-bold text-purple-700 leading-tight">
+                                            Special Clearance
+                                        </p>
+
                                     </div>
+
                                 </div>
+
+
+                                <!-- Information -->
                                 <div class="bg-blue-50/50 border border-blue-100 p-3 rounded-lg flex items-start gap-2.5">
+
                                     <i class="fa-solid fa-circle-info text-blue-500 mt-0.5 text-sm"></i>
-                                    <p class="text-[11px] text-blue-800 font-medium leading-relaxed">GIS analysis indicates that the project area contains protected land and tribal land. Additional clearances may be required from respective authorities.</p>
+
+                                    <p class="text-[11px] text-blue-800 font-medium leading-relaxed">
+
+                                        GIS analysis indicates that the project area contains protected land and tribal land.
+                                        Additional clearances may be required from respective authorities.
+
+                                    </p>
+
                                 </div>
+
                             </div>
 
-                            <!-- Delay Prediction -->
+
+                            <!-- ================================================= -->
+                            <!-- DELAY PREDICTION -->
+                            <!-- ================================================= -->
+
                             <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm h-full flex flex-col">
-                                <h3 class="font-bold text-gray-900 mb-4">Delay Prediction</h3>
-                                
+
+                                <h3 class="font-bold text-gray-900 mb-4">
+                                    Delay Prediction
+                                </h3>
+
+
+                                <!-- Prediction -->
                                 <div class="flex justify-between items-start mb-6">
+
+
                                     <div class="flex items-start gap-3">
+
                                         <div class="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
+
                                             <i class="fa-regular fa-calendar-days text-gray-500 text-lg"></i>
+
                                         </div>
+
+
                                         <div>
-                                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wide">Predicted Delay</p>
-                                            <p class="text-2xl font-black text-gray-900 leading-none mt-1">2 Months</p>
+
+                                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wide">
+                                                Predicted Delay
+                                            </p>
+
+                                            <p class="text-2xl font-black text-gray-900 leading-none mt-1">
+                                                2 Months
+                                            </p>
+
                                         </div>
+
                                     </div>
+
+
+                                    <!-- Risk -->
                                     <div class="text-right">
-                                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wide mb-1.5">Risk Level</p>
+
+                                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wide mb-1.5">
+                                            Risk Level
+                                        </p>
+
                                         <div class="flex items-center justify-end gap-1.5">
+
                                             <div class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></div>
-                                            <span class="text-sm font-black text-gray-900">LOW</span>
+
+                                            <span class="text-sm font-black text-gray-900">
+                                                LOW
+                                            </span>
+
                                         </div>
+
                                     </div>
+
                                 </div>
 
+
+                                <!-- Risk Factors -->
                                 <div class="flex items-start gap-3 pt-2 mb-6">
+
                                     <div class="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
+
                                         <i class="fa-solid fa-list-check text-gray-500 text-lg"></i>
+
                                     </div>
+
+
                                     <div>
-                                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wide">Main Risk Factors</p>
-                                        <p class="text-sm font-bold text-gray-900 mt-1">Survey / Objection</p>
+
+                                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wide">
+                                            Main Risk Factors
+                                        </p>
+
+                                        <p class="text-sm font-bold text-gray-900 mt-1">
+                                            Survey / Objection
+                                        </p>
+
                                     </div>
+
                                 </div>
 
+
+                                <!-- Bottom message -->
                                 <div class="mt-auto bg-green-50 p-4 rounded-lg border border-green-100 flex items-start gap-3">
+
                                     <i class="fa-regular fa-lightbulb text-green-600 mt-0.5 text-lg"></i>
-                                    <p class="text-xs text-green-800 font-semibold leading-relaxed">Project is likely to be completed within expected timeline with minimal delays.</p>
+
+                                    <p class="text-xs text-green-800 font-semibold leading-relaxed">
+
+                                        Project is likely to be completed within expected timeline with minimal delays.
+
+                                    </p>
+
                                 </div>
+
                             </div>
-                            
+
                         </div>
+
                     </div>
+
                 </div>
 
             </div>
 
         </main>
+
     </div>
 
 </body>
