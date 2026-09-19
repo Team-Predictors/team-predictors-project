@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INFRA GATI - Admin Dashboard</title>
+
+    <title>INFRA GATI - Projects</title>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js (for dummy charts) -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Font -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
@@ -75,9 +79,13 @@
         }
     </style>
 </head>
+
 <body class="flex h-screen text-gray-800">
 
+    <!-- ========================================================= -->
     <!-- SIDEBAR -->
+    <!-- ========================================================= -->
+
     <aside class="w-[240px] bg-[#0c5936] text-white flex flex-col h-full shrink-0 z-20">
 
         <!-- Logo -->
@@ -197,10 +205,18 @@
 
     </aside>
 
-    <!-- MAIN CONTENT AREA -->
+
+    <!-- ========================================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ========================================================= -->
+
     <div class="flex-1 flex flex-col h-full overflow-hidden bg-[#f4f7f6]">
-        
+
+
+        <!-- ===================================================== -->
         <!-- TOP NAVBAR -->
+        <!-- ===================================================== -->
+
         <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
 
             <!-- Search -->
@@ -261,197 +277,792 @@
 
         </header>
 
-        <!-- DASHBOARD CONTENT -->
-        <main class="p-8 w-full max-w-7xl mx-auto">
+
+        <!-- ===================================================== -->
+        <!-- MAIN SCROLLABLE AREA -->
+        <!-- ===================================================== -->
+
+        <main class="flex-1 overflow-y-auto p-6 md:p-8">
+
+
+                <!-- PAGE TITLE -->
+                <div class="flex items-center justify-between mb-7">
+
+                    <div>
+
+                        <h2 class="text-3xl font-extrabold text-gray-900">
+                            Dashboard
+                        </h2>
+
+                        <p class="text-sm text-gray-500 mt-2">
+                            Welcome back, Priyangi! Here's an overview of ongoing land acquisition projects.
+                        </p>
+
+                    </div>
+
+
+                    <div class="text-sm text-gray-500 font-medium">
+                        Tuesday, 9 Sep 2026
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     STAT CARDS
+                ================================================== -->
+                <div class="grid grid-cols-4 gap-5 mb-6">
+
+
+                    <!-- TOTAL PROJECTS -->
+                    <div class="stat-card bg-green-50 border border-green-100 rounded-xl p-5">
+
+                        <div class="flex items-center gap-4">
+
+                            <div class="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-2xl">
+                                <i class="fa-regular fa-file-lines"></i>
+                            </div>
+
+                            <div>
+                                <h3 class="text-3xl font-extrabold text-gray-900">
+                                    124
+                                </h3>
+
+                                <p class="text-sm text-gray-700">
+                                    Total Projects
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ONGOING -->
+                    <div class="stat-card bg-blue-50 border border-blue-100 rounded-xl p-5">
+
+                        <div class="flex items-center gap-4">
+
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-2xl">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
+
+                            <div>
+                                <h3 class="text-3xl font-extrabold text-gray-900">
+                                    47
+                                </h3>
+
+                                <p class="text-sm text-gray-700">
+                                    Ongoing
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- COMPLETED -->
+                    <div class="stat-card bg-green-50 border border-green-100 rounded-xl p-5">
+
+                        <div class="flex items-center gap-4">
+
+                            <div class="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-2xl">
+                                <i class="fa-regular fa-circle-check"></i>
+                            </div>
+
+                            <div>
+                                <h3 class="text-3xl font-extrabold text-gray-900">
+                                    62
+                                </h3>
+
+                                <p class="text-sm text-gray-700">
+                                    Completed
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DELAYED -->
+                    <div class="stat-card bg-red-50 border border-red-100 rounded-xl p-5">
+
+                        <div class="flex items-center gap-4">
+
+                            <div class="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center text-red-600 text-2xl">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+
+                            <div>
+                                <h3 class="text-3xl font-extrabold text-gray-900">
+                                    15
+                                </h3>
+
+                                <p class="text-sm text-gray-700">
+                                    Delayed
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     MIDDLE SECTION
+                ================================================== -->
+                <div class="grid grid-cols-12 gap-6 mb-6">
+
+
+                    <!-- PROJECT PROGRESS -->
+                    <div class="glass-card p-6 col-span-4">
+
+                        <div class="flex items-center justify-between mb-5">
+
+                            <h3 class="text-lg font-bold text-gray-900">
+                                Project Progress
+                            </h3>
+
+                        </div>
+
+
+                        <div class="flex items-center justify-center gap-6">
+
+                            <div class="relative w-48 h-48">
+
+                                <canvas id="progressChart"></canvas>
+
+                                <div class="absolute inset-0 flex items-center justify-center">
+
+                                    <div class="text-center">
+
+                                        <p class="text-2xl font-extrabold text-gray-900">
+                                            62%
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="space-y-4 text-sm">
+
+                                <div class="flex items-center gap-3">
+
+                                    <span class="w-3 h-3 rounded-full bg-green-600"></span>
+
+                                    <span class="text-gray-600">
+                                        Completed
+                                    </span>
+
+                                    <span class="font-bold">
+                                        62
+                                    </span>
+
+                                </div>
+
+
+                                <div class="flex items-center gap-3">
+
+                                    <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+
+                                    <span class="text-gray-600">
+                                        Ongoing
+                                    </span>
+
+                                    <span class="font-bold">
+                                        47
+                                    </span>
+
+                                </div>
+
+
+                                <div class="flex items-center gap-3">
+
+                                    <span class="w-3 h-3 rounded-full bg-red-400"></span>
+
+                                    <span class="text-gray-600">
+                                        Delayed
+                                    </span>
+
+                                    <span class="font-bold">
+                                        15
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PROJECTS BY STATE -->
+                    <div class="glass-card p-6 col-span-4">
+
+                        <div class="flex items-center justify-between mb-3">
+
+                            <h3 class="text-lg font-bold text-gray-900">
+                                Projects by State
+                            </h3>
+
+                            <select class="border border-gray-200 rounded-lg px-4 py-2 text-sm outline-none">
+                                <option>India</option>
+                                <option>Bihar</option>
+                                <option>West Bengal</option>
+                                <option>Uttar Pradesh</option>
+                            </select>
+
+                        </div>
+
+
+                        <!-- India Map Illustration -->
+                        <div class="flex items-center justify-center h-52">
+
+                            <div class="relative text-green-500 text-[170px]">
+
+                                <i class="fa-solid fa-map-location-dot"></i>
+
+                            </div>
+
+                            <div class="ml-5 space-y-3 text-xs">
+
+                                <div class="flex items-center gap-2">
+                                    <span class="w-4 h-4 rounded bg-green-800"></span>
+                                    <span>&gt; 20 projects</span>
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    <span class="w-4 h-4 rounded bg-green-600"></span>
+                                    <span>10 - 20 projects</span>
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    <span class="w-4 h-4 rounded bg-green-400"></span>
+                                    <span>5 - 10 projects</span>
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    <span class="w-4 h-4 rounded bg-green-200"></span>
+                                    <span>&lt; 5 projects</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- RECENT ACTIVITY -->
+                    <div class="glass-card p-6 col-span-4">
+
+                        <div class="flex items-center justify-between mb-5">
+
+                            <h3 class="text-lg font-bold text-gray-900">
+                                Recent Activity
+                            </h3>
+
+                            <button class="text-sm font-semibold text-green-700">
+                                View All →
+                            </button>
+
+                        </div>
+
+
+                        <!-- Activity 1 -->
+                        <div class="flex items-center gap-4 mb-5">
+
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+
+                            <div class="flex-1">
+
+                                <p class="font-semibold text-sm">
+                                    New project added
+                                </p>
+
+                                <p class="text-xs text-gray-500">
+                                    Greenfield Expressway
+                                </p>
+
+                            </div>
+
+                            <span class="text-xs text-gray-500">
+                                2 hours ago
+                            </span>
+
+                        </div>
+
+
+                        <!-- Activity 2 -->
+                        <div class="flex items-center gap-4 mb-5">
+
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                <i class="fa-regular fa-file-lines"></i>
+                            </div>
+
+                            <div class="flex-1">
+
+                                <p class="font-semibold text-sm">
+                                    Land record updated
+                                </p>
+
+                                <p class="text-xs text-gray-500">
+                                    Village: Rampur
+                                </p>
+
+                            </div>
+
+                            <span class="text-xs text-gray-500">
+                                5 hours ago
+                            </span>
+
+                        </div>
+
+
+                        <!-- Activity 3 -->
+                        <div class="flex items-center gap-4 mb-5">
+
+                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                                <i class="fa-solid fa-chart-column"></i>
+                            </div>
+
+                            <div class="flex-1">
+
+                                <p class="font-semibold text-sm">
+                                    Report generated
+                                </p>
+
+                                <p class="text-xs text-gray-500">
+                                    Monthly Progress Report
+                                </p>
+
+                            </div>
+
+                            <span class="text-xs text-gray-500">
+                                1 day ago
+                            </span>
+
+                        </div>
+
+
+                        <!-- Activity 4 -->
+                        <div class="flex items-center gap-4">
+
+                            <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-500">
+                                <i class="fa-solid fa-user-plus"></i>
+                            </div>
+
+                            <div class="flex-1">
+
+                                <p class="font-semibold text-sm">
+                                    User added
+                                </p>
+
+                                <p class="text-xs text-gray-500">
+                                    anita.sharma@gov.in
+                                </p>
+
+                            </div>
+
+                            <span class="text-xs text-gray-500">
+                                2 days ago
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     BOTTOM SECTION
+                ================================================== -->
+                <div class="grid grid-cols-12 gap-6">
+
+
+                    <!-- RECENT PROJECTS -->
+                    <div class="glass-card col-span-8 overflow-hidden">
+
+                        <div class="p-5 border-b border-gray-100 flex items-center justify-between">
+
+                            <h3 class="text-lg font-bold text-gray-900">
+                                Recent Projects
+                            </h3>
+
+                            <button class="text-sm font-semibold text-green-700">
+                                View All →
+                            </button>
+
+                        </div>
+
+
+                        <div class="overflow-x-auto">
+
+                            <table class="w-full text-sm">
+
+                                <thead class="bg-gray-50">
+
+                                    <tr class="text-left text-gray-600">
+
+                                        <th class="px-5 py-4 font-semibold">
+                                            Project Name
+                                        </th>
+
+                                        <th class="px-5 py-4 font-semibold">
+                                            State
+                                        </th>
+
+                                        <th class="px-5 py-4 font-semibold">
+                                            Status
+                                        </th>
+
+                                        <th class="px-5 py-4 font-semibold">
+                                            Last Updated
+                                        </th>
+
+                                        <th class="px-5 py-4 font-semibold">
+                                            Action
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody>
+
+
+                                    <!-- Row 1 -->
+                                    <tr class="border-t border-gray-100 hover:bg-gray-50">
+
+                                        <td class="px-5 py-4 font-medium">
+                                            Greenfield Expressway
+                                        </td>
+
+                                        <td class="px-5 py-4 text-gray-600">
+                                            Uttar Pradesh
+                                        </td>
+
+                                        <td class="px-5 py-4">
+
+                                            <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold">
+                                                Ongoing
+                                            </span>
+
+                                        </td>
+
+                                        <td class="px-5 py-4 text-gray-600">
+                                            5 Sep 2026
+                                        </td>
+
+                                        <td class="px-5 py-4">
+
+                                            <button class="text-green-700 font-semibold hover:underline">
+                                                View
+                                            </button>
+
+                                        </td>
+
+                                    </tr>
+
+
+                                    <!-- Row 2 -->
+                                    <tr class="border-t border-gray-100 hover:bg-gray-50">
+
+                                        <td class="px-5 py-4 font-medium">
+                                            Rural Housing Development
+                                        </td>
+
+                                        <td class="px-5 py-4 text-gray-600">
+                                            Bihar
+                                        </td>
+
+                                        <td class="px-5 py-4">
+
+                                            <span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-semibold">
+                                                Completed
+                                            </span>
+
+                                        </td>
+
+                                        <td class="px-5 py-4 text-gray-600">
+                                            3 Sep 2026
+                                        </td>
+
+                                        <td class="px-5 py-4">
+
+                                            <button class="text-green-700 font-semibold hover:underline">
+                                                View
+                                            </button>
+
+                                        </td>
+
+                                    </tr>
+
+
+                                    <!-- Row 3 -->
+                                    <tr class="border-t border-gray-100 hover:bg-gray-50">
+
+                                        <td class="px-5 py-4 font-medium">
+                                            Industrial Corridor
+                                        </td>
+
+                                        <td class="px-5 py-4 text-gray-600">
+                                            Maharashtra
+                                        </td>
+
+                                        <td class="px-5 py-4">
+
+                                            <span class="px-3 py-1 rounded-full bg-red-100 text-red-700 text-xs font-semibold">
+                                                Delayed
+                                            </span>
+
+                                        </td>
+
+                                        <td class="px-5 py-4 text-gray-600">
+                                            1 Sep 2026
+                                        </td>
+
+                                        <td class="px-5 py-4">
+
+                                            <button class="text-green-700 font-semibold hover:underline">
+                                                View
+                                            </button>
+
+                                        </td>
+
+                                    </tr>
+
+
+                                    <!-- Row 4 -->
+                                    <tr class="border-t border-gray-100 hover:bg-gray-50">
+
+                                        <td class="px-5 py-4 font-medium">
+                                            Smart Village Initiative
+                                        </td>
+
+                                        <td class="px-5 py-4 text-gray-600">
+                                            Odisha
+                                        </td>
+
+                                        <td class="px-5 py-4">
+
+                                            <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold">
+                                                Ongoing
+                                            </span>
+
+                                        </td>
+
+                                        <td class="px-5 py-4 text-gray-600">
+                                            30 Aug 2026
+                                        </td>
+
+                                        <td class="px-5 py-4">
+
+                                            <button class="text-green-700 font-semibold hover:underline">
+                                                View
+                                            </button>
+
+                                        </td>
+
+                                    </tr>
+
+
+                                    <!-- Row 5 -->
+                                    <tr class="border-t border-gray-100 hover:bg-gray-50">
+
+                                        <td class="px-5 py-4 font-medium">
+                                            Urban Expansion Plan
+                                        </td>
+
+                                        <td class="px-5 py-4 text-gray-600">
+                                            Madhya Pradesh
+                                        </td>
+
+                                        <td class="px-5 py-4">
+
+                                            <span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-semibold">
+                                                Completed
+                                            </span>
+
+                                        </td>
+
+                                        <td class="px-5 py-4 text-gray-600">
+                                            28 Aug 2026
+                                        </td>
+
+                                        <td class="px-5 py-4">
+
+                                            <button class="text-green-700 font-semibold hover:underline">
+                                                View
+                                            </button>
+
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- QUICK ACTIONS -->
+                    <div class="glass-card col-span-4 p-5">
+
+                        <h3 class="text-lg font-bold text-gray-900 mb-5">
+                            Quick Actions
+                        </h3>
+
+
+                        <div class="grid grid-cols-2 gap-4">
+
+
+                            <!-- Add Project -->
+                            <button class="bg-green-50 rounded-xl p-6 text-center hover:bg-green-100 transition">
+
+                                <div class="text-3xl text-green-600 mb-3">
+                                    <i class="fa-regular fa-file-circle-plus"></i>
+                                </div>
+
+                                <p class="font-semibold text-sm">
+                                    Add New Project
+                                </p>
+
+                            </button>
+
+
+                            <!-- Maps -->
+                            <button class="bg-blue-50 rounded-xl p-6 text-center hover:bg-blue-100 transition">
+
+                                <div class="text-3xl text-blue-600 mb-3">
+                                    <i class="fa-regular fa-map"></i>
+                                </div>
+
+                                <p class="font-semibold text-sm">
+                                    View Maps
+                                </p>
+
+                            </button>
+
+
+                            <!-- Report -->
+                            <button class="bg-purple-50 rounded-xl p-6 text-center hover:bg-purple-100 transition">
+
+                                <div class="text-3xl text-purple-600 mb-3">
+                                    <i class="fa-solid fa-chart-column"></i>
+                                </div>
+
+                                <p class="font-semibold text-sm">
+                                    Generate Report
+                                </p>
+
+                            </button>
+
+
+                            <!-- Users -->
+                            <button class="bg-orange-50 rounded-xl p-6 text-center hover:bg-orange-100 transition">
+
+                                <div class="text-3xl text-orange-500 mb-3">
+                                    <i class="fa-solid fa-users"></i>
+                                </div>
+
+                                <p class="font-semibold text-sm">
+                                    Manage Users
+                                </p>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             
-            <div class="flex justify-between items-end mb-8">
-                <div>
-                    <h2 class="text-2xl font-extrabold text-gray-900 tracking-tight">Overview Dashboard</h2>
-                    <p class="text-xs text-gray-500 font-medium mt-1">Monitor land acquisition progress and AI predictions.</p>
-                </div>
-                <button class="bg-dark-green hover:bg-green-800 text-white px-5 py-2.5 rounded-lg font-bold text-xs transition-colors shadow-md flex items-center gap-2">
-                    <i class="fa-solid fa-plus"></i> New Project
-                </button>
-            </div>
-
-            <!-- KPIs (Key Performance Indicators) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-                <!-- Card 1 -->
-                <div class="glass-card p-5 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Total Projects</p>
-                            <h3 class="text-2xl font-black text-gray-900 mt-1">124</h3>
-                        </div>
-                        <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600"><i class="fa-solid fa-building"></i></div>
-                    </div>
-                    <p class="text-[10px] font-bold text-green-600 flex items-center gap-1"><i class="fa-solid fa-arrow-up"></i> +12% this month</p>
-                    <div class="absolute -bottom-4 -right-4 text-blue-50 opacity-50"><i class="fa-solid fa-building text-6xl"></i></div>
-                </div>
-                <!-- Card 2 -->
-                <div class="glass-card p-5 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">At Risk (Delays)</p>
-                            <h3 class="text-2xl font-black text-red-600 mt-1">18</h3>
-                        </div>
-                        <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-600"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                    </div>
-                    <p class="text-[10px] font-bold text-red-600 flex items-center gap-1"><i class="fa-solid fa-arrow-up"></i> AI Alert triggers</p>
-                    <div class="absolute -bottom-4 -right-4 text-red-50 opacity-50"><i class="fa-solid fa-triangle-exclamation text-6xl"></i></div>
-                </div>
-                <!-- Card 3 -->
-                <div class="glass-card p-5 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Acquired Area</p>
-                            <h3 class="text-2xl font-black text-gray-900 mt-1">45.2k <span class="text-xs text-gray-500 font-medium">Hectares</span></h3>
-                        </div>
-                        <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600"><i class="fa-solid fa-map-location-dot"></i></div>
-                    </div>
-                    <p class="text-[10px] font-bold text-green-600 flex items-center gap-1"><i class="fa-solid fa-arrow-up"></i> 89% of target</p>
-                    <div class="absolute -bottom-4 -right-4 text-green-50 opacity-50"><i class="fa-solid fa-map-location-dot text-6xl"></i></div>
-                </div>
-                <!-- Card 4 -->
-                <div class="glass-card p-5 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Active Litigations</p>
-                            <h3 class="text-2xl font-black text-orange-500 mt-1">32</h3>
-                        </div>
-                        <div class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-500"><i class="fa-solid fa-scale-balanced"></i></div>
-                    </div>
-                    <p class="text-[10px] font-bold text-gray-500 flex items-center gap-1">Across 12 courts</p>
-                    <div class="absolute -bottom-4 -right-4 text-orange-50 opacity-50"><i class="fa-solid fa-scale-balanced text-6xl"></i></div>
-                </div>
-            </div>
-
-            <!-- Charts Section -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                <!-- Main Chart -->
-                <div class="glass-card p-6 lg:col-span-2">
-                    <h3 class="text-sm font-bold text-gray-900 mb-4">Acquisition Progress vs Target</h3>
-                    <div class="w-full h-64 flex items-end gap-2 text-xs font-bold text-gray-400">
-                        <canvas id="progressChart"></canvas>
-                    </div>
-                </div>
-                <!-- Mini Chart -->
-                <div class="glass-card p-6">
-                    <h3 class="text-sm font-bold text-gray-900 mb-4">Delay Reasons (AI Model)</h3>
-                    <div class="w-full h-64 flex justify-center">
-                        <canvas id="reasonsChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Recent Projects Table -->
-            <div class="glass-card overflow-hidden">
-                <div class="p-5 border-b border-gray-100 flex justify-between items-center bg-white">
-                    <h3 class="text-sm font-bold text-gray-900">Priority Projects (AI Risk Ranked)</h3>
-                    <button class="text-[10px] font-bold text-green-600 hover:underline">View All</button>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-gray-50 text-[10px] uppercase tracking-wider text-gray-500 border-b border-gray-100">
-                                <th class="p-4 font-bold">Project ID & Name</th>
-                                <th class="p-4 font-bold">Region</th>
-                                <th class="p-4 font-bold">Status</th>
-                                <th class="p-4 font-bold">AI Risk Level</th>
-                                <th class="p-4 font-bold text-right">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-xs font-medium text-gray-700">
-                            <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
-                                <td class="p-4">
-                                    <p class="font-bold text-gray-900">NH-44 Expansion Phase 3</p>
-                                    <p class="text-[10px] text-gray-500">PRJ-2023-101</p>
-                                </td>
-                                <td class="p-4">Uttar Pradesh</td>
-                                <td class="p-4"><span class="px-2.5 py-1 rounded-full bg-blue-100 text-blue-700 text-[10px] font-bold">In Progress</span></td>
-                                <td class="p-4">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-2 h-2 rounded-full bg-red-500"></div> <span class="text-red-600 font-bold">High (85%)</span>
-                                    </div>
-                                </td>
-                                <td class="p-4 text-right"><button class="text-green-600 hover:text-green-800 font-bold"><i class="fa-solid fa-chevron-right"></i></button></td>
-                            </tr>
-                            <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
-                                <td class="p-4">
-                                    <p class="font-bold text-gray-900">Mumbai-Pune Freight Corridor</p>
-                                    <p class="text-[10px] text-gray-500">PRJ-2023-082</p>
-                                </td>
-                                <td class="p-4">Maharashtra</td>
-                                <td class="p-4"><span class="px-2.5 py-1 rounded-full bg-yellow-100 text-yellow-700 text-[10px] font-bold">Review</span></td>
-                                <td class="p-4">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-2 h-2 rounded-full bg-yellow-500"></div> <span class="text-yellow-600 font-bold">Medium (45%)</span>
-                                    </div>
-                                </td>
-                                <td class="p-4 text-right"><button class="text-green-600 hover:text-green-800 font-bold"><i class="fa-solid fa-chevron-right"></i></button></td>
-                            </tr>
-                            <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="p-4">
-                                    <p class="font-bold text-gray-900">Gujarat Smart City Zone B</p>
-                                    <p class="text-[10px] text-gray-500">PRJ-2023-044</p>
-                                </td>
-                                <td class="p-4">Gujarat</td>
-                                <td class="p-4"><span class="px-2.5 py-1 rounded-full bg-green-100 text-green-700 text-[10px] font-bold">Acquired</span></td>
-                                <td class="p-4">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-2 h-2 rounded-full bg-green-500"></div> <span class="text-green-600 font-bold">Low (5%)</span>
-                                    </div>
-                                </td>
-                                <td class="p-4 text-right"><button class="text-green-600 hover:text-green-800 font-bold"><i class="fa-solid fa-chevron-right"></i></button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
         </main>
     </div>
+<script>
 
-    <!-- Script to render dummy charts -->
-    <script>
-        // Line Chart
-        const ctxProgress = document.getElementById('progressChart').getContext('2d');
-        new Chart(ctxProgress, {
-            type: 'line',
+        /* -----------------------------------------
+           PROJECT PROGRESS DOUGHNUT
+        ----------------------------------------- */
+
+        const progressCanvas =
+            document.getElementById("progressChart");
+
+        new Chart(progressCanvas, {
+
+            type: "doughnut",
+
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                datasets: [{
-                    label: 'Target',
-                    data: [1000, 2000, 3000, 4000, 5000, 6000],
-                    borderColor: '#94a3b8',
-                    borderDash: [5, 5],
-                    tension: 0.1
-                }, {
-                    label: 'Actual Acquired',
-                    data: [900, 1800, 2500, 3500, 4200, 5100],
-                    borderColor: '#0f603c',
-                    backgroundColor: 'rgba(15, 96, 60, 0.1)',
-                    fill: true,
-                    tension: 0.3
-                }]
+
+                labels: [
+                    "Completed",
+                    "Ongoing",
+                    "Delayed"
+                ],
+
+                datasets: [
+
+                    {
+                        data: [62, 47, 15],
+
+                        backgroundColor: [
+                            "#0f8f50",
+                            "#4d9de0",
+                            "#ef6471"
+                        ],
+
+                        borderWidth: 0
+                    }
+
+                ]
+
             },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { font: { size: 10 } } } } }
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                cutout: "65%",
+
+                plugins: {
+
+                    legend: {
+                        display: false
+                    }
+
+                }
+
+            }
+
         });
 
-        // Doughnut Chart
-        const ctxReasons = document.getElementById('reasonsChart').getContext('2d');
-        new Chart(ctxReasons, {
-            type: 'doughnut',
-            data: {
-                labels: ['Litigation', 'Documentation', 'Budget', 'Compensation'],
-                datasets: [{
-                    data: [45, 25, 20, 10],
-                    backgroundColor: ['#ef4444', '#f59e0b', '#3b82f6', '#10b981'],
-                    borderWidth: 0
-                }]
-            },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } } }
-        });
     </script>
+
+
 </body>
 </html>
