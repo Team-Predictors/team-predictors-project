@@ -1,0 +1,388 @@
+html_content = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFRA GATI - Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .glass-card { background: white; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); border: 1px solid #f1f5f9; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Nav active state */
+        .nav-active { background-color: #0f603c; color: white; }
+        .nav-item:hover:not(.nav-active) { background-color: #f1f5f9; }
+    </style>
+</head>
+<body class="text-gray-800 min-h-screen flex flex-col">
+
+    <!-- TOP NAVBAR -->
+    <header class="h-[76px] bg-white border-b border-gray-200 flex items-center justify-between px-6 lg:px-10 shrink-0 sticky top-0 z-50">
+        
+        <!-- Left: Logo & Links -->
+        <div class="flex items-center gap-8">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
+                <i class="fa-solid fa-leaf text-[32px] text-green-600"></i>
+                <div>
+                    <h1 class="text-[20px] font-extrabold tracking-tight text-gray-900 leading-none" style="font-family: 'Inter', sans-serif;">INFRA GATI</h1>
+                    <p class="text-[7px] tracking-[2px] uppercase font-bold text-gray-500 mt-1" style="font-family: 'Inter', sans-serif;">Land Today. A Better Tomorrow.</p>
+                </div>
+            </a>
+
+            <!-- 3 Links -->
+            <div class="hidden lg:flex items-center gap-2 ml-4">
+                <a href="dashboard.html?v=4" class="nav-active nav-item px-4 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 transition-colors">
+                    <i class="fa-solid fa-house"></i> Dashboard
+                </a>
+                <a href="projects.html?v=4" class="nav-item text-gray-700 px-4 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 transition-colors">
+                    <i class="fa-solid fa-folder-open"></i> Projects
+                </a>
+                <a href="#" class="nav-item text-gray-700 px-4 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 transition-colors">
+                    <i class="fa-solid fa-user-group"></i> Grievances
+                </a>
+            </div>
+        </div>
+
+        <!-- Center: Search -->
+        <div class="flex-1 max-w-[400px] hidden xl:block mx-8">
+            <div class="relative w-full">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm"></i>
+                </div>
+                <input type="text" placeholder="Search projects, locations, villages..." class="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors">
+            </div>
+        </div>
+
+        <!-- Right: Actions -->
+        <div class="flex items-center gap-6 shrink-0">
+            <button class="relative text-gray-500 hover:text-gray-700 transition-colors">
+                <i class="fa-regular fa-bell text-xl"></i>
+                <span class="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 border-2 border-white rounded-full"></span>
+            </button>
+            <div class="flex items-center gap-3 border-l border-gray-200 pl-6">
+                <div class="w-9 h-9 rounded-full bg-[#0c5936] text-white font-bold flex items-center justify-center text-sm shadow-sm">U</div>
+                <div class="hidden sm:block leading-tight">
+                    <p class="text-sm font-bold text-gray-900">User</p>
+                    <p class="text-[10px] text-gray-500 font-medium">Administrator</p>
+                </div>
+                <i class="fa-solid fa-chevron-down text-gray-400 text-xs ml-1"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 p-6 lg:p-8 max-w-[1600px] w-full mx-auto">
+        
+        <!-- Header Section -->
+        <div class="flex justify-between items-end mb-6">
+            <div>
+                <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Dashboard</h2>
+                <p class="text-sm text-gray-600 font-medium mt-1.5">Welcome back, User! Here's an overview of ongoing land acquisition projects.</p>
+            </div>
+            <div class="text-sm font-medium text-gray-500 hidden md:block">
+                Tuesday, 9 Sep 2026
+            </div>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <!-- Total Projects -->
+            <div class="glass-card p-5 flex items-center gap-4 bg-[#f0fdf4] border-none">
+                <div class="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center text-2xl shrink-0">
+                    <i class="fa-regular fa-file-lines"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-black text-gray-900 leading-none">124</h3>
+                    <p class="text-xs font-semibold text-gray-600 mt-1">Total Projects</p>
+                </div>
+            </div>
+            <!-- Ongoing -->
+            <div class="glass-card p-5 flex items-center gap-4 bg-[#eff6ff] border-none">
+                <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-2xl shrink-0">
+                    <i class="fa-regular fa-clock"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-black text-gray-900 leading-none">47</h3>
+                    <p class="text-xs font-semibold text-gray-600 mt-1">Ongoing</p>
+                </div>
+            </div>
+            <!-- Completed -->
+            <div class="glass-card p-5 flex items-center gap-4 bg-[#f0fdf4] border-none">
+                <div class="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center text-2xl shrink-0">
+                    <i class="fa-regular fa-circle-check"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-black text-gray-900 leading-none">62</h3>
+                    <p class="text-xs font-semibold text-gray-600 mt-1">Completed</p>
+                </div>
+            </div>
+            <!-- Delayed -->
+            <div class="glass-card p-5 flex items-center gap-4 bg-[#fef2f2] border-none">
+                <div class="w-12 h-12 rounded-lg bg-red-100 text-red-500 flex items-center justify-center text-2xl shrink-0">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-black text-gray-900 leading-none">15</h3>
+                    <p class="text-xs font-semibold text-gray-600 mt-1">Delayed</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Row: Charts & Activity -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            
+            <!-- Project Progress (Chart) -->
+            <div class="glass-card p-6 flex flex-col">
+                <h3 class="font-bold text-gray-900 mb-6">Project Progress</h3>
+                <div class="flex-1 flex items-center justify-center relative">
+                    <div class="w-[180px] h-[180px] relative">
+                        <canvas id="progressChart"></canvas>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                            <span class="text-2xl font-black text-gray-900 leading-none">62%</span>
+                            <span class="text-[10px] text-gray-500 font-semibold mt-1">Completed</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3 mt-6">
+                    <div class="flex justify-between items-center text-sm font-semibold">
+                        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-[#0ea5e9]"></div> <span class="text-gray-700">Completed</span></div>
+                        <span class="text-gray-900 font-bold">62</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm font-semibold">
+                        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-[#3b82f6]"></div> <span class="text-gray-700">Ongoing</span></div>
+                        <span class="text-gray-900 font-bold">47</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm font-semibold">
+                        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-[#ef4444]"></div> <span class="text-gray-700">Delayed</span></div>
+                        <span class="text-gray-900 font-bold">15</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects by State (Map) -->
+            <div class="glass-card p-6 flex flex-col relative overflow-hidden">
+                <div class="flex justify-between items-center mb-4 z-10 relative">
+                    <h3 class="font-bold text-gray-900">Projects by State</h3>
+                    <div class="bg-white border border-gray-200 px-3 py-1 rounded-md text-xs font-semibold text-gray-600 flex items-center gap-2 cursor-pointer shadow-sm">
+                        India <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </div>
+                </div>
+                <div class="flex-1 flex items-center justify-center relative z-10 mt-2">
+                    <!-- Using a generic India map placeholder -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/India_map_en.svg/800px-India_map_en.svg.png" class="h-[220px] object-contain opacity-80" alt="India Map" style="filter: hue-rotate(90deg) saturate(1.5);">
+                    
+                    <!-- Legend -->
+                    <div class="absolute right-0 bottom-4 bg-white/90 p-2.5 rounded-lg shadow-sm border border-gray-100 text-[10px] font-semibold text-gray-600 space-y-2">
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 bg-[#166534] rounded-sm"></div> > 20 projects</div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 bg-[#22c55e] rounded-sm"></div> 10 - 20 projects</div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 bg-[#86efac] rounded-sm"></div> 5 - 10 projects</div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 bg-[#dcfce7] rounded-sm"></div> < 5 projects</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="glass-card p-6 flex flex-col">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-gray-900">Recent Activity</h3>
+                    <a href="#" class="text-xs font-bold text-green-700 hover:underline">View All &rarr;</a>
+                </div>
+                <div class="flex-1 flex flex-col gap-5">
+                    
+                    <!-- Activity Item -->
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+                            <i class="fa-regular fa-file-lines text-sm"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-bold text-gray-900 truncate">New project added</h4>
+                            <p class="text-[11px] text-gray-500 font-medium">Greenfield Expressway</p>
+                        </div>
+                        <span class="text-[10px] font-medium text-gray-400 whitespace-nowrap pt-0.5">2 hours ago</span>
+                    </div>
+
+                    <!-- Activity Item -->
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                            <i class="fa-regular fa-file-lines text-sm"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-bold text-gray-900 truncate">Land record updated</h4>
+                            <p class="text-[11px] text-gray-500 font-medium">Village: Rampur</p>
+                        </div>
+                        <span class="text-[10px] font-medium text-gray-400 whitespace-nowrap pt-0.5">5 hours ago</span>
+                    </div>
+
+                    <!-- Activity Item -->
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-chart-simple text-sm"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-bold text-gray-900 truncate">Report generated</h4>
+                            <p class="text-[11px] text-gray-500 font-medium">Monthly Progress Report</p>
+                        </div>
+                        <span class="text-[10px] font-medium text-gray-400 whitespace-nowrap pt-0.5">1 day ago</span>
+                    </div>
+
+                    <!-- Activity Item -->
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-user-group text-sm"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-bold text-gray-900 truncate">User added</h4>
+                            <p class="text-[11px] text-gray-500 font-medium">anita.sharma@gov.in</p>
+                        </div>
+                        <span class="text-[10px] font-medium text-gray-400 whitespace-nowrap pt-0.5">2 days ago</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Row: Table & Quick Actions -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Recent Projects Table -->
+            <div class="glass-card lg:col-span-2 overflow-hidden flex flex-col">
+                <div class="p-5 border-b border-gray-100 flex justify-between items-center bg-white">
+                    <h3 class="font-bold text-gray-900">Recent Projects</h3>
+                    <a href="projects.html" class="text-xs font-bold text-green-700 hover:underline">View All &rarr;</a>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[600px]">
+                        <thead>
+                            <tr class="bg-[#f8fafc] text-[11px] font-bold text-gray-900 border-b border-gray-100">
+                                <th class="py-3 px-5 w-12 text-center">#</th>
+                                <th class="py-3 px-5">Project Name</th>
+                                <th class="py-3 px-5">State</th>
+                                <th class="py-3 px-5">Status</th>
+                                <th class="py-3 px-5">Last Updated</th>
+                                <th class="py-3 px-5 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-xs font-semibold text-gray-600">
+                            <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                                <td class="py-3 px-5 text-center text-gray-400">1</td>
+                                <td class="py-3 px-5 text-gray-900">Greenfield Expressway</td>
+                                <td class="py-3 px-5">Uttar Pradesh</td>
+                                <td class="py-3 px-5"><span class="px-3 py-1 rounded bg-blue-50 text-blue-600 font-bold">Ongoing</span></td>
+                                <td class="py-3 px-5">5 Sep 2026</td>
+                                <td class="py-3 px-5 text-right"><a href="#" class="text-green-600 font-bold hover:underline">View</a></td>
+                            </tr>
+                            <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                                <td class="py-3 px-5 text-center text-gray-400">2</td>
+                                <td class="py-3 px-5 text-gray-900">Rural Housing Development</td>
+                                <td class="py-3 px-5">Bihar</td>
+                                <td class="py-3 px-5"><span class="px-3 py-1 rounded bg-green-50 text-green-600 font-bold">Completed</span></td>
+                                <td class="py-3 px-5">3 Sep 2026</td>
+                                <td class="py-3 px-5 text-right"><a href="#" class="text-green-600 font-bold hover:underline">View</a></td>
+                            </tr>
+                            <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                                <td class="py-3 px-5 text-center text-gray-400">3</td>
+                                <td class="py-3 px-5 text-gray-900">Industrial Corridor</td>
+                                <td class="py-3 px-5">Maharashtra</td>
+                                <td class="py-3 px-5"><span class="px-3 py-1 rounded bg-red-50 text-red-600 font-bold">Delayed</span></td>
+                                <td class="py-3 px-5">1 Sep 2026</td>
+                                <td class="py-3 px-5 text-right"><a href="#" class="text-green-600 font-bold hover:underline">View</a></td>
+                            </tr>
+                            <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                                <td class="py-3 px-5 text-center text-gray-400">4</td>
+                                <td class="py-3 px-5 text-gray-900">Smart Village Initiative</td>
+                                <td class="py-3 px-5">Odisha</td>
+                                <td class="py-3 px-5"><span class="px-3 py-1 rounded bg-blue-50 text-blue-600 font-bold">Ongoing</span></td>
+                                <td class="py-3 px-5">30 Aug 2026</td>
+                                <td class="py-3 px-5 text-right"><a href="#" class="text-green-600 font-bold hover:underline">View</a></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-3 px-5 text-center text-gray-400">5</td>
+                                <td class="py-3 px-5 text-gray-900">Urban Expansion Plan</td>
+                                <td class="py-3 px-5">Madhya Pradesh</td>
+                                <td class="py-3 px-5"><span class="px-3 py-1 rounded bg-green-50 text-green-600 font-bold">Completed</span></td>
+                                <td class="py-3 px-5">28 Aug 2026</td>
+                                <td class="py-3 px-5 text-right"><a href="#" class="text-green-600 font-bold hover:underline">View</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="flex flex-col">
+                <h3 class="font-bold text-gray-900 mb-4 px-1">Quick Actions</h3>
+                <div class="grid grid-cols-2 gap-4 flex-1">
+                    <button class="bg-[#f0fdf4] hover:bg-[#dcfce7] border border-green-100 rounded-xl p-4 flex flex-col items-center justify-center gap-2 transition-colors">
+                        <i class="fa-regular fa-square-plus text-2xl text-green-600"></i>
+                        <span class="text-xs font-bold text-green-800 text-center">Add New Project</span>
+                    </button>
+                    <button class="bg-[#eff6ff] hover:bg-[#dbeafe] border border-blue-100 rounded-xl p-4 flex flex-col items-center justify-center gap-2 transition-colors">
+                        <i class="fa-solid fa-map-location-dot text-2xl text-blue-500"></i>
+                        <span class="text-xs font-bold text-blue-800 text-center">View Maps</span>
+                    </button>
+                    <button class="bg-[#faf5ff] hover:bg-[#f3e8ff] border border-purple-100 rounded-xl p-4 flex flex-col items-center justify-center gap-2 transition-colors">
+                        <i class="fa-solid fa-chart-simple text-2xl text-purple-600"></i>
+                        <span class="text-xs font-bold text-purple-800 text-center">Generate Report</span>
+                    </button>
+                    <button class="bg-[#fff7ed] hover:bg-[#ffedd5] border border-orange-100 rounded-xl p-4 flex flex-col items-center justify-center gap-2 transition-colors">
+                        <i class="fa-solid fa-users text-2xl text-orange-500"></i>
+                        <span class="text-xs font-bold text-orange-800 text-center">Manage Users</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Chart Setup -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Project Progress Chart (Donut)
+            const ctx = document.getElementById('progressChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Completed', 'Ongoing', 'Delayed'],
+                    datasets: [{
+                        data: [62, 47, 15],
+                        backgroundColor: ['#0ea5e9', '#3b82f6', '#ef4444'], // specific matching colors
+                        borderWidth: 0,
+                        cutout: '70%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }, // Custom legend is built in HTML
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ' ' + context.label + ': ' + context.raw;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+'''
+
+with open('client/dashboard.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+    
+print("dashboard.html successfully written!")
