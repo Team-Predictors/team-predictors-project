@@ -46,9 +46,7 @@
                 <a href="project1.html?v=5" class="nav-item text-gray-700 px-4 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 transition-colors">
                     <i class="fa-solid fa-folder-open"></i> Projects
                 </a>
-                <a href="grievances.html?v=5" class="nav-item text-gray-700 px-4 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 transition-colors">
-                    <i class="fa-solid fa-user-group"></i> Grievances
-                </a>
+                
             </div>
         </div>
 
@@ -88,9 +86,7 @@
                 <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Dashboard</h2>
                 <p class="text-sm text-gray-600 font-medium mt-1.5">Welcome back, User! Here's an overview of ongoing land acquisition projects.</p>
             </div>
-            <div class="text-sm font-medium text-gray-500 hidden md:block live-date-display">
-                Tuesday, 9 Sep 2026
-            </div>
+            
         </div>
 
         <!-- KPI Cards -->
@@ -417,25 +413,7 @@
       }
     </script>
 
-    <!-- Live Date Script -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const dateElements = document.querySelectorAll('.live-date-display');
-            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            const today = new Date();
-            const dateString = days[today.getDay()] + ', ' + today.getDate() + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
-            
-            dateElements.forEach(function(el) {
-                // If it has an icon, keep the icon
-                if (el.innerHTML.includes('fa-calendar')) {
-                    el.innerHTML = '<i class="fa-regular fa-calendar"></i> ' + dateString;
-                } else {
-                    el.innerText = dateString;
-                }
-            });
-        });
-    </script>
+    
 </body>
 
 </html>
