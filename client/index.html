@@ -4,741 +4,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>INFRA GATI - Smart Infrastructure</title>
-
+    <title>INFRA GATI - Home</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <!-- Google Font -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: hidden;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
+            overflow-x: hidden;
         }
 
-        /* ==============================
-           COLORS
-        ============================== */
+        .hero-bg {
+            /* Beautiful highway/nature aerial shot */
+            background-image: url('https://images.unsplash.com/photo-1506501139174-099022df5260?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center right;
+        }
 
-        .dark-green {
-            color: #075c3d;
+        /* Gradient overlay to fade the image into the white background on the left */
+        .gradient-overlay {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        /* Glassmorphism utility */
+        .glass {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .text-dark-green {
+            color: #0f603c;
         }
 
         .bg-dark-green {
-            background-color: #075c3d;
+            background-color: #0f603c;
         }
-
-        .bg-dark-green:hover {
-            background-color: #064b32;
-        }
-
-
-        /* ==============================
-           HERO IMAGE
-        ============================== */
-
-        .hero-image {
-            background-image: url("assets/home-bg.jpg");
-            background-size: cover;
-            background-position: center;
-            width: 100%;
-            height: 100%;
-        }
-
-
-        /* ==============================
-           IMAGE WHITE FADE
-        ============================== */
-
-        .image-fade {
-            position: absolute;
-            inset: 0;
-
-            background: linear-gradient(
-                to right,
-                #f8fafc 0%,
-                rgba(248, 250, 252, 0.98) 7%,
-                rgba(248, 250, 252, 0.80) 18%,
-                rgba(248, 250, 252, 0.45) 32%,
-                rgba(248, 250, 252, 0.10) 48%,
-                rgba(248, 250, 252, 0) 65%
-            );
-        }
-
-
-        /* ==============================
-           GLASS CARDS
-        ============================== */
-
-        .glass-card {
-            background: rgba(55, 105, 82, 0.55);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-
-            border: 1px solid rgba(255, 255, 255, 0.35);
-        }
-
-
-        /* ==============================
-           DESKTOP NAVBAR
-        ============================== */
-
-        .navbar-content {
-            display: flex;
-            align-items: center;
-            width: 100%;
-        }
-
-        .navbar-right {
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-            gap: 35px;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            white-space: nowrap;
-        }
-
-        .nav-links a {
-            white-space: nowrap;
-        }
-
-
-        /* ==============================
-           TABLET
-        ============================== */
-
-        @media (max-width: 1100px) {
-
-            .navbar-right {
-                gap: 20px;
-            }
-
-            .nav-links {
-                gap: 20px;
-            }
-
-            .nav-links a {
-                font-size: 13px;
-            }
-
-        }
-
-
-        /* ==============================
-           MOBILE
-        ============================== */
-
-        @media (max-width: 850px) {
-
-            .desktop-navigation {
-                display: none;
-            }
-
-            .mobile-login {
-                display: block;
-            }
-
-            .hero-section {
-                flex-direction: column;
-            }
-
-            .hero-content {
-                width: 100%;
-                padding: 60px 30px;
-            }
-
-            .hero-image-container {
-                width: 100%;
-                height: 500px;
-            }
-
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-
-        @media (min-width: 851px) {
-
-            .mobile-login {
-                display: none;
-            }
-
-        }
-
-
-        /* ==============================
-           SMALL MOBILE
-        ============================== */
-
-        @media (max-width: 600px) {
-
-            .navbar {
-                padding: 18px 20px;
-            }
-
-            .logo-title {
-                font-size: 25px;
-            }
-
-            .hero-content {
-                padding: 45px 22px;
-            }
-
-            .hero-title {
-                font-size: 48px;
-            }
-
-            .hero-description {
-                font-size: 17px;
-            }
-
-            .hero-image-container {
-                height: 400px;
-            }
-
-            .glass-card {
-                transform: scale(0.82);
-                transform-origin: right;
-            }
-
-        }
-
     </style>
-
 </head>
 
+<body class="bg-white min-h-screen flex flex-col">
 
-<body>
-
-
-<!-- =========================================================
-     NAVBAR
-========================================================= -->
-
-        <!-- UNIFIED BIG NAVBAR -->
-    <nav class="w-full h-[105px] px-8 lg:px-20 flex items-center justify-between bg-white border-b border-gray-100 z-50 relative shrink-0">
+    <!-- NAVBAR -->
+    <nav class="w-full px-8 lg:px-16 py-6 flex items-center justify-between z-50 absolute top-0">
         <!-- Logo -->
-        <a href="index.html?v=13" class="flex items-center gap-3 cursor-pointer">
-            <i class="fa-solid fa-leaf text-[45px] text-green-600"></i>
+        <div class="flex items-center gap-2 cursor-pointer">
+            <i class="fa-solid fa-leaf text-3xl text-green-600"></i>
             <div>
-                <h1 class="text-[30px] font-extrabold tracking-tight text-gray-900 leading-none" style="font-family: 'Inter', sans-serif;">INFRA GATI</h1>
-                <p class="text-[10px] tracking-[5px] uppercase font-semibold text-gray-500 mt-1.5" style="font-family: 'Inter', sans-serif;">Land Today. A Better Tomorrow.</p>
+                <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 leading-none">INFRA GATI</h1>
+                <p class="text-[9px] tracking-widest uppercase font-semibold text-gray-500 mt-1">Land Today. A Better
+                    Tomorrow.</p>
             </div>
-        </a>
-
-        <!-- Links -->
-        <div class="hidden lg:flex items-center gap-10 text-[14px] font-bold text-gray-700" style="font-family: 'Inter', sans-serif;">
-            <a href="index.html?v=13" class="text-green-700 border-b-[3px] border-green-700 pb-1 transition">Home</a>
-            <a href="about.html?v=13" class="text-gray-700 border-b-[3px] border-transparent hover:text-green-700 hover:border-green-300 pb-1 transition">About</a>
-            <a href="features.html?v=13" class="text-gray-700 border-b-[3px] border-transparent hover:text-green-700 hover:border-green-300 pb-1 transition">Features</a>
-            <a href="how_it_works.html?v=13" class="text-gray-700 border-b-[3px] border-transparent hover:text-green-700 hover:border-green-300 pb-1 transition">How It Works</a>
-            <a href="contact.html?v=13" class="text-gray-700 border-b-[3px] border-transparent hover:text-green-700 hover:border-green-300 pb-1 transition">Contact</a>
         </div>
 
-        <!-- Button -->
+        <!-- Links -->
+        <div class="hidden md:flex items-center gap-10 text-sm font-semibold text-gray-600">
+            <a href="index.html" class="text-gray-900 border-b-2 border-green-600 pb-1">Home</a>
+            <a href="about.html" class="hover:text-green-600 transition">About</a>
+            <a href="features.html" class="hover:text-green-600 transition">Features</a>
+            <a href="how_it_works.html" class="hover:text-green-600 transition">How It Works</a>
+            <a href="contact.html" class="hover:text-green-600 transition">Contact</a>
+        </div>
+
+        <!-- Login Button -->
         <div>
-            <a href="login_demo.html?v=13" class="bg-[#126f43] hover:bg-green-800 text-white px-8 py-3 rounded-md font-bold text-[14px] transition-colors shadow-md" style="font-family: 'Inter', sans-serif;">
+            <a href="login_demo.html"
+                class="bg-dark-green hover:bg-green-800 text-white px-8 py-3 rounded-lg font-bold text-sm transition-colors shadow-lg">
                 Login
             </a>
         </div>
     </nav>
 
+    <!-- HERO SECTION -->
+    <main class="relative flex-grow flex items-center pt-24 min-h-[90vh]">
+        <!-- Right Background Image with Fade -->
+        <div class="absolute inset-0 z-0 flex justify-end">
+            <div class="w-full md:w-3/4 lg:w-2/3 h-full hero-bg relative">
+                <div class="absolute inset-0 gradient-overlay"></div>
 
+                <!-- Floating Glassmorphism Element 1 -->
+                <div class="absolute top-1/4 right-1/4 glass p-4 rounded-xl shadow-2xl flex items-center gap-4 text-white animate-bounce"
+                    style="animation-duration: 3s;">
+                    <div class="bg-white/30 p-2 rounded-full">
+                        <i class="fa-solid fa-chart-line text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold">Land Insights</p>
+                        <p class="text-xs opacity-90">Faster Approvals</p>
+                    </div>
+                </div>
 
-<!-- =========================================================
-     HERO SECTION
-========================================================= -->
-
-<main
-    class="hero-section w-full min-h-[calc(100vh-105px)] flex overflow-hidden">
-
-
-    <!-- =====================================================
-         LEFT SIDE CONTENT
-    ===================================================== -->
-
-    <section
-        class="hero-content w-[52%] flex-shrink-0 px-8 lg:px-[78px] py-[65px] flex flex-col justify-center">
-
-
-        <!-- =========================
-             TOP LABEL
-        ========================= -->
-
-        <div
-            class="flex items-center gap-4 mb-7 flex-wrap">
-
-            <div
-                class="w-[55px] h-[3px] bg-green-700 flex-shrink-0">
+                <!-- Floating Glassmorphism Element 2 -->
+                <div class="absolute bottom-1/3 right-1/3 glass p-4 rounded-xl shadow-2xl flex items-center gap-4 text-white animate-bounce"
+                    style="animation-duration: 4s; animation-delay: 1s;">
+                    <div class="bg-white/30 p-2 rounded-full">
+                        <i class="fa-solid fa-leaf text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold">Data for</p>
+                        <p class="text-xs opacity-90">Development</p>
+                    </div>
+                </div>
             </div>
-
-
-            <p
-                class="text-[11px] font-bold tracking-[3px] text-gray-500 uppercase whitespace-nowrap">
-
-                Smart Infrastructure
-
-            </p>
-
-
-            <span class="text-gray-400">
-                |
-            </span>
-
-
-            <p
-                class="text-[11px] font-bold tracking-[3px] text-gray-500 uppercase whitespace-nowrap">
-
-                Stronger India
-
-            </p>
-
         </div>
 
+        <!-- Left Text Content -->
+        <div class="w-full lg:w-1/2 px-8 lg:px-16 relative z-10">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="h-0.5 w-12 bg-green-600"></div>
+                <p class="text-xs font-bold tracking-widest text-gray-500 uppercase">Smart Infrastructure | Stronger
+                    India</p>
+            </div>
 
-
-        <!-- =========================
-             MAIN HEADING
-        ========================= -->
-
-        <h1
-            class="hero-title text-[clamp(48px,4.5vw,74px)] font-black leading-[1.08] tracking-[-2px] text-gray-950">
-
-            Predict.
-            <br>
-
-            Prevent.
-            <br>
-
-            <span class="text-green-700">
-
+            <h1 class="text-6xl lg:text-7xl font-black text-dark-green leading-[1.1] mb-6 tracking-tight">
+                Predict.<br>
+                Prevent.<br>
                 Progress.
+            </h1>
 
-            </span>
+            <p class="text-xl text-gray-600 mb-10 max-w-lg font-medium leading-relaxed">
+                AI-powered early detection of land acquisition delays.
+            </p>
 
-        </h1>
-
-
-
-        <!-- =========================
-             DESCRIPTION
-        ========================= -->
-
-        <p
-            class="hero-description mt-7 text-[20px] text-gray-700 max-w-[600px] leading-relaxed font-medium">
-
-            AI-powered early detection of land acquisition delays.
-
-        </p>
-
-
-
-        <!-- =========================
-             BUTTONS
-        ========================= -->
-
-        <div
-            class="flex flex-wrap gap-4 mt-8">
-
-
-            <!-- EXPLORE PROJECTS -->
-
-            <a href="project1.html"
-                class="bg-dark-green text-white px-8 py-4 rounded-xl font-bold text-[15px] flex items-center justify-center gap-4 shadow-lg hover:shadow-xl transition whitespace-nowrap">
-
-                Explore Projects
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
-
-
-
-            <!-- LEARN MORE -->
-
-            <a href="how_it_works.html"
-                class="bg-white text-green-800 border-2 border-green-700 px-8 py-4 rounded-xl font-bold text-[15px] flex items-center justify-center gap-4 hover:bg-green-50 transition whitespace-nowrap">
-
-                Learn More
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
-
-        </div>
-
-
-
-        <!-- =================================================
-             THREE FEATURE CARDS
-        ================================================= -->
-
-        <div
-            class="feature-grid grid grid-cols-3 gap-6 mt-14 max-w-[820px]">
-
-
-            <!-- =========================
-                 FEATURE 1
-            ========================= -->
-
-            <div
-                class="flex items-start gap-3">
-
-                <div
-                    class="min-w-[52px] h-[52px] rounded-full bg-green-100 flex items-center justify-center">
-
-                    <i
-                        class="fa-solid fa-chart-simple text-green-700 text-lg">
-                    </i>
-
-                </div>
-
-
-                <div>
-
-                    <h3
-                        class="font-bold text-[14px] text-gray-900 mb-1">
-
-                        Faster Projects
-
-                    </h3>
-
-
-                    <p
-                        class="text-[12px] text-gray-500 leading-relaxed">
-
-                        Reduce delays with
-                        data-driven insights.
-
-                    </p>
-
-                </div>
-
+            <div class="flex flex-col sm:flex-row gap-4 mb-20">
+                <a href="projects.html"
+                    class="bg-dark-green hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-base transition-colors shadow-xl flex items-center justify-center gap-2">
+                    Explore Projects <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="how_it_works.html"
+                    class="bg-white hover:bg-gray-50 text-dark-green border-2 border-gray-200 px-8 py-4 rounded-xl font-bold text-base transition-colors flex items-center justify-center gap-2">
+                    Learn More <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
 
-
-
-            <!-- =========================
-                 FEATURE 2
-            ========================= -->
-
-            <div
-                class="flex items-start gap-3">
-
-                <div
-                    class="min-w-[52px] h-[52px] rounded-full bg-green-100 flex items-center justify-center">
-
-                    <i
-                        class="fa-solid fa-leaf text-green-700 text-lg">
-                    </i>
-
+            <!-- Features Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pr-10">
+                <!-- Feature 1 -->
+                <div class="flex items-start gap-4">
+                    <div class="bg-green-100 p-3 rounded-lg text-green-700 mt-1">
+                        <i class="fa-solid fa-chart-simple text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 mb-1">Faster Projects</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed font-medium">Reduce delays with data-driven
+                            insights.</p>
+                    </div>
                 </div>
-
-
-                <div>
-
-                    <h3
-                        class="font-bold text-[14px] text-gray-900 mb-1">
-
-                        Transparent Process
-
-                    </h3>
-
-
-                    <p
-                        class="text-[12px] text-gray-500 leading-relaxed">
-
-                        More accountability
-                        in acquisition.
-
-                    </p>
-
+                <!-- Feature 2 -->
+                <div class="flex items-start gap-4">
+                    <div class="bg-green-100 p-3 rounded-lg text-green-700 mt-1">
+                        <i class="fa-solid fa-leaf text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 mb-1">Transparent Process</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed font-medium">More accountability in land
+                            acquisition.</p>
+                    </div>
                 </div>
-
+                <!-- Feature 3 -->
+                <div class="flex items-start gap-4">
+                    <div class="bg-green-100 p-3 rounded-lg text-green-700 mt-1">
+                        <i class="fa-solid fa-users text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 mb-1">Better Communities</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed font-medium">Enabling sustainable growth for
+                            all.</p>
+                    </div>
+                </div>
             </div>
-
-
-
-            <!-- =========================
-                 FEATURE 3
-            ========================= -->
-
-            <div
-                class="flex items-start gap-3">
-
-                <div
-                    class="min-w-[52px] h-[52px] rounded-full bg-green-100 flex items-center justify-center">
-
-                    <i
-                        class="fa-solid fa-users text-green-700 text-lg">
-                    </i>
-
-                </div>
-
-
-                <div>
-
-                    <h3
-                        class="font-bold text-[14px] text-gray-900 mb-1">
-
-                        Better Communities
-
-                    </h3>
-
-
-                    <p
-                        class="text-[12px] text-gray-500 leading-relaxed">
-
-                        Enabling sustainable
-                        growth for all.
-
-                    </p>
-
-                </div>
-
-            </div>
-
         </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         RIGHT SIDE IMAGE
-    ===================================================== -->
-
-    <section
-        class="hero-image-container relative w-[48%] min-h-[calc(100vh-105px)] overflow-hidden flex-shrink-0">
-
-
-        <!-- BACKGROUND IMAGE -->
-
-        <div
-            class="hero-image absolute inset-0">
-        </div>
-
-
-        <!-- WHITE GRADIENT -->
-
-        <div
-            class="image-fade">
-        </div>
-
-
-
-        <!-- =================================================
-             LOCATION PIN 1
-        ================================================= -->
-
-        <div
-            class="absolute top-[19%] left-[27%] text-white text-[48px] drop-shadow-lg">
-
-            <i class="fa-solid fa-location-dot"></i>
-
-        </div>
-
-
-
-        <!-- LOCATION PIN 2 -->
-
-        <div
-            class="absolute top-[39%] left-[18%] text-white text-[38px] drop-shadow-lg">
-
-            <i class="fa-solid fa-location-dot"></i>
-
-        </div>
-
-
-
-        <!-- LOCATION PIN 3 -->
-
-        <div
-            class="absolute top-[55%] left-[24%] text-white text-[36px] drop-shadow-lg">
-
-            <i class="fa-solid fa-location-dot"></i>
-
-        </div>
-
-
-
-        <!-- LOCATION PIN 4 -->
-
-        <div
-            class="absolute top-[55%] right-[23%] text-white text-[56px] drop-shadow-lg">
-
-            <i class="fa-solid fa-location-dot"></i>
-
-        </div>
-
-
-
-        <!-- =================================================
-             LAND INSIGHTS CARD
-        ================================================= -->
-
-        <div
-            class="glass-card absolute top-[20%] right-[6%] rounded-xl px-5 py-4 text-white shadow-xl">
-
-            <div class="flex items-center gap-3">
-
-
-                <div
-                    class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-
-                    <i
-                        class="fa-solid fa-chart-simple">
-                    </i>
-
-                </div>
-
-
-                <div>
-
-                    <p
-                        class="font-bold text-[14px]">
-
-                        Land Insights
-
-                    </p>
-
-
-                    <p
-                        class="text-[12px] mt-1">
-
-                        Faster Approvals
-
-                    </p>
-
-
-                    <p
-                        class="text-[12px]">
-
-                        Fewer Delays
-
-                    </p>
-
-
-                    <p
-                        class="text-[12px]">
-
-                        Stronger Infrastructure
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =================================================
-             DATA FOR DEVELOPMENT CARD
-        ================================================= -->
-
-        <div
-            class="glass-card absolute bottom-[15%] right-[7%] rounded-xl px-5 py-4 text-white shadow-xl">
-
-            <div class="flex items-center gap-3">
-
-
-                <div
-                    class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-
-                    <i
-                        class="fa-solid fa-leaf">
-                    </i>
-
-                </div>
-
-
-                <div>
-
-                    <p
-                        class="font-bold text-[14px]">
-
-                        Data for
-
-                    </p>
-
-
-                    <p
-                        class="text-[12px]">
-
-                        Development
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-    </section>
-
-</main>
-
-
-
-<!-- =========================================================
-     BOTTOM DECORATION
-========================================================= -->
-
-<footer
-    class="w-full h-[70px] bg-gradient-to-t from-green-50 to-transparent flex items-center px-8 lg:px-[78px]">
-
-    <div
-        class="flex items-center gap-4">
-
-        <div
-            class="w-8 h-[3px] bg-green-700">
-        </div>
-
-
-        <p
-            class="text-[9px] font-bold tracking-[4px] text-gray-600 uppercase">
-
-            Building A Smarter Tomorrow
-
-        </p>
-
+    </main>
+
+    <!-- Wavy Bottom Graphic -->
+    <div class="w-full h-24 bg-gradient-to-t from-green-50 to-white relative mt-auto">
+        <svg class="absolute bottom-0 w-full h-full text-green-100/50" preserveAspectRatio="none" viewBox="0 0 1440 320"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" fill-opacity="1"
+                d="M0,160L48,170.7C96,181,192,203,288,186.7C384,171,480,117,576,112C672,107,768,149,864,165.3C960,181,1056,171,1152,149.3C1248,128,1344,96,1392,80L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+            </path>
+        </svg>
     </div>
-
-</footer>
-
 
 </body>
 

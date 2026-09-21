@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INFRA GATI - Project Details</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+
+    <nav class="bg-white shadow-sm px-8 py-5">
+        <h1 class="text-2xl font-bold text-green-700">
+            INFRA GATI
+        </h1>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-8 py-12">
+
+        <h2 class="text-4xl font-bold text-gray-900 mb-8">
+            Project Details
+        </h2>
+
+        <div id="project-container" class="bg-white p-8 rounded-xl shadow-md">
+            Loading project...
+        </div>
+
+        <button onclick="predictDelay()"
+            class="mt-8 bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-lg font-bold">
+            Predict Delay Risk
+        </button>
+
+        <div id="prediction-container" class="mt-8"></div>
+
+        <div class="mt-10">
+            <h3 class="text-2xl font-bold mb-4">
+                Project Location
+            </h3>
+
+            <div id="map" class="w-full h-96 rounded-xl shadow-md"></div>
+        </div>
+
+    </main>
+
+    <script>
+
+        async function loadProject() {
+
+            try {
+
+                // Get project ID from URL
+                const params =
+                    new URLSearchParams(window.location.search);
+
+                const projectId =
+                    params.get("id");
+
+                console.log("Project ID:", projectId);
+
+                // Call FastAPI
+                const response =
+                    await fetch(
+                        `http://127.0.0.1:8000/projects/${projectId}`
+                    );
+
+                if (!response.ok) {
+                    throw new Error("Project not found");
+                }
+
+                const project =
+                    await response.json();
+
+                const map = L.map("map").setView(
+                    [project.latitude, project.longitude],
+                    12
+                );
+
+                L.tileLayer(
+                    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    {
+                        attribution: "&copy; OpenStreetMap contributors"
+                    }
+                ).addTo(map);
+
+                L.marker(
+                    [project.latitude, project.longitude]
+                ).addTo(map)
+                    .bindPopup(project.project_code)
+                    .openPopup();
+
+                // Display project
+                const container =
+                    document.getElementById("project-container");
+
+                container.innerHTML = `
+
+                    <h3 class="text-2xl font-bold mb-6">
+                        ${project.project_code}
+                    </h3>
+
+                    <div class="space-y-3 text-gray-700">
+
+                        <p>
+                            <strong>State:</strong>
+                            ${project.state}
+                        </p>
+
+                        <p>
+                            <strong>District:</strong>
+                            ${project.district}
+                        </p>
+
+                        <p>
+                            <strong>Project Type:</strong>
+                            ${project.project_type}
+                        </p>
+
+                        <p>
+                            <strong>Land Area:</strong>
+                            ${project.land_area}
+                        </p>
+
+                        <p>
+                            <strong>Project Cost:</strong>
+                            ${project.project_cost}
+                        </p>
+
+                        <p>
+                            <strong>Affected Families:</strong>
+                            ${project.affected_families}
+                        </p>
+
+                        <p>
+                            <strong>Landowners:</strong>
+                            ${project.landowners}
+                        </p>
+
+                    </div>
+
+                `;
+
+            } catch (error) {
+
+                console.error(
+                    "Failed to load project:",
+                    error
+                );
+
+                document.getElementById(
+                    "project-container"
+                ).innerHTML =
+                    "Failed to load project.";
+
+            }
+
+        }
+
+        loadProject();
+
+        async function predictDelay() {
+
+            try {
+
+                const params =
+                    new URLSearchParams(window.location.search);
+
+                const projectId =
+                    params.get("id");
+
+                const response =
+                    await fetch(
+                        `http://127.0.0.1:8000/projects/${projectId}/predict`,
+                        {
+                            method: "POST"
+                        }
+                    );
+
+                if (!response.ok) {
+                    throw new Error("Prediction failed");
+                }
+
+                const prediction =
+                    await response.json();
+
+                console.log("Prediction:", prediction);
+
+                const container =
+                    document.getElementById("prediction-container");
+
+                container.innerHTML = `
+
+            <div class="border-t pt-6">
+
+                <h3 class="text-2xl font-bold mb-4">
+                    Delay Risk Prediction
+                </h3>
+
+
+                <div class="mt-4 inline-block px-4 py-2 rounded-lg bg-yellow-100 text-yellow-800 font-bold">
+                    Risk Level: ${prediction.risk_level}
+                </div>
+
+                <h4 class="font-bold mt-6 mb-2">
+                    Risk Factors
+                </h4>
+
+                <ul class="list-disc ml-6 text-gray-700">
+
+                    ${prediction.risk_factors
+                        .map(factor => `<li>${factor}</li>`)
+                        .join("")}
+
+                </ul>
+
+            </div>
+
+        `;
+
+            } catch (error) {
+
+                console.error(
+                    "Prediction failed:",
+                    error
+                );
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
