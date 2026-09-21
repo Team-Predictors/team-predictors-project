@@ -3,85 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>INFRA GATI - Projects</title>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Font -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        .glass-card { background: white; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); border: 1px solid #f1f5f9; }
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* Nav active state */
-        .nav-active { background-color: #0f603c; color: white; }
-        .nav-item:hover:not(.nav-active) { background-color: #f1f5f9; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6;
+            overflow: hidden;
+        }
+
+        .sidebar-active {
+            background-color: #126f43;
+            border-left: 4px solid #4ade80;
+        }
+
+        .sidebar-item:hover:not(.sidebar-active) {
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .tab-active {
+            border-bottom: 2px solid #0f603c;
+            color: #0f603c;
+            font-weight: 600;
+        }
+
+        .tab-inactive {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .tab-inactive:hover {
+            color: #374151;
+        }
+
+        .project-item:hover:not(.project-item-active) {
+            background-color: #f9fafb;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Project stage line */
+        .step-line {
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            bottom: -8px;
+            width: 2px;
+            background-color: #0c5936;
+            z-index: 0;
+        }
+
+        /* Map */
+        .map-background {
+            background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1000&q=85');
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
-<body class="text-gray-800 min-h-screen flex flex-col">
 
-    <!-- TOP NAVBAR -->
-    <header class="h-[76px] bg-white border-b border-gray-200 flex items-center justify-between px-6 lg:px-10 shrink-0 sticky top-0 z-50">
-        
-        <!-- Left: Logo & Links -->
-        <div class="flex items-center gap-8">
-            <!-- Logo -->
-            <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
-                <i class="fa-solid fa-leaf text-[32px] text-green-600"></i>
-                <div>
-                    <h1 class="text-[20px] font-extrabold tracking-tight text-gray-900 leading-none" style="font-family: 'Inter', sans-serif;">INFRA GATI</h1>
-                    <p class="text-[7px] tracking-[2px] uppercase font-bold text-gray-500 mt-1" style="font-family: 'Inter', sans-serif;">Land Today. A Better Tomorrow.</p>
-                </div>
+<body class="flex h-screen text-gray-800">
+
+    <!-- ========================================================= -->
+    <!-- SIDEBAR -->
+    <!-- ========================================================= -->
+
+    <aside class="w-[240px] bg-[#0c5936] text-white flex flex-col h-full shrink-0 z-20">
+
+        <!-- Logo -->
+        <div class="h-20 flex items-center gap-3 px-6 shrink-0">
+
+            <i class="fa-solid fa-leaf text-2xl text-green-400"></i>
+
+            <div>
+                <h1 class="text-lg font-extrabold tracking-tight text-white leading-none">
+                    INFRA GATI
+                </h1>
+
+                <p class="text-[7px] tracking-widest uppercase font-semibold text-green-200 mt-1">
+                    Land Today. A Better Tomorrow.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- Navigation -->
+        <nav class="flex-1 py-4 flex flex-col gap-1 px-3">
+
+            <!-- Dashboard -->
+            <a href="dashboard.html?v=42"
+               class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+
+                <i class="fa-solid fa-house w-5 text-center text-green-200"></i>
+
+                Dashboard
             </a>
 
-            <!-- 3 Links -->
-            <div class="hidden lg:flex items-center gap-2 ml-4">
-                <a href="dashboard.html?v=5" class="nav-item text-gray-700 px-4 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 transition-colors">
-                    <i class="fa-solid fa-house"></i> Dashboard
-                </a>
-                <a href="projects.html?v=5" class="nav-active nav-item px-4 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 transition-colors">
-                    <i class="fa-solid fa-folder-open"></i> Projects
-                </a>
-                <a href="grievances.html?v=5" class="nav-item text-gray-700 px-4 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 transition-colors">
-                    <i class="fa-solid fa-user-group"></i> Grievances
-                </a>
-            </div>
+
+            <!-- Projects -->
+            <a href="projects.html?v=42"
+               class="sidebar-active flex items-center gap-3 px-3 py-2.5 rounded-r-lg text-sm font-medium text-white transition-colors ml-[-12px] pl-[15px]">
+
+                <i class="fa-solid fa-folder-open w-5 text-center"></i>
+
+                Projects
+            </a>
+
+
+            <!-- Land Records -->
+            <a href="#"
+               class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+
+                <i class="fa-regular fa-file-lines w-5 text-center text-green-200"></i>
+
+                Land Records
+            </a>
+
+
+            <!-- Analytics -->
+            <a href="#"
+               class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+
+                <i class="fa-solid fa-chart-simple w-5 text-center text-green-200"></i>
+
+                Analytics
+            </a>
+
+
+            <!-- Maps -->
+            <a href="#"
+               class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+
+                <i class="fa-solid fa-map w-5 text-center text-green-200"></i>
+
+                Maps
+            </a>
+
+
+            <!-- Reports -->
+            <a href="#"
+               class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+
+                <i class="fa-solid fa-file-contract w-5 text-center text-green-200"></i>
+
+                Reports
+            </a>
+
+
+            <!-- Users -->
+            <a href="#"
+               class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+
+                <i class="fa-solid fa-user-group w-5 text-center text-green-200"></i>
+
+                Users
+            </a>
+
+
+            <!-- Settings -->
+            <a href="#"
+               class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-green-50 transition-colors">
+
+                <i class="fa-solid fa-gear w-5 text-center text-green-200"></i>
+
+                Settings
+            </a>
+
+        </nav>
+
+
+        <!-- Bottom Logo -->
+        <div class="p-6 shrink-0 mt-auto">
+
+            <i class="fa-solid fa-leaf text-3xl text-green-400 mb-2 opacity-80"></i>
+
+            <p class="text-xs text-green-100 font-medium">
+                Land Today.<br>
+                A Better Tomorrow.
+            </p>
+
         </div>
 
-        <!-- Center: Search -->
-        <div class="flex-1 max-w-[400px] hidden xl:block mx-8">
-            <div class="relative w-full">
+    </aside>
+
+
+    <!-- ========================================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ========================================================= -->
+
+    <div class="flex-1 flex flex-col h-full overflow-hidden bg-[#f4f7f6]">
+
+
+        <!-- ===================================================== -->
+        <!-- TOP NAVBAR -->
+        <!-- ===================================================== -->
+
+        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
+
+            <!-- Search -->
+            <div class="relative w-[400px]">
+
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+
                     <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm"></i>
-                </div>
-                <input type="text" placeholder="Search projects, locations, villages..." class="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors">
-            </div>
-        </div>
 
-        <!-- Right: Actions -->
-        <div class="flex items-center gap-6 shrink-0">
-            <button class="relative text-gray-500 hover:text-gray-700 transition-colors">
-                <i class="fa-regular fa-bell text-xl"></i>
-                <span class="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 border-2 border-white rounded-full"></span>
-            </button>
-            <div class="flex items-center gap-3 border-l border-gray-200 pl-6">
-                <div class="w-9 h-9 rounded-full bg-[#0c5936] text-white font-bold flex items-center justify-center text-sm shadow-sm">U</div>
-                <div class="hidden sm:block leading-tight">
-                    <p class="text-sm font-bold text-gray-900">User</p>
-                    <p class="text-[10px] text-gray-500 font-medium">Administrator</p>
                 </div>
-                <i class="fa-solid fa-chevron-down text-gray-400 text-xs ml-1"></i>
-            </div>
-        </div>
-    </header>
 
-    
-<!-- MAIN CONTENT -->
-<main class="flex-1 overflow-y-auto p-6 md:p-8">
+                <input
+                    type="text"
+                    placeholder="Search projects, locations, villages..."
+                    class="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors"
+                >
+
+            </div>
+
+
+            <!-- Right side -->
+            <div class="flex items-center gap-6">
+
+                <!-- Notification -->
+                <button class="relative text-gray-500 hover:text-gray-700 transition-colors">
+
+                    <i class="fa-regular fa-bell text-lg"></i>
+
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 border border-white rounded-full"></span>
+
+                </button>
+
+
+                <!-- User -->
+                <div class="flex items-center gap-3">
+
+                    <div class="w-8 h-8 rounded-full bg-[#0c5936] text-white font-bold flex items-center justify-center text-sm shadow-sm">
+                        U
+                    </div>
+
+                    <div class="hidden md:block leading-tight">
+
+                        <p class="text-sm font-bold text-gray-900">
+                            User
+                        </p>
+
+                        <p class="text-[10px] text-gray-500 font-medium">
+                            Administrator
+                        </p>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down text-gray-400 text-xs ml-1"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ===================================================== -->
+        <!-- MAIN SCROLLABLE AREA -->
+        <!-- ===================================================== -->
+
+        <main class="flex-1 overflow-y-auto p-6 md:p-8">
 
 
             <!-- ================================================= -->
@@ -1172,39 +1373,7 @@
 
         </main>
 
+    </div>
 
-    <!-- Chart Setup -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Project Progress Chart (Donut)
-            const ctx = document.getElementById('progressChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Completed', 'Ongoing', 'Delayed'],
-                    datasets: [{
-                        data: [62, 47, 15],
-                        backgroundColor: ['#0ea5e9', '#3b82f6', '#ef4444'], // specific matching colors
-                        borderWidth: 0,
-                        cutout: '70%'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }, // Custom legend is built in HTML
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return ' ' + context.label + ': ' + context.raw;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        });
-    </script>
 </body>
 </html>
