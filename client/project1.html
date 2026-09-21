@@ -1206,5 +1206,25 @@
             });
         });
     </script>
+
+    <!-- Live Date Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const dateElements = document.querySelectorAll('.live-date-display');
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const today = new Date();
+            const dateString = days[today.getDay()] + ', ' + today.getDate() + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
+            
+            dateElements.forEach(function(el) {
+                // If it has an icon, keep the icon
+                if (el.innerHTML.includes('fa-calendar')) {
+                    el.innerHTML = '<i class="fa-regular fa-calendar"></i> ' + dateString;
+                } else {
+                    el.innerText = dateString;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
