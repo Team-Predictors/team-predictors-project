@@ -177,12 +177,10 @@
                     </div>
                 </div>
                 <div class="flex-1 flex items-center justify-center relative z-10 mt-2">
-                    <!-- Using a generic India map placeholder -->
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/India_map_en.svg/800px-India_map_en.svg.png" class="h-[220px] object-contain opacity-80" alt="India Map" style="filter: hue-rotate(90deg) saturate(1.5);">
                     
-                    <!-- Legend -->
-                    <div class="absolute right-0 bottom-4 bg-white/90 p-2.5 rounded-lg shadow-sm border border-gray-100 text-[10px] font-semibold text-gray-600 space-y-2">
-                        <div class="flex items-center gap-2"><div class="w-3 h-3 bg-[#166534] rounded-sm"></div> > 20 projects</div>
+                    <!-- Google GeoChart Container -->
+                    <div id="regions_div" class="w-full h-[220px]"></div>
+ > 20 projects</div>
                         <div class="flex items-center gap-2"><div class="w-3 h-3 bg-[#22c55e] rounded-sm"></div> 10 - 20 projects</div>
                         <div class="flex items-center gap-2"><div class="w-3 h-3 bg-[#86efac] rounded-sm"></div> 5 - 10 projects</div>
                         <div class="flex items-center gap-2"><div class="w-3 h-3 bg-[#dcfce7] rounded-sm"></div> < 5 projects</div>
@@ -378,5 +376,46 @@
             });
         });
     </script>
+
+    <!-- Google Charts for Map -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['geochart'],
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+          ['State', 'Projects'],
+          ['Uttar Pradesh', 25],
+          ['Maharashtra', 18],
+          ['Gujarat', 15],
+          ['Karnataka', 12],
+          ['Tamil Nadu', 9],
+          ['Bihar', 8],
+          ['Madhya Pradesh', 4],
+          ['Rajasthan', 3],
+          ['Odisha', 2],
+          ['Kerala', 1]
+        ]);
+
+        var options = {
+          region: 'IN',
+          displayMode: 'regions',
+          resolution: 'provinces',
+          colorAxis: {colors: ['#dcfce7', '#166534']},
+          backgroundColor: 'transparent',
+          datalessRegionColor: '#f8fafc',
+          defaultColor: '#f8fafc',
+          tooltip: {textStyle: {fontName: 'Inter', fontSize: 12}},
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+        chart.draw(data, options);
+      }
+    </script>
 </body>
+
 </html>
