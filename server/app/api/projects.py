@@ -15,35 +15,32 @@ router = APIRouter()
 
 @router.get("/projects", response_model=list[ProjectResponse])
 def get_projects():
-
     db = get_db_connection()
     cursor = db.cursor(dictionary=True)
 
     cursor.execute("SELECT * FROM projects")
-
     projects = cursor.fetchall()
 
     cursor.close()
     db.close()
 
+    # Handle projects where project_name is NULL
+    for project in projects:
+        if not project.get("project_name"):
+            project["project_name"] = project.get("project_code", "Unnamed Project")
+
     return projects
 
-@router.get(
-    "/projects/{project_id}",
-    response_model=ProjectResponse
-)
+@router.get("/projects/{project_id}", response_model=ProjectResponse)
 def get_project(project_id: int):
-
     db = get_db_connection()
     cursor = db.cursor(dictionary=True)
 
-    query = """
-        SELECT *
-        FROM projects
-        WHERE id = %s
-    """
+    cursor.execute(
+        "SELECT * FROM projects WHERE id = %s",
+        (project_id,)
+    )
 
-    cursor.execute(query, (project_id,))
     project = cursor.fetchone()
 
     cursor.close()
@@ -51,8 +48,15 @@ def get_project(project_id: int):
 
     if project is None:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
+            status_code=404,
             detail="Project not found"
+        )
+
+    # Prevent NULL project_name from breaking response validation
+    if not project.get("project_name"):
+        project["project_name"] = project.get(
+            "project_code",
+            "Unnamed Project"
         )
 
     return project

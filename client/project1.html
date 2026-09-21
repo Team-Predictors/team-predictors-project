@@ -1,1213 +1,3093 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>INFRA GATI - Projects</title>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        .glass-card { background: white; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); border: 1px solid #f1f5f9; }
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* Nav active state */
-        .nav-active { background-color: #0f603c; color: white; }
-        .nav-item:hover:not(.nav-active) { background-color: #f1f5f9; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .glass-card {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+                0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            border: 1px solid #f1f5f9;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .nav-active {
+            background-color: #0f603c;
+            color: white;
+        }
+
+        .nav-item:hover:not(.nav-active) {
+            background-color: #f1f5f9;
+        }
+
+        .step-line {
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            bottom: -24px;
+            width: 2px;
+            background-color: #e5e7eb;
+            z-index: -1;
+        }
+
+        .tab-active {
+            color: #0c5936;
+            font-weight: 700;
+            border-bottom: 2px solid #0c5936;
+        }
+
+        .tab-inactive {
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .tab-inactive:hover {
+            color: #0c5936;
+        }
+
+        .map-background {
+            background:
+                linear-gradient(135deg,
+                    #f0fdf4 0%,
+                    #ecfdf5 35%,
+                    #eff6ff 70%,
+                    #f8fafc 100%);
+        }
     </style>
 </head>
+
 <body class="text-gray-800 min-h-screen flex flex-col">
 
     <!-- TOP NAVBAR -->
-    <header class="h-[76px] bg-white border-b border-gray-200 flex items-center justify-between px-6 lg:px-10 shrink-0 sticky top-0 z-50">
-        
-        <!-- Left: Logo & Links -->
+
+    <header
+        class="h-[76px] bg-white border-b border-gray-200 flex items-center justify-between px-6 lg:px-10 shrink-0 sticky top-0 z-50">
+
         <div class="flex items-center gap-8">
-            <!-- Logo -->
+
             <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
+
                 <i class="fa-solid fa-leaf text-[32px] text-green-600"></i>
-                <div>
-                    <h1 class="text-[20px] font-extrabold tracking-tight text-gray-900 leading-none" style="font-family: 'Inter', sans-serif;">INFRA GATI</h1>
-                    <p class="text-[7px] tracking-[2px] uppercase font-bold text-gray-500 mt-1" style="font-family: 'Inter', sans-serif;">Land Today. A Better Tomorrow.</p>
-                </div>
-            </a>
-
-                        <!-- 3 Links -->
-            <div class="hidden lg:flex items-center gap-2 ml-4">
-                <a href="dashboard.html?v=6" class="nav-item text-gray-700 px-4 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 transition-colors">
-                    <i class="fa-solid fa-house"></i> Dashboard
-                </a>
-                <a href="project1.html?v=6" class="nav-active nav-item px-4 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 transition-colors">
-                    <i class="fa-solid fa-folder-open"></i> Projects
-                </a>
-                <a href="grievances.html?v=6" class="nav-item text-gray-700 px-4 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 transition-colors">
-                    <i class="fa-solid fa-user-group"></i> Grievances
-                </a>
-            </div>
-        </div>
-
-        <!-- Center: Search -->
-        <div class="flex-1 max-w-[400px] hidden xl:block mx-8">
-            <div class="relative w-full">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm"></i>
-                </div>
-                <input type="text" placeholder="Search projects, locations, villages..." class="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors">
-            </div>
-        </div>
-
-        <!-- Right: Actions -->
-        <div class="flex items-center gap-6 shrink-0">
-            <button class="relative text-gray-500 hover:text-gray-700 transition-colors">
-                <i class="fa-regular fa-bell text-xl"></i>
-                <span class="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 border-2 border-white rounded-full"></span>
-            </button>
-            <div class="flex items-center gap-3 border-l border-gray-200 pl-6">
-                <div class="w-9 h-9 rounded-full bg-[#0c5936] text-white font-bold flex items-center justify-center text-sm shadow-sm">U</div>
-                <div class="hidden sm:block leading-tight">
-                    <p class="text-sm font-bold text-gray-900">User</p>
-                    <p class="text-[10px] text-gray-500 font-medium">Administrator</p>
-                </div>
-                <i class="fa-solid fa-chevron-down text-gray-400 text-xs ml-1"></i>
-            </div>
-        </div>
-    </header>
-
-    
-<!-- MAIN CONTENT -->
-<main class="flex-1 overflow-y-auto p-6 md:p-8">
-
-
-            <!-- ================================================= -->
-            <!-- PAGE HEADER -->
-            <!-- ================================================= -->
-
-            <div class="flex justify-between items-start mb-6">
 
                 <div>
 
-                    <h2 class="text-2xl font-extrabold text-gray-900 tracking-tight">
-                        Projects
-                    </h2>
+                    <h1 class="text-[20px] font-extrabold tracking-tight text-gray-900 leading-none">
+                        INFRA GATI
+                    </h1>
 
-                    <p class="text-sm text-gray-500 font-medium mt-1">
-                        Search, filter and manage all land acquisition projects.
+                    <p class="text-[7px] tracking-[2px] uppercase font-bold text-gray-500 mt-1">
+                        Land Today. A Better Tomorrow.
                     </p>
 
                 </div>
-                
+
+            </a>
+
+            <div class="hidden lg:flex items-center gap-2 ml-4">
+
+                <a href="dashboard.html?v=6"
+                    class="nav-item text-gray-700 px-4 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 transition-colors">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    Dashboard
+
+                </a>
+
+                <a href="project1.html?v=6"
+                    class="nav-active nav-item px-4 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 transition-colors">
+
+                    <i class="fa-solid fa-folder-open"></i>
+
+                    Projects
+
+                </a>
+
+                <a href="grievances.html?v=6"
+                    class="nav-item text-gray-700 px-4 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 transition-colors">
+
+                    <i class="fa-solid fa-user-group"></i>
+
+                    Grievances
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="flex-1 max-w-[400px] hidden xl:block mx-8">
+
+            <div class="relative w-full">
+
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+
+                    <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm"></i>
+
+                </div>
+
+                <input type="text"
+                    placeholder="Search projects, locations, villages..."
+                    class="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors">
+
+            </div>
+
+        </div>
+
+        <div class="flex items-center gap-6 shrink-0">
+
+            <button class="relative text-gray-500 hover:text-gray-700 transition-colors">
+
+                <i class="fa-regular fa-bell text-xl"></i>
+
+                <span class="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 border-2 border-white rounded-full">
+                </span>
+
+            </button>
+
+            <div class="flex items-center gap-3 border-l border-gray-200 pl-6">
+
+                <div
+                    class="w-9 h-9 rounded-full bg-[#0c5936] text-white font-bold flex items-center justify-center text-sm shadow-sm">
+
+                    U
+
+                </div>
+
+                <div class="hidden sm:block leading-tight">
+
+                    <p class="text-sm font-bold text-gray-900">
+                        User
+                    </p>
+
+                    <p class="text-[10px] text-gray-500 font-medium">
+                        Administrator
+                    </p>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-down text-gray-400 text-xs ml-1"></i>
+
+            </div>
+
+        </div>
+
+    </header>
 
 
-                <!-- Add Project -->
+    <!-- MAIN CONTENT -->
+
+    <main class="flex-1 overflow-y-auto p-6 md:p-8">
+
+        <div class="flex justify-between items-start mb-6">
+
+            <div>
+
+                <h2 class="text-2xl font-extrabold text-gray-900 tracking-tight">
+                    Projects
+                </h2>
+
+                <p class="text-sm text-gray-500 font-medium mt-1">
+                    Search, filter and manage all land acquisition projects.
+                </p>
+
+            </div>
+
+            <!-- LIVE AI DEMO BUTTON -->
+
+            <button
+                onclick="openLiveDemo()"
+                class="bg-[#0c5936] hover:bg-green-800 text-white px-4 py-2.5 rounded-lg font-bold text-sm transition-colors shadow-sm flex items-center gap-2">
+
+                <i class="fa-solid fa-robot"></i>
+
+                Live AI Demo
+
+            </button>
+
+        </div>
+
+
+        <!-- FILTER BAR -->
+
+        <div
+            class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-6 flex flex-wrap items-end gap-4">
+
+            <div class="flex-1 min-w-[150px]">
+
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5">
+                    Ministry
+                </label>
+
+                <div class="relative">
+
+                    <select id="ministry-filter"
+                        class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+
+                        <option>All Ministries</option>
+
+                        <option>
+                            Ministry of Road Transport
+                        </option>
+
+                        <option>
+                            Ministry of Railways
+                        </option>
+
+                        <option>
+                            Ministry of Water Resources
+                        </option>
+
+                    </select>
+
+                    <i
+                        class="fa-solid fa-chevron-down absolute right-3 top-3 text-gray-400 text-xs pointer-events-none">
+                    </i>
+
+                </div>
+
+            </div>
+
+            <div class="flex-1 min-w-[150px]">
+
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5">
+                    Type of Project
+                </label>
+
+                <div class="relative">
+
+                    <select id="project-type-filter"
+                        class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+
+                        <option value="all">
+                            All Project Types
+                        </option>
+
+                    </select>
+
+                    <i
+                        class="fa-solid fa-chevron-down absolute right-3 top-3 text-gray-400 text-xs pointer-events-none">
+                    </i>
+
+                </div>
+
+            </div>
+
+            <div class="flex-1 min-w-[150px]">
+
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5">
+                    State
+                </label>
+
+                <div class="relative">
+
+                    <select id="state-filter"
+                        class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+
+                        <option value="all">
+                            All States
+                        </option>
+
+                    </select>
+
+                    <i
+                        class="fa-solid fa-chevron-down absolute right-3 top-3 text-gray-400 text-xs pointer-events-none">
+                    </i>
+
+                </div>
+
+            </div>
+
+            <div class="flex-[1.5] min-w-[200px]">
+
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5">
+                    Search
+                </label>
+
+                <div class="relative">
+
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+
+                        <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs">
+                        </i>
+
+                    </div>
+
+                    <input id="project-search"
+                        type="text"
+                        placeholder="Search project name..."
+                        class="w-full pl-9 pr-3 py-2 bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MAIN PROJECT SECTION -->
+
+        <div
+            class="flex flex-col lg:flex-row gap-6 h-[calc(100vh-270px)] min-h-[600px]">
+
+            <!-- LEFT PROJECT LIST -->
+
+            <div
+                class="w-full lg:w-[350px] bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col shrink-0 overflow-hidden h-full">
+
+                <div class="p-4 border-b border-gray-100 font-bold text-gray-800">
+
+                    Project List
+
+                    <span id="project-count">
+                        (0)
+                    </span>
+
+                </div>
+
+                <div id="project-list"
+                    class="flex-1 overflow-y-auto p-2 scrollbar-hide space-y-1">
+
+                    <div class="p-4 text-sm text-gray-400 text-center">
+                        Loading projects...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT PROJECT DETAILS -->
+
+            <div
+                class="flex-1 bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col h-full overflow-hidden">
+
+                <div class="p-6 pb-0 border-b border-gray-100 shrink-0">
+
+                    <div class="flex justify-between items-start mb-6">
+
+                        <div class="flex items-center gap-4">
+
+                            <div id="detail-project-icon"
+                                class="w-12 h-12 rounded-xl bg-green-50 text-[#0c5936] flex items-center justify-center">
+
+                                <i class="fa-solid fa-road text-2xl"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h2 id="detail-project-name"
+                                    class="text-2xl font-bold text-gray-900 leading-tight">
+
+                                    Loading...
+
+                                </h2>
+
+                                <p
+                                    class="text-sm text-gray-500 flex items-center gap-2 mt-1">
+
+                                    <span id="detail-project-type">
+                                        Project
+                                    </span>
+
+                                    <span class="text-gray-300">
+                                        |
+                                    </span>
+
+                                    <i class="fa-solid fa-location-dot text-gray-400">
+                                    </i>
+
+                                    <span id="detail-project-state">
+                                        —
+                                    </span>
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div id="overall-risk-box"
+                            class="bg-gray-50 px-4 py-2 rounded-lg flex items-center gap-3 border border-gray-100">
+
+                            <span class="text-xs font-semibold text-gray-600">
+                                Overall Delay Risk
+                            </span>
+
+                            <div
+                                class="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded shadow-sm border border-gray-100">
+
+                                <div id="overall-risk-dot"
+                                    class="w-2.5 h-2.5 rounded-full bg-gray-400">
+                                </div>
+
+                                <span id="overall-risk-level"
+                                    class="text-xs font-black text-gray-800">
+                                    —
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="flex items-center gap-8 text-sm">
+
+                        <a href="#" class="tab-active pb-3">
+                            Overview
+                        </a>
+
+                        <a href="#" class="tab-inactive pb-3 transition-colors">
+                            Land Acquisition
+                        </a>
+
+                        <a href="#" class="tab-inactive pb-3 transition-colors">
+                            GIS Analysis
+                        </a>
+
+                        <a href="#" class="tab-inactive pb-3 transition-colors">
+                            Documents
+                        </a>
+
+                        <a href="#" class="tab-inactive pb-3 transition-colors">
+                            Updates
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Detail Content -->
+
+                <div class="flex-1 overflow-y-auto p-6 scrollbar-hide">
+
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+
+                        <!-- PROJECT STAGES -->
+
+                        <div
+                            class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+
+                            <div class="flex justify-between items-center mb-6">
+
+                                <h3 class="font-bold text-gray-900">
+                                    Project Stages
+                                </h3>
+
+                                <span class="text-xs font-bold text-gray-500">
+                                    Delay Risk
+                                </span>
+
+                            </div>
+
+                            <div class="relative space-y-6">
+
+                                <div class="relative z-10 flex items-start gap-4">
+
+                                    <div class="step-line"></div>
+
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
+                                        1
+                                    </div>
+
+                                    <div class="flex-1">
+
+                                        <h4
+                                            class="text-sm font-bold text-gray-900 leading-none mb-1">
+                                            Notification
+                                        </h4>
+
+                                        <p class="text-[11px] text-gray-500">
+                                            Issue of preliminary notification
+                                        </p>
+
+                                    </div>
+
+                                    <div
+                                        class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
+
+                                        <div class="w-1.5 h-1.5 rounded-full bg-green-500">
+                                        </div>
+
+                                        <span class="text-[10px] font-bold text-gray-700">
+                                            LOW
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="relative z-10 flex items-start gap-4">
+
+                                    <div class="step-line"></div>
+
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
+                                        2
+                                    </div>
+
+                                    <div class="flex-1">
+
+                                        <h4
+                                            class="text-sm font-bold text-gray-900 leading-none mb-1">
+                                            Survey
+                                        </h4>
+
+                                        <p class="text-[11px] text-gray-500">
+                                            Field survey and land measurement
+                                        </p>
+
+                                    </div>
+
+                                    <div
+                                        class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-orange-50 border border-orange-100 shrink-0">
+
+                                        <div class="w-1.5 h-1.5 rounded-full bg-orange-500">
+                                        </div>
+
+                                        <span class="text-[10px] font-bold text-orange-600">
+                                            MEDIUM
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="relative z-10 flex items-start gap-4">
+
+                                    <div class="step-line"></div>
+
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
+                                        3
+                                    </div>
+
+                                    <div class="flex-1">
+
+                                        <h4
+                                            class="text-sm font-bold text-gray-900 leading-none mb-1">
+                                            Objection
+                                        </h4>
+
+                                        <p class="text-[11px] text-gray-500">
+                                            Hearing of objections
+                                        </p>
+
+                                    </div>
+
+                                    <div
+                                        class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
+
+                                        <div class="w-1.5 h-1.5 rounded-full bg-green-500">
+                                        </div>
+
+                                        <span class="text-[10px] font-bold text-gray-700">
+                                            LOW
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="relative z-10 flex items-start gap-4">
+
+                                    <div class="step-line"></div>
+
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
+                                        4
+                                    </div>
+
+                                    <div class="flex-1">
+
+                                        <h4
+                                            class="text-sm font-bold text-gray-900 leading-none mb-1">
+                                            Compensation
+                                        </h4>
+
+                                        <p class="text-[11px] text-gray-500">
+                                            Compensation calculation & disbursal
+                                        </p>
+
+                                    </div>
+
+                                    <div
+                                        class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
+
+                                        <div class="w-1.5 h-1.5 rounded-full bg-green-500">
+                                        </div>
+
+                                        <span class="text-[10px] font-bold text-gray-700">
+                                            LOW
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="relative z-10 flex items-start gap-4">
+
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
+                                        5
+                                    </div>
+
+                                    <div class="flex-1">
+
+                                        <h4
+                                            class="text-sm font-bold text-gray-900 leading-none mb-1">
+                                            Possession
+                                        </h4>
+
+                                        <p class="text-[11px] text-gray-500">
+                                            Handover of land
+                                        </p>
+
+                                    </div>
+
+                                    <div
+                                        class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
+
+                                        <div class="w-1.5 h-1.5 rounded-full bg-green-500">
+                                        </div>
+
+                                        <span class="text-[10px] font-bold text-gray-700">
+                                            LOW
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- MAP -->
+
+                        <div
+                            class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm flex flex-col">
+
+                            <div
+                                class="flex justify-between items-center mb-4 shrink-0">
+
+                                <h3 class="font-bold text-gray-900">
+                                    Project Area Map
+                                </h3>
+
+                                <a href="#"
+                                    class="text-xs font-bold text-[#0c5936] hover:underline flex items-center gap-1">
+
+                                    View Full Map
+
+                                    <i class="fa-solid fa-arrow-right"></i>
+
+                                </a>
+
+                            </div>
+
+                            <div
+                                class="flex-1 rounded-lg relative overflow-hidden min-h-[250px] map-background">
+
+                                <div class="absolute inset-0 bg-white/30"></div>
+
+                                <div
+                                    class="absolute w-[75%] h-[48%] bg-green-400/25 border border-green-400/40 rounded-[45%] rotate-[20deg] top-[25%] left-[12%]">
+                                </div>
+
+                                <svg
+                                    class="absolute inset-0 w-full h-full"
+                                    viewBox="0 0 800 400"
+                                    preserveAspectRatio="none">
+
+                                    <path d="M130 100
+                                           C200 130, 250 180, 320 170
+                                           C390 160, 410 220, 470 215
+                                           C540 210, 570 280, 650 270"
+                                        fill="none"
+                                        stroke="#2563eb"
+                                        stroke-width="6"
+                                        stroke-linecap="round" />
+
+                                </svg>
+
+                                <div class="absolute top-[22%] left-[17%]">
+
+                                    <div
+                                        class="bg-[#0c5936] text-white text-[9px] font-bold px-2 py-1 rounded-full absolute -top-7 -left-5 whitespace-nowrap shadow">
+
+                                        Start Point
+
+                                    </div>
+
+                                    <div
+                                        class="w-3 h-3 bg-blue-600 rounded-full border-2 border-white shadow">
+                                    </div>
+
+                                </div>
+
+                                <div class="absolute bottom-[25%] right-[17%]">
+
+                                    <div
+                                        class="bg-red-500 text-white text-[9px] font-bold px-2 py-1 rounded-full absolute -top-7 -left-4 whitespace-nowrap shadow">
+
+                                        End Point
+
+                                    </div>
+
+                                    <div class="w-3 h-3 bg-red-500 rounded-full border-2 border-white shadow">
+                                    </div>
+
+                                </div>
+
+                                <div
+                                    class="absolute top-[35%] left-[30%] w-2 h-2 bg-orange-400 rounded-full">
+                                </div>
+
+                                <div
+                                    class="absolute top-[55%] left-[43%] w-2 h-2 bg-orange-400 rounded-full">
+                                </div>
+
+                                <div
+                                    class="absolute top-[40%] left-[55%] w-2 h-2 bg-orange-400 rounded-full">
+                                </div>
+
+                                <div
+                                    class="absolute bottom-[35%] right-[30%] w-2 h-2 bg-orange-400 rounded-full">
+                                </div>
+
+                                <span id="map-label-1"
+                                    class="absolute top-[30%] left-[68%] text-[11px] font-semibold text-gray-700">
+                                    District
+                                </span>
+
+                                <span id="map-label-2"
+                                    class="absolute bottom-[25%] left-[35%] text-[11px] font-semibold text-gray-700">
+                                    State
+                                </span>
+
+                                <span
+                                    class="absolute bottom-[10%] left-[8%] text-[11px] font-semibold text-gray-700">
+                                    Project Area
+                                </span>
+
+                                <div
+                                    class="absolute top-3 right-3 bg-white/95 backdrop-blur p-2.5 rounded shadow-sm border border-gray-200 text-[9px]">
+
+                                    <div
+                                        class="flex items-center gap-1.5 mb-1.5">
+
+                                        <div class="w-4 h-0.5 bg-blue-600"></div>
+
+                                        <span class="text-gray-700 font-medium">
+                                            Project Alignment
+                                        </span>
+
+                                    </div>
+
+                                    <div
+                                        class="flex items-center gap-1.5 mb-1.5">
+
+                                        <div
+                                            class="w-4 h-2 bg-green-200 border border-green-300">
+                                        </div>
+
+                                        <span class="text-gray-700 font-medium">
+                                            Buffer Zone
+                                        </span>
+
+                                    </div>
+
+                                    <div class="flex items-center gap-1.5">
+
+                                        <div
+                                            class="w-2 h-2 rounded-full bg-orange-400">
+                                        </div>
+
+                                        <span class="text-gray-700 font-medium">
+                                            Major Villages
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <div
+                                    class="absolute bottom-3 right-3 bg-white rounded shadow flex flex-col border border-gray-200">
+
+                                    <button
+                                        class="w-7 h-7 flex items-center justify-center text-gray-600 hover:bg-gray-50 border-b border-gray-200">
+
+                                        <i class="fa-solid fa-plus text-[10px]"></i>
+
+                                    </button>
+
+                                    <button
+                                        class="w-7 h-7 flex items-center justify-center text-gray-600 hover:bg-gray-50">
+
+                                        <i class="fa-solid fa-minus text-[10px]"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- GIS + DELAY -->
+
+                    <div
+                        class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+
+                        <div
+                            class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+
+                            <h3
+                                class="font-bold text-gray-900 mb-4 flex items-center gap-1.5">
+
+                                GIS Based Land Clearance
+
+                                <i
+                                    class="fa-regular fa-circle-question text-gray-400 text-xs">
+                                </i>
+
+                            </h3>
+
+                            <div class="grid grid-cols-4 gap-3 mb-4">
+
+                                <div
+                                    class="bg-green-50/50 p-3 rounded-lg border border-green-100 text-center flex flex-col items-center justify-center">
+
+                                    <i
+                                        class="fa-solid fa-leaf text-green-600 text-lg mb-2">
+                                    </i>
+
+                                    <p
+                                        class="text-[10px] font-bold text-gray-700 mb-0.5">
+                                        Government Land
+                                    </p>
+
+                                    <p
+                                        class="text-lg font-black text-gray-900 leading-none mb-1">
+                                        65%
+                                    </p>
+
+                                    <p
+                                        class="text-[10px] font-bold text-green-700">
+                                        Clear
+                                    </p>
+
+                                </div>
+
+                                <div
+                                    class="bg-orange-50/50 p-3 rounded-lg border border-orange-100 text-center flex flex-col items-center justify-center">
+
+                                    <i
+                                        class="fa-solid fa-house text-orange-500 text-lg mb-2">
+                                    </i>
+
+                                    <p
+                                        class="text-[10px] font-bold text-gray-700 mb-0.5">
+                                        Private Land
+                                    </p>
+
+                                    <p
+                                        class="text-lg font-black text-gray-900 leading-none mb-1">
+                                        20%
+                                    </p>
+
+                                    <p
+                                        class="text-[10px] font-bold text-orange-600 leading-tight">
+                                        Verification Required
+                                    </p>
+
+                                </div>
+
+                                <div
+                                    class="bg-red-50/50 p-3 rounded-lg border border-red-100 text-center flex flex-col items-center justify-center">
+
+                                    <i
+                                        class="fa-solid fa-tree text-red-500 text-lg mb-2">
+                                    </i>
+
+                                    <p
+                                        class="text-[10px] font-bold text-gray-700 mb-0.5">
+                                        Protected Land
+                                    </p>
+
+                                    <p
+                                        class="text-lg font-black text-gray-900 leading-none mb-1">
+                                        10%
+                                    </p>
+
+                                    <p
+                                        class="text-[10px] font-bold text-red-600 leading-tight">
+                                        Clearance Required
+                                    </p>
+
+                                </div>
+
+                                <div
+                                    class="bg-purple-50/50 p-3 rounded-lg border border-purple-100 text-center flex flex-col items-center justify-center">
+
+                                    <i
+                                        class="fa-solid fa-people-group text-purple-600 text-lg mb-2">
+                                    </i>
+
+                                    <p
+                                        class="text-[10px] font-bold text-gray-700 mb-0.5">
+                                        Tribal Land
+                                    </p>
+
+                                    <p
+                                        class="text-lg font-black text-gray-900 leading-none mb-1">
+                                        5%
+                                    </p>
+
+                                    <p
+                                        class="text-[10px] font-bold text-purple-700 leading-tight">
+                                        Special Clearance
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div
+                                class="bg-blue-50/50 border border-blue-100 p-3 rounded-lg flex items-start gap-2.5">
+
+                                <i
+                                    class="fa-solid fa-circle-info text-blue-500 mt-0.5 text-sm">
+                                </i>
+
+                                <p
+                                    class="text-[11px] text-blue-800 font-medium leading-relaxed">
+
+                                    GIS analysis indicates that the project area contains protected land and tribal
+                                    land.
+                                    Additional clearances may be required from respective authorities.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DELAY PREDICTION -->
+
+                        <div
+                            class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm h-full flex flex-col">
+
+                            <h3 class="font-bold text-gray-900 mb-4">
+                                Delay Prediction
+                            </h3>
+
+                            <div class="flex justify-between items-start mb-6">
+
+                                <div class="flex items-start gap-3">
+
+                                    <div
+                                        class="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
+
+                                        <i
+                                            class="fa-regular fa-calendar-days text-gray-500 text-lg">
+                                        </i>
+
+                                    </div>
+
+                                    <div>
+
+                                        <p
+                                            class="text-[10px] font-bold text-gray-500 uppercase tracking-wide">
+                                            Delay Prediction
+                                        </p>
+
+                                        <p
+                                            class="text-sm font-bold text-gray-500 leading-none mt-2">
+                                            Based on project risk factors
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="text-right">
+
+                                    <p
+                                        class="text-[10px] font-bold text-gray-500 uppercase tracking-wide mb-1.5">
+                                        Risk Level
+                                    </p>
+
+                                    <div
+                                        class="flex items-center justify-end gap-1.5">
+
+                                        <div id="prediction-risk-dot"
+                                            class="w-3 h-3 rounded-full bg-gray-400 shadow-sm">
+                                        </div>
+
+                                        <span id="prediction-risk-level"
+                                            class="text-sm font-black text-gray-900">
+                                            —
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-start gap-3 pt-2 mb-6">
+
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
+
+                                    <i
+                                        class="fa-solid fa-list-check text-gray-500 text-lg">
+                                    </i>
+
+                                </div>
+
+                                <div class="flex-1">
+
+                                    <p
+                                        class="text-[10px] font-bold text-gray-500 uppercase tracking-wide">
+                                        Main Risk Factors
+                                    </p>
+
+                                    <div id="prediction-risk-factors"
+                                        class="mt-2 space-y-2">
+
+                                        <p class="text-sm text-gray-400">
+                                            Select a project to view risk factors.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div id="prediction-message"
+                                class="mt-auto bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-start gap-3">
+
+                                <i
+                                    class="fa-regular fa-lightbulb text-gray-500 mt-0.5 text-lg">
+                                </i>
+
+                                <p id="prediction-message-text"
+                                    class="text-xs text-gray-700 font-semibold leading-relaxed">
+                                    Select a project to view its delay prediction.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         LIVE AI DEMO MODAL
+         ========================================= -->
+
+    <div id="live-demo-modal"
+        class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+
+        <div class="bg-white w-full max-w-3xl max-h-[90vh] rounded-2xl shadow-2xl overflow-hidden">
+
+            <!-- MODAL HEADER -->
+
+            <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center">
+
+                <div>
+
+                    <h2 class="text-lg font-extrabold text-gray-900">
+                        Live AI Delay Prediction
+                    </h2>
+
+                    <p class="text-xs text-gray-500 mt-1">
+                        Test a new project directly through the prediction API.
+                    </p>
+
+                </div>
+
                 <button
-                    class="bg-[#0c5936] hover:bg-green-800 text-white px-4 py-2.5 rounded-lg font-bold text-sm transition-colors shadow-sm flex items-center gap-2">
+                    onclick="closeLiveDemo()"
+                    class="w-8 h-8 rounded-lg hover:bg-gray-100 text-gray-500">
 
-                    <i class="fa-solid fa-plus"></i>
-
-                    Add New Project
+                    <i class="fa-solid fa-xmark"></i>
 
                 </button>
 
             </div>
 
 
-            <!-- ================================================= -->
-            <!-- FILTER BAR -->
-            <!-- ================================================= -->
+            <!-- MODAL BODY -->
 
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-6 flex flex-wrap items-end gap-4">
+            <div class="p-6 overflow-y-auto max-h-[65vh]">
 
+                <div class="bg-green-50 border border-green-100 rounded-lg p-4 mb-5">
 
-                <!-- Ministry -->
-                <div class="flex-1 min-w-[150px]">
+                    <div class="flex items-start gap-3">
 
-                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">
-                        Ministry
-                    </label>
+                        <i class="fa-solid fa-circle-info text-green-600 mt-0.5"></i>
 
-                    <div class="relative">
+                        <div>
 
-                        <select
-                            class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
+                            <p class="text-sm font-bold text-green-800">
+                                Presentation Demo
+                            </p>
 
-                            <option>All Ministries</option>
-                            <option>Ministry of Road Transport</option>
-                            <option>Ministry of Railways</option>
-                            <option>Ministry of Water Resources</option>
-
-                        </select>
-
-                        <i class="fa-solid fa-chevron-down absolute right-3 top-3 text-gray-400 text-xs pointer-events-none"></i>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Project Type -->
-                <div class="flex-1 min-w-[150px]">
-
-                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">
-                        Type of Project
-                    </label>
-
-                    <div class="relative">
-
-                        <select
-                            class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
-
-                            <option>All Project Types</option>
-                            <option>Expressway</option>
-                            <option>Metro</option>
-                            <option>Canal</option>
-                            <option>Highway</option>
-                            <option>Greenfield</option>
-
-                        </select>
-
-                        <i class="fa-solid fa-chevron-down absolute right-3 top-3 text-gray-400 text-xs pointer-events-none"></i>
-
-                    </div>
-
-                </div>
-
-
-                <!-- State -->
-                <div class="flex-1 min-w-[150px]">
-
-                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">
-                        State
-                    </label>
-
-                    <div class="relative">
-
-                        <select
-                            class="w-full appearance-none bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block px-3 py-2 outline-none">
-
-                            <option>All States</option>
-                            <option>Rajasthan</option>
-                            <option>Uttar Pradesh</option>
-                            <option>Maharashtra</option>
-                            <option>Delhi</option>
-                            <option>Madhya Pradesh</option>
-
-                        </select>
-
-                        <i class="fa-solid fa-chevron-down absolute right-3 top-3 text-gray-400 text-xs pointer-events-none"></i>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Search -->
-                <div class="flex-[1.5] min-w-[200px]">
-
-                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">
-                        Search
-                    </label>
-
-                    <div class="relative">
-
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-
-                            <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs"></i>
+                            <p class="text-xs text-green-700 mt-1 leading-relaxed">
+                                This prediction is sent directly to the AI API.
+                                It does not create or modify a database project.
+                            </p>
 
                         </div>
 
-                        <input
-                            type="text"
-                            placeholder="Search project name..."
-                            class="w-full pl-9 pr-3 py-2 bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 outline-none transition-colors"
-                        >
+                    </div>
+
+                </div>
+
+
+                <!-- DEMO INPUTS -->
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                    <div>
+
+                        <label class="block text-xs font-bold text-gray-600 mb-1">
+                            Project Code
+                        </label>
+
+                        <input id="demo-project-code"
+                            value="JUDGE-DEMO-001"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-green-600">
 
                     </div>
+
+
+                    <div>
+
+                        <label class="block text-xs font-bold text-gray-600 mb-1">
+                            Project Type
+                        </label>
+
+                        <input id="demo-project-type"
+                            value="Road"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-green-600">
+
+                    </div>
+
+
+                    <div>
+
+                        <label class="block text-xs font-bold text-gray-600 mb-1">
+                            State
+                        </label>
+
+                        <input id="demo-state"
+                            value="West Bengal"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-green-600">
+
+                    </div>
+
+
+                    <div>
+
+                        <label class="block text-xs font-bold text-gray-600 mb-1">
+                            District
+                        </label>
+
+                        <input id="demo-district"
+                            value="Howrah"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-green-600">
+
+                    </div>
+
+
+                    <div>
+
+                        <label class="block text-xs font-bold text-gray-600 mb-1">
+                            Stakeholder Responsiveness
+                        </label>
+
+                        <input id="demo-stakeholder"
+                            type="number"
+                            step="0.01"
+                            value="0.95"
+                            min="0"
+                            max="1"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-green-600">
+
+                    </div>
+
+
+                    <div>
+
+                        <label class="block text-xs font-bold text-gray-600 mb-1">
+                            Approval Delay Days
+                        </label>
+
+                        <input id="demo-approval-delay"
+                            type="number"
+                            value="5"
+                            min="0"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-green-600">
+
+                    </div>
+
+
+                    <div>
+
+                        <label class="block text-xs font-bold text-gray-600 mb-1">
+                            Milestone Delay Days
+                        </label>
+
+                        <input id="demo-milestone-delay"
+                            type="number"
+                            value="5"
+                            min="0"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-green-600">
+
+                    </div>
+
+
+                    <div>
+
+                        <label class="block text-xs font-bold text-gray-600 mb-1">
+                            Possession Percentage
+                        </label>
+
+                        <input id="demo-possession"
+                            type="number"
+                            value="90"
+                            min="0"
+                            max="100"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-green-600">
+
+                    </div>
+
+                </div>
+
+
+                <!-- PREDICTION RESULT -->
+
+                <div id="live-demo-result"
+                    class="hidden mt-6">
+
+                    <div class="border border-gray-100 rounded-xl p-5 bg-gray-50">
+
+                        <div class="flex justify-between items-center mb-5">
+
+                            <h3 class="font-extrabold text-gray-900">
+                                Prediction Result
+                            </h3>
+
+                            <span id="demo-model-version"
+                                class="text-[10px] font-bold text-gray-500">
+                            </span>
+
+                        </div>
+
+
+                        <div class="grid grid-cols-3 gap-3 mb-5">
+
+                            <div
+                                class="bg-white rounded-lg border border-gray-100 p-4 text-center">
+
+                                <p class="text-[10px] uppercase font-bold text-gray-500">
+                                    Delay Probability
+                                </p>
+
+                                <p id="demo-probability"
+                                    class="text-2xl font-black text-gray-900 mt-2">
+                                    —
+                                </p>
+
+                            </div>
+
+
+                            <div
+                                class="bg-white rounded-lg border border-gray-100 p-4 text-center">
+
+                                <p class="text-[10px] uppercase font-bold text-gray-500">
+                                    Risk Level
+                                </p>
+
+                                <p id="demo-risk-level"
+                                    class="text-2xl font-black mt-2">
+                                    —
+                                </p>
+
+                            </div>
+
+
+                            <div
+                                class="bg-white rounded-lg border border-gray-100 p-4 text-center">
+
+                                <p class="text-[10px] uppercase font-bold text-gray-500">
+                                    Delay Risk
+                                </p>
+
+                                <p id="demo-delay-risk"
+                                    class="text-2xl font-black text-gray-900 mt-2">
+                                    —
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <p class="text-xs uppercase font-bold text-gray-500 mb-2">
+                                Risk Factors
+                            </p>
+
+                            <div id="demo-risk-factors"
+                                class="text-sm text-gray-700">
+
+                                —
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ERROR -->
+
+                <div id="live-demo-error"
+                    class="hidden mt-4 bg-red-50 border border-red-100 rounded-lg p-3">
+
+                    <p id="live-demo-error-text"
+                        class="text-xs text-red-700 font-semibold">
+                    </p>
 
                 </div>
 
             </div>
 
 
-            <!-- ================================================= -->
-            <!-- MAIN PROJECT SECTION -->
-            <!-- ================================================= -->
+            <!-- MODAL FOOTER -->
 
-            <div class="flex flex-col lg:flex-row gap-6 h-[calc(100vh-270px)] min-h-[600px]">
+            <div
+                class="px-6 py-4 border-t border-gray-100 flex justify-between items-center">
+
+                <button
+                    onclick="loadDemoDataset()"
+                    class="px-4 py-2.5 rounded-lg border border-gray-200 text-gray-700 font-bold text-sm hover:bg-gray-50">
+
+                    <i class="fa-solid fa-rotate mr-1"></i>
+
+                    Load Demo Data
+
+                </button>
 
 
-                <!-- ================================================= -->
-                <!-- LEFT PROJECT LIST -->
-                <!-- ================================================= -->
+                <button
+                    id="run-demo-button"
+                    onclick="runLivePrediction()"
+                    class="bg-[#0c5936] hover:bg-green-800 text-white px-5 py-2.5 rounded-lg font-bold text-sm">
 
-                <div class="w-full lg:w-[350px] bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col shrink-0 overflow-hidden h-full">
+                    <i class="fa-solid fa-brain mr-1"></i>
+
+                    Run AI Prediction
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 
 
-                    <!-- List heading -->
-                    <div class="p-4 border-b border-gray-100 font-bold text-gray-800">
+    <!-- =========================================
+         BACKEND INTEGRATION
+         ========================================= -->
 
-                        Project List (5)
+    <script>
+
+        const API_BASE = "http://127.0.0.1:8000";
+
+        let allProjects = [];
+        let selectedProjectId = null;
+
+
+        /* SAFE HTML ESCAPE */
+
+        function escapeHTML(value) {
+
+            if (value === null || value === undefined) {
+                return "";
+            }
+
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /* PROJECT ICON */
+
+        function getProjectIcon(type) {
+
+            const projectType =
+                String(type || "").toLowerCase();
+
+            if (projectType.includes("metro")) {
+                return "fa-train-subway";
+            }
+
+            if (projectType.includes("canal")) {
+                return "fa-water";
+            }
+
+            if (projectType.includes("greenfield")) {
+                return "fa-industry";
+            }
+
+            if (projectType.includes("bridge")) {
+                return "fa-road-bridge";
+            }
+
+            return "fa-road";
+
+        }
+
+
+        /* STATUS */
+
+        function getProjectStatus(project) {
+
+            const stage =
+                String(project.current_stage || "").toLowerCase();
+
+            if (stage.includes("planning")) {
+                return "Planning";
+            }
+
+            if (stage.includes("completed")) {
+                return "Completed";
+            }
+
+            if (stage.includes("possession")) {
+                return "In Progress";
+            }
+
+            if (stage.includes("land acquisition")) {
+                return "In Progress";
+            }
+
+            return project.current_stage || "In Progress";
+
+        }
+
+
+        /* STATUS STYLE */
+
+        function getStatusStyle(status) {
+
+            const value =
+                String(status).toLowerCase();
+
+            if (value.includes("completed")) {
+
+                return {
+                    background: "bg-green-100",
+                    text: "text-green-700"
+                };
+
+            }
+
+            if (value.includes("planning")) {
+
+                return {
+                    background: "bg-orange-50",
+                    text: "text-orange-600"
+                };
+
+            }
+
+            return {
+                background: "bg-blue-50",
+                text: "text-blue-600"
+            };
+
+        }
+
+
+        /* RISK STYLE */
+
+        function getRiskStyle(risk) {
+
+            const value =
+                String(risk || "").toUpperCase();
+
+            if (value === "CRITICAL") {
+
+                return {
+                    dot: "bg-red-600",
+                    text: "text-red-700",
+                    box: "bg-red-50",
+                    border: "border-red-100"
+                };
+
+            }
+
+            if (value === "HIGH") {
+
+                return {
+                    dot: "bg-orange-600",
+                    text: "text-orange-700",
+                    box: "bg-orange-50",
+                    border: "border-orange-100"
+                };
+
+            }
+
+            if (value === "MEDIUM") {
+
+                return {
+                    dot: "bg-orange-500",
+                    text: "text-orange-600",
+                    box: "bg-orange-50",
+                    border: "border-orange-100"
+                };
+
+            }
+
+            if (value === "LOW") {
+
+                return {
+                    dot: "bg-green-500",
+                    text: "text-green-700",
+                    box: "bg-green-50",
+                    border: "border-green-100"
+                };
+
+            }
+
+            return {
+                dot: "bg-gray-400",
+                text: "text-gray-700",
+                box: "bg-gray-50",
+                border: "border-gray-100"
+            };
+
+        }
+
+
+        /* LOAD PROJECTS */
+
+        async function loadProjects() {
+
+            try {
+
+                const response =
+                    await fetch(`${API_BASE}/projects`);
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        `Failed to load projects: ${response.status}`
+                    );
+
+                }
+
+                allProjects =
+                    await response.json();
+
+                console.log(
+                    "Projects from backend:",
+                    allProjects
+                );
+
+                populateFilters();
+
+                renderProjectList();
+
+
+                if (allProjects.length > 0) {
+
+                    const urlParams =
+                        new URLSearchParams(
+                            window.location.search
+                        );
+
+                    const projectIdFromURL =
+                        urlParams.get("id");
+
+
+                    if (projectIdFromURL) {
+
+                        const requestedProject =
+                            allProjects.find(
+                                project =>
+                                    Number(project.id) ===
+                                    Number(projectIdFromURL)
+                            );
+
+
+                        if (requestedProject) {
+
+                            selectedProjectId =
+                                requestedProject.id;
+
+                        } else {
+
+                            selectedProjectId =
+                                allProjects[0].id;
+
+                        }
+
+                    } else {
+
+                        selectedProjectId =
+                            allProjects[0].id;
+
+                    }
+
+
+                    await loadProjectDetails(
+                        selectedProjectId
+                    );
+
+                } else {
+
+                    showNoProjects();
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Project loading error:",
+                    error
+                );
+
+
+                document.getElementById(
+                    "project-list"
+                ).innerHTML = `
+
+                    <div class="p-4 text-sm text-red-500 text-center">
+
+                        Failed to load projects.
+
+                        <br>
+
+                        <span class="text-xs text-gray-400">
+
+                            Check whether FastAPI is running.
+
+                        </span>
 
                     </div>
 
+                `;
 
-                    <!-- List -->
-                    <div class="flex-1 overflow-y-auto p-2 scrollbar-hide space-y-1">
+            }
 
+        }
 
-                        <!-- Project 1 -->
-                        <div class="p-3 rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50">
 
-                            <div class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+        /* POPULATE FILTERS */
 
-                                <i class="fa-solid fa-road text-lg"></i>
+        function populateFilters() {
 
-                            </div>
+            const typeFilter =
+                document.getElementById(
+                    "project-type-filter"
+                );
 
-                            <div class="flex-1 min-w-0">
+            const stateFilter =
+                document.getElementById(
+                    "state-filter"
+                );
 
-                                <div class="flex justify-between items-center mb-0.5">
 
-                                    <h4 class="font-bold text-sm text-gray-900 truncate">
-                                        Expressway Project
-                                    </h4>
+            const types = [
+                ...new Set(
+                    allProjects
+                        .map(
+                            project =>
+                                project.project_type
+                        )
+                        .filter(Boolean)
+                )
+            ];
 
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-blue-600">
-                                        In Progress
-                                    </span>
 
-                                </div>
+            const states = [
+                ...new Set(
+                    allProjects
+                        .map(
+                            project =>
+                                project.state
+                        )
+                        .filter(Boolean)
+                )
+            ];
 
-                                <p class="text-[11px] text-gray-500 truncate mb-0.5">
-                                    Expressway
-                                </p>
 
-                                <p class="text-[10px] text-gray-400 flex items-center gap-1">
+            typeFilter.innerHTML = `
+                <option value="all">
+                    All Project Types
+                </option>
+            `;
 
-                                    <i class="fa-solid fa-location-dot"></i>
 
-                                    Uttar Pradesh
+            types.forEach(type => {
 
-                                </p>
+                typeFilter.innerHTML += `
+                    <option value="${escapeHTML(type)}">
+                        ${escapeHTML(type)}
+                    </option>
+                `;
 
-                            </div>
+            });
 
-                            <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
 
-                        </div>
+            stateFilter.innerHTML = `
+                <option value="all">
+                    All States
+                </option>
+            `;
 
 
-                        <!-- Project 2 -->
-                        <div class="p-3 rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50">
+            states.forEach(state => {
 
-                            <div class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+                stateFilter.innerHTML += `
+                    <option value="${escapeHTML(state)}">
+                        ${escapeHTML(state)}
+                    </option>
+                `;
 
-                                <i class="fa-solid fa-industry text-lg"></i>
+            });
 
-                            </div>
+        }
 
-                            <div class="flex-1 min-w-0">
 
-                                <div class="flex justify-between items-center mb-0.5">
+        /* RENDER PROJECT LIST */
 
-                                    <h4 class="font-bold text-sm text-gray-900 truncate">
-                                        Greenfield Project
-                                    </h4>
+        function renderProjectList() {
 
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-orange-50 text-orange-600">
-                                        Planning
-                                    </span>
+            const projectList =
+                document.getElementById(
+                    "project-list"
+                );
 
-                                </div>
+            const projectCount =
+                document.getElementById(
+                    "project-count"
+                );
 
-                                <p class="text-[11px] text-gray-500 truncate mb-0.5">
-                                    Greenfield
-                                </p>
 
-                                <p class="text-[10px] text-gray-400 flex items-center gap-1">
+            const typeFilter =
+                document.getElementById(
+                    "project-type-filter"
+                ).value;
 
-                                    <i class="fa-solid fa-location-dot"></i>
 
-                                    Maharashtra
+            const stateFilter =
+                document.getElementById(
+                    "state-filter"
+                ).value;
 
-                                </p>
 
-                            </div>
+            const search =
+                document.getElementById(
+                    "project-search"
+                )
+                    .value
+                    .toLowerCase()
+                    .trim();
 
-                            <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
 
-                        </div>
+            const filteredProjects =
+                allProjects.filter(
+                    project => {
 
+                        const matchesType =
+                            typeFilter === "all" ||
+                            project.project_type ===
+                            typeFilter;
 
-                        <!-- Project 3 -->
-                        <div class="p-3 rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50">
 
-                            <div class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+                        const matchesState =
+                            stateFilter === "all" ||
+                            project.state ===
+                            stateFilter;
 
-                                <i class="fa-solid fa-train-subway text-lg"></i>
 
-                            </div>
+                        const searchableText = `
+                            ${project.project_name || ""}
+                            ${project.project_code || ""}
+                            ${project.project_type || ""}
+                            ${project.state || ""}
+                            ${project.district || ""}
+                        `.toLowerCase();
 
-                            <div class="flex-1 min-w-0">
 
-                                <div class="flex justify-between items-center mb-0.5">
+                        const matchesSearch =
+                            searchableText.includes(
+                                search
+                            );
 
-                                    <h4 class="font-bold text-sm text-gray-900 truncate">
-                                        Metro Project
-                                    </h4>
 
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-blue-600">
-                                        In Progress
-                                    </span>
+                        return (
+                            matchesType &&
+                            matchesState &&
+                            matchesSearch
+                        );
 
-                                </div>
+                    }
+                );
 
-                                <p class="text-[11px] text-gray-500 truncate mb-0.5">
-                                    Metro
-                                </p>
 
-                                <p class="text-[10px] text-gray-400 flex items-center gap-1">
+            projectCount.textContent =
+                `(${filteredProjects.length})`;
 
-                                    <i class="fa-solid fa-location-dot"></i>
 
-                                    Delhi
+            if (filteredProjects.length === 0) {
 
-                                </p>
+                projectList.innerHTML = `
 
-                            </div>
+                    <div class="p-6 text-sm text-gray-400 text-center">
 
-                            <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
-
-                        </div>
-
-
-                        <!-- Project 4 ACTIVE -->
-                        <div class="bg-green-50 border border-green-300 p-3 rounded-lg flex items-center gap-3 cursor-pointer">
-
-                            <div class="w-10 h-10 rounded-lg bg-white shadow-sm text-[#0c5936] border border-green-100 flex items-center justify-center shrink-0">
-
-                                <i class="fa-solid fa-water text-lg"></i>
-
-                            </div>
-
-                            <div class="flex-1 min-w-0">
-
-                                <div class="flex justify-between items-center mb-0.5">
-
-                                    <h4 class="font-bold text-sm text-gray-900 truncate">
-                                        Canal Project
-                                    </h4>
-
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-green-100 text-green-700">
-                                        Active
-                                    </span>
-
-                                </div>
-
-                                <p class="text-[11px] text-gray-500 truncate mb-0.5">
-                                    Canal
-                                </p>
-
-                                <p class="text-[10px] text-gray-500 flex items-center gap-1">
-
-                                    <i class="fa-solid fa-location-dot"></i>
-
-                                    Rajasthan
-
-                                </p>
-
-                            </div>
-
-                            <i class="fa-solid fa-chevron-right text-green-600 text-xs"></i>
-
-                        </div>
-
-
-                        <!-- Project 5 -->
-                        <div class="p-3 rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50">
-
-                            <div class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center shrink-0">
-
-                                <i class="fa-solid fa-road-bridge text-lg"></i>
-
-                            </div>
-
-                            <div class="flex-1 min-w-0">
-
-                                <div class="flex justify-between items-center mb-0.5">
-
-                                    <h4 class="font-bold text-sm text-gray-900 truncate">
-                                        NHAI Highway
-                                    </h4>
-
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-orange-50 text-orange-600">
-                                        Planning
-                                    </span>
-
-                                </div>
-
-                                <p class="text-[11px] text-gray-500 truncate mb-0.5">
-                                    Highway
-                                </p>
-
-                                <p class="text-[10px] text-gray-400 flex items-center gap-1">
-
-                                    <i class="fa-solid fa-location-dot"></i>
-
-                                    Madhya Pradesh
-
-                                </p>
-
-                            </div>
-
-                            <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
-
-                        </div>
+                        No projects found.
 
                     </div>
 
-                </div>
+                `;
+
+                return;
+
+            }
 
 
-                <!-- ================================================= -->
-                <!-- RIGHT PROJECT DETAILS -->
-                <!-- ================================================= -->
-
-                <div class="flex-1 bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col h-full overflow-hidden">
+            projectList.innerHTML = "";
 
 
-                    <!-- Detail Header -->
-                    <div class="p-6 pb-0 border-b border-gray-100 shrink-0">
+            filteredProjects.forEach(
+                project => {
+
+                    const status =
+                        getProjectStatus(project);
+
+                    const statusStyle =
+                        getStatusStyle(status);
+
+                    const icon =
+                        getProjectIcon(
+                            project.project_type
+                        );
 
 
-                        <!-- Project title -->
-                        <div class="flex justify-between items-start mb-6">
+                    const isSelected =
+                        Number(selectedProjectId) ===
+                        Number(project.id);
 
 
-                            <div class="flex items-center gap-4">
+                    const projectElement =
+                        document.createElement(
+                            "div"
+                        );
 
 
-                                <div class="w-12 h-12 rounded-xl bg-green-50 text-[#0c5936] flex items-center justify-center">
-
-                                    <i class="fa-solid fa-water text-2xl"></i>
-
-                                </div>
-
-
-                                <div>
-
-                                    <h2 class="text-2xl font-bold text-gray-900 leading-tight">
-                                        Canal Project
-                                    </h2>
-
-                                    <p class="text-sm text-gray-500 flex items-center gap-2 mt-1">
-
-                                        Canal
-
-                                        <span class="text-gray-300">|</span>
-
-                                        <i class="fa-solid fa-location-dot text-gray-400"></i>
-
-                                        Rajasthan
-
-                                    </p>
-
-                                </div>
-
-                            </div>
+                    projectElement.className =
+                        isSelected
+                            ? "bg-green-50 border border-green-300 p-3 rounded-lg flex items-center gap-3 cursor-pointer"
+                            : "p-3 rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50";
 
 
-                            <!-- Risk -->
-                            <div class="bg-green-50 px-4 py-2 rounded-lg flex items-center gap-3 border border-green-100">
+                    projectElement.innerHTML = `
 
-                                <span class="text-xs font-semibold text-gray-600">
-                                    Overall Delay Risk
+                        <div class="${
+                            isSelected
+                                ? "w-10 h-10 rounded-lg bg-white shadow-sm text-[#0c5936] border border-green-100"
+                                : "w-10 h-10 rounded-lg bg-green-50 text-green-600"
+                        } flex items-center justify-center shrink-0">
+
+                            <i class="fa-solid ${icon} text-lg"></i>
+
+                        </div>
+
+
+                        <div class="flex-1 min-w-0">
+
+                            <div class="flex justify-between items-center mb-0.5">
+
+                                <h4 class="font-bold text-sm text-gray-900 truncate">
+
+                                    ${escapeHTML(
+                                        project.project_name ||
+                                        project.project_code ||
+                                        "Unnamed Project"
+                                    )}
+
+                                </h4>
+
+
+                                <span
+                                    class="px-2 py-0.5 rounded text-[10px] font-semibold
+                                    ${statusStyle.background}
+                                    ${statusStyle.text}">
+
+                                    ${escapeHTML(status)}
+
                                 </span>
 
-                                <div class="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded shadow-sm border border-gray-100">
-
-                                    <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
-
-                                    <span class="text-xs font-black text-gray-800">
-                                        LOW
-                                    </span>
-
-                                </div>
-
                             </div>
+
+
+                            <p class="text-[11px] text-gray-500 truncate mb-0.5">
+
+                                ${escapeHTML(
+                                    project.project_type ||
+                                    "Project"
+                                )}
+
+                            </p>
+
+
+                            <p
+                                class="text-[10px] text-gray-400 flex items-center gap-1">
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                ${escapeHTML(
+                                    project.state ||
+                                    "Unknown State"
+                                )}
+
+                            </p>
 
                         </div>
 
 
-                        <!-- Tabs -->
-                        <div class="flex items-center gap-8 text-sm">
+                        <i
+                            class="fa-solid fa-chevron-right
+                            ${
+                                isSelected
+                                    ? "text-green-600"
+                                    : "text-gray-300"
+                            }
+                            text-xs">
+                        </i>
 
-                            <a href="#" class="tab-active pb-3">
-                                Overview
-                            </a>
+                    `;
 
-                            <a href="#" class="tab-inactive pb-3 transition-colors">
-                                Land Acquisition
-                            </a>
 
-                            <a href="#" class="tab-inactive pb-3 transition-colors">
-                                GIS Analysis
-                            </a>
+                    projectElement.addEventListener(
+                        "click",
+                        async () => {
 
-                            <a href="#" class="tab-inactive pb-3 transition-colors">
-                                Documents
-                            </a>
+                            selectedProjectId =
+                                project.id;
 
-                            <a href="#" class="tab-inactive pb-3 transition-colors">
-                                Updates
-                            </a>
+                            renderProjectList();
 
-                        </div>
+                            await loadProjectDetails(
+                                project.id
+                            );
 
-                    </div>
+                        }
+                    );
 
 
-                    <!-- Detail Content -->
-                    <div class="flex-1 overflow-y-auto p-6 scrollbar-hide">
+                    projectList.appendChild(
+                        projectElement
+                    );
 
+                }
+            );
 
-                        <!-- ================================================= -->
-                        <!-- STAGES + MAP -->
-                        <!-- ================================================= -->
+        }
 
-                        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
 
+        /* LOAD PROJECT DETAILS */
 
-                            <!-- PROJECT STAGES -->
-                            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+        async function loadProjectDetails(
+            projectId
+        ) {
 
-                                <div class="flex justify-between items-center mb-6">
+            try {
 
-                                    <h3 class="font-bold text-gray-900">
-                                        Project Stages
-                                    </h3>
+                const response =
+                    await fetch(
+                        `${API_BASE}/projects/${projectId}`
+                    );
 
-                                    <span class="text-xs font-bold text-gray-500">
-                                        Delay Risk
-                                    </span>
 
-                                </div>
+                if (!response.ok) {
 
+                    throw new Error(
+                        `Failed to load project: ${response.status}`
+                    );
 
-                                <div class="relative space-y-6">
+                }
 
 
-                                    <!-- Step 1 -->
-                                    <div class="relative z-10 flex items-start gap-4">
+                const project =
+                    await response.json();
 
-                                        <div class="step-line"></div>
 
-                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
-                                            1
-                                        </div>
+                displayProjectDetails(
+                    project
+                );
 
-                                        <div class="flex-1">
 
-                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">
-                                                Notification
-                                            </h4>
+                await loadPrediction(
+                    project.id
+                );
 
-                                            <p class="text-[11px] text-gray-500">
-                                                Issue of preliminary notification
-                                            </p>
 
-                                        </div>
+            } catch (error) {
 
-                                        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
+                console.error(
+                    "Project details error:",
+                    error
+                );
 
-                                            <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
 
-                                            <span class="text-[10px] font-bold text-gray-700">
-                                                LOW
-                                            </span>
+                document.getElementById(
+                    "prediction-message-text"
+                ).textContent =
+                    "Unable to load project details.";
 
-                                        </div>
+            }
 
-                                    </div>
+        }
 
 
-                                    <!-- Step 2 -->
-                                    <div class="relative z-10 flex items-start gap-4">
+        /* DISPLAY PROJECT DETAILS */
 
-                                        <div class="step-line"></div>
+        function displayProjectDetails(
+            project
+        ) {
 
-                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
-                                            2
-                                        </div>
+            const icon =
+                getProjectIcon(
+                    project.project_type
+                );
 
-                                        <div class="flex-1">
 
-                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">
-                                                Survey
-                                            </h4>
+            document.getElementById(
+                "detail-project-name"
+            ).textContent =
+                project.project_name ||
+                project.project_code ||
+                "Unnamed Project";
 
-                                            <p class="text-[11px] text-gray-500">
-                                                Field survey and land measurement
-                                            </p>
 
-                                        </div>
+            document.getElementById(
+                "detail-project-type"
+            ).textContent =
+                project.project_type ||
+                "Project";
 
-                                        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-orange-50 border border-orange-100 shrink-0">
 
-                                            <div class="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+            document.getElementById(
+                "detail-project-state"
+            ).textContent =
+                project.state ||
+                "Unknown State";
 
-                                            <span class="text-[10px] font-bold text-orange-600">
-                                                MEDIUM
-                                            </span>
 
-                                        </div>
+            document.getElementById(
+                "detail-project-icon"
+            ).innerHTML = `
+                <i class="fa-solid ${icon} text-2xl"></i>
+            `;
 
-                                    </div>
 
+            document.getElementById(
+                "map-label-1"
+            ).textContent =
+                project.district ||
+                "District";
 
-                                    <!-- Step 3 -->
-                                    <div class="relative z-10 flex items-start gap-4">
 
-                                        <div class="step-line"></div>
+            document.getElementById(
+                "map-label-2"
+            ).textContent =
+                project.state ||
+                "State";
 
-                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
-                                            3
-                                        </div>
+        }
 
-                                        <div class="flex-1">
 
-                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">
-                                                Objection
-                                            </h4>
+        /* LOAD ML PREDICTION */
 
-                                            <p class="text-[11px] text-gray-500">
-                                                Hearing of objections
-                                            </p>
+        async function loadPrediction(
+            projectId
+        ) {
 
-                                        </div>
+            const riskFactorsContainer =
+                document.getElementById(
+                    "prediction-risk-factors"
+                );
 
-                                        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
 
-                                            <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+            riskFactorsContainer.innerHTML = `
+                <p class="text-sm text-gray-400">
+                    Running delay prediction...
+                </p>
+            `;
 
-                                            <span class="text-[10px] font-bold text-gray-700">
-                                                LOW
-                                            </span>
 
-                                        </div>
+            try {
 
-                                    </div>
+                const response =
+                    await fetch(
+                        `${API_BASE}/projects/${projectId}/predict`,
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            }
+                        }
+                    );
 
 
-                                    <!-- Step 4 -->
-                                    <div class="relative z-10 flex items-start gap-4">
+                if (!response.ok) {
 
-                                        <div class="step-line"></div>
+                    const errorData =
+                        await response
+                            .json()
+                            .catch(
+                                () => null
+                            );
 
-                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
-                                            4
-                                        </div>
 
-                                        <div class="flex-1">
+                    throw new Error(
+                        errorData?.detail
+                            ? JSON.stringify(
+                                errorData.detail
+                            )
+                            : `Prediction failed: ${response.status}`
+                    );
 
-                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">
-                                                Compensation
-                                            </h4>
+                }
 
-                                            <p class="text-[11px] text-gray-500">
-                                                Compensation calculation & disbursal
-                                            </p>
 
-                                        </div>
+                const prediction =
+                    await response.json();
 
-                                        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
 
-                                            <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                console.log(
+                    "Prediction:",
+                    prediction
+                );
 
-                                            <span class="text-[10px] font-bold text-gray-700">
-                                                LOW
-                                            </span>
 
-                                        </div>
+                updatePredictionUI(
+                    prediction
+                );
 
-                                    </div>
 
+            } catch (error) {
 
-                                    <!-- Step 5 -->
-                                    <div class="relative z-10 flex items-start gap-4">
+                console.error(
+                    "Prediction error:",
+                    error
+                );
 
-                                        <div class="w-6 h-6 rounded-full bg-[#0c5936] text-white flex items-center justify-center text-xs font-bold shrink-0 z-10">
-                                            5
-                                        </div>
 
-                                        <div class="flex-1">
+                document.getElementById(
+                    "overall-risk-level"
+                ).textContent =
+                    "—";
 
-                                            <h4 class="text-sm font-bold text-gray-900 leading-none mb-1">
-                                                Possession
-                                            </h4>
 
-                                            <p class="text-[11px] text-gray-500">
-                                                Handover of land
-                                            </p>
+                document.getElementById(
+                    "prediction-risk-level"
+                ).textContent =
+                    "—";
 
-                                        </div>
 
-                                        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-50 border border-green-100 shrink-0">
+                riskFactorsContainer.innerHTML = `
 
-                                            <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                    <p class="text-sm text-red-500 font-semibold">
 
-                                            <span class="text-[10px] font-bold text-gray-700">
-                                                LOW
-                                            </span>
+                        Prediction unavailable.
 
-                                        </div>
+                    </p>
 
-                                    </div>
+                    <p class="text-[11px] text-gray-400">
 
-                                </div>
+                        Check the FastAPI prediction endpoint.
 
-                            </div>
+                    </p>
 
+                `;
 
-                            <!-- ================================================= -->
-                            <!-- MAP -->
-                            <!-- ================================================= -->
 
-                            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm flex flex-col">
+                document.getElementById(
+                    "prediction-message-text"
+                ).textContent =
+                    "The delay prediction could not be generated.";
 
-                                <div class="flex justify-between items-center mb-4 shrink-0">
+            }
 
-                                    <h3 class="font-bold text-gray-900">
-                                        Project Area Map
-                                    </h3>
+        }
 
-                                    <a href="#"
-                                       class="text-xs font-bold text-[#0c5936] hover:underline flex items-center gap-1">
 
-                                        View Full Map
+        /* UPDATE PREDICTION UI */
 
-                                        <i class="fa-solid fa-arrow-right"></i>
+        function updatePredictionUI(
+            prediction
+        ) {
 
-                                    </a>
+            const risk =
+                String(
+                    prediction.risk_level || ""
+                ).toUpperCase();
 
-                                </div>
 
+            const riskStyle =
+                getRiskStyle(risk);
 
-                                <div class="flex-1 rounded-lg relative overflow-hidden min-h-[250px] map-background">
 
+            const overallRiskBox =
+                document.getElementById(
+                    "overall-risk-box"
+                );
 
-                                    <!-- Light overlay -->
-                                    <div class="absolute inset-0 bg-white/30"></div>
 
+            const overallRiskDot =
+                document.getElementById(
+                    "overall-risk-dot"
+                );
 
-                                    <!-- Green Buffer Zone -->
-                                    <div
-                                        class="absolute w-[75%] h-[48%] bg-green-400/25 border border-green-400/40 rounded-[45%] rotate-[20deg] top-[25%] left-[12%]">
-                                    </div>
 
+            const overallRiskLevel =
+                document.getElementById(
+                    "overall-risk-level"
+                );
 
-                                    <!-- Blue route -->
-                                    <svg
-                                        class="absolute inset-0 w-full h-full"
-                                        viewBox="0 0 800 400"
-                                        preserveAspectRatio="none">
 
-                                        <path
-                                            d="M130 100
-                                               C200 130, 250 180, 320 170
-                                               C390 160, 410 220, 470 215
-                                               C540 210, 570 280, 650 270"
-                                            fill="none"
-                                            stroke="#2563eb"
-                                            stroke-width="6"
-                                            stroke-linecap="round"
-                                        />
+            overallRiskBox.className =
+                `px-4 py-2 rounded-lg flex items-center gap-3 border ${riskStyle.box} ${riskStyle.border}`;
 
-                                    </svg>
 
+            overallRiskDot.className =
+                `w-2.5 h-2.5 rounded-full ${riskStyle.dot}`;
 
-                                    <!-- Start Point -->
-                                    <div class="absolute top-[22%] left-[17%]">
 
-                                        <div class="bg-[#0c5936] text-white text-[9px] font-bold px-2 py-1 rounded-full absolute -top-7 -left-5 whitespace-nowrap shadow">
-                                            Start Point
-                                        </div>
+            overallRiskLevel.className =
+                `text-xs font-black ${riskStyle.text}`;
 
-                                        <div class="w-3 h-3 bg-blue-600 rounded-full border-2 border-white shadow"></div>
 
-                                    </div>
+            overallRiskLevel.textContent =
+                risk || "—";
 
 
-                                    <!-- End Point -->
-                                    <div class="absolute bottom-[25%] right-[17%]">
+            const predictionRiskDot =
+                document.getElementById(
+                    "prediction-risk-dot"
+                );
 
-                                        <div class="bg-red-500 text-white text-[9px] font-bold px-2 py-1 rounded-full absolute -top-7 -left-4 whitespace-nowrap shadow">
-                                            End Point
-                                        </div>
 
-                                        <div class="w-3 h-3 bg-red-500 rounded-full border-2 border-white shadow"></div>
+            const predictionRiskLevel =
+                document.getElementById(
+                    "prediction-risk-level"
+                );
 
-                                    </div>
 
+            predictionRiskDot.className =
+                `w-3 h-3 rounded-full ${riskStyle.dot} shadow-sm`;
 
-                                    <!-- Village points -->
-                                    <div class="absolute top-[35%] left-[30%] w-2 h-2 bg-orange-400 rounded-full"></div>
 
-                                    <div class="absolute top-[55%] left-[43%] w-2 h-2 bg-orange-400 rounded-full"></div>
+            predictionRiskLevel.className =
+                `text-sm font-black ${riskStyle.text}`;
 
-                                    <div class="absolute top-[40%] left-[55%] w-2 h-2 bg-orange-400 rounded-full"></div>
 
-                                    <div class="absolute bottom-[35%] right-[30%] w-2 h-2 bg-orange-400 rounded-full"></div>
+            predictionRiskLevel.textContent =
+                risk || "—";
 
 
-                                    <!-- Map Labels -->
-                                    <span class="absolute top-[30%] left-[68%] text-[11px] font-semibold text-gray-700">
-                                        Bikaner
-                                    </span>
+            const riskFactorsContainer =
+                document.getElementById(
+                    "prediction-risk-factors"
+                );
 
-                                    <span class="absolute bottom-[25%] left-[35%] text-[11px] font-semibold text-gray-700">
-                                        Nagaur
-                                    </span>
 
-                                    <span class="absolute bottom-[10%] left-[8%] text-[11px] font-semibold text-gray-700">
-                                        Jodhpur
-                                    </span>
+            riskFactorsContainer.innerHTML = "";
 
 
-                                    <!-- Legend -->
-                                    <div class="absolute top-3 right-3 bg-white/95 backdrop-blur p-2.5 rounded shadow-sm border border-gray-200 text-[9px]">
+            if (
+                prediction.risk_factors &&
+                prediction.risk_factors.length > 0
+            ) {
 
-                                        <div class="flex items-center gap-1.5 mb-1.5">
+                prediction.risk_factors.forEach(
+                    factor => {
 
-                                            <div class="w-4 h-0.5 bg-blue-600"></div>
+                        const factorItem =
+                            document.createElement(
+                                "div"
+                            );
 
-                                            <span class="text-gray-700 font-medium">
-                                                Project Alignment
-                                            </span>
 
-                                        </div>
+                        factorItem.className =
+                            "flex items-start gap-2 text-sm font-bold text-gray-900";
 
-                                        <div class="flex items-center gap-1.5 mb-1.5">
 
-                                            <div class="w-4 h-2 bg-green-200 border border-green-300"></div>
+                        factorItem.innerHTML = `
 
-                                            <span class="text-gray-700 font-medium">
-                                                Buffer Zone
-                                            </span>
+                            <i
+                                class="fa-solid fa-circle-exclamation text-orange-500 mt-1 text-xs">
+                            </i>
 
-                                        </div>
+                            <span>
+                                ${escapeHTML(factor)}
+                            </span>
 
-                                        <div class="flex items-center gap-1.5">
+                        `;
 
-                                            <div class="w-2 h-2 rounded-full bg-orange-400"></div>
 
-                                            <span class="text-gray-700 font-medium">
-                                                Major Villages
-                                            </span>
+                        riskFactorsContainer.appendChild(
+                            factorItem
+                        );
 
-                                        </div>
+                    }
+                );
 
-                                    </div>
+            } else {
 
+                riskFactorsContainer.innerHTML = `
 
-                                    <!-- Zoom controls -->
-                                    <div class="absolute bottom-3 right-3 bg-white rounded shadow flex flex-col border border-gray-200">
+                    <p class="text-sm text-green-700 font-semibold">
 
-                                        <button
-                                            class="w-7 h-7 flex items-center justify-center text-gray-600 hover:bg-gray-50 border-b border-gray-200">
+                        No major risk factors identified.
 
-                                            <i class="fa-solid fa-plus text-[10px]"></i>
+                    </p>
 
-                                        </button>
+                `;
 
-                                        <button
-                                            class="w-7 h-7 flex items-center justify-center text-gray-600 hover:bg-gray-50">
+            }
 
-                                            <i class="fa-solid fa-minus text-[10px]"></i>
 
-                                        </button>
+            const messageBox =
+                document.getElementById(
+                    "prediction-message"
+                );
 
-                                    </div>
 
-                                </div>
+            const messageIcon =
+                messageBox.querySelector(
+                    "i"
+                );
 
-                            </div>
 
-                        </div>
+            const messageText =
+                document.getElementById(
+                    "prediction-message-text"
+                );
 
 
-                        <!-- ================================================= -->
-                        <!-- GIS + DELAY -->
-                        <!-- ================================================= -->
+            if (risk === "LOW") {
 
-                        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+                messageBox.className =
+                    "mt-auto bg-green-50 p-4 rounded-lg border border-green-100 flex items-start gap-3";
 
 
-                            <!-- GIS CLEARANCE -->
-                            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+                messageIcon.className =
+                    "fa-regular fa-lightbulb text-green-600 mt-0.5 text-lg";
 
-                                <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-1.5">
 
-                                    GIS Based Land Clearance
+                messageText.className =
+                    "text-xs text-green-800 font-semibold leading-relaxed";
 
-                                    <i class="fa-regular fa-circle-question text-gray-400 text-xs"></i>
 
-                                </h3>
+                messageText.textContent =
+                    "Project currently shows a low predicted delay risk.";
 
+            }
 
-                                <div class="grid grid-cols-4 gap-3 mb-4">
+            else if (risk === "MEDIUM") {
 
+                messageBox.className =
+                    "mt-auto bg-orange-50 p-4 rounded-lg border border-orange-100 flex items-start gap-3";
 
-                                    <!-- Government -->
-                                    <div class="bg-green-50/50 p-3 rounded-lg border border-green-100 text-center flex flex-col items-center justify-center">
 
-                                        <i class="fa-solid fa-leaf text-green-600 text-lg mb-2"></i>
+                messageIcon.className =
+                    "fa-regular fa-lightbulb text-orange-600 mt-0.5 text-lg";
 
-                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">
-                                            Government Land
-                                        </p>
 
-                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">
-                                            65%
-                                        </p>
+                messageText.className =
+                    "text-xs text-orange-800 font-semibold leading-relaxed";
 
-                                        <p class="text-[10px] font-bold text-green-700">
-                                            Clear
-                                        </p>
 
-                                    </div>
+                messageText.textContent =
+                    "Project shows a medium predicted delay risk. The identified risk factors should be monitored.";
 
+            }
 
-                                    <!-- Private -->
-                                    <div class="bg-orange-50/50 p-3 rounded-lg border border-orange-100 text-center flex flex-col items-center justify-center">
+            else if (
+                risk === "HIGH" ||
+                risk === "CRITICAL"
+            ) {
 
-                                        <i class="fa-solid fa-house text-orange-500 text-lg mb-2"></i>
+                messageBox.className =
+                    "mt-auto bg-red-50 p-4 rounded-lg border border-red-100 flex items-start gap-3";
 
-                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">
-                                            Private Land
-                                        </p>
 
-                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">
-                                            20%
-                                        </p>
+                messageIcon.className =
+                    "fa-regular fa-lightbulb text-red-600 mt-0.5 text-lg";
 
-                                        <p class="text-[10px] font-bold text-orange-600 leading-tight">
-                                            Verification Required
-                                        </p>
 
-                                    </div>
+                messageText.className =
+                    "text-xs text-red-800 font-semibold leading-relaxed";
 
 
-                                    <!-- Protected -->
-                                    <div class="bg-red-50/50 p-3 rounded-lg border border-red-100 text-center flex flex-col items-center justify-center">
+                messageText.textContent =
+                    "Project shows elevated predicted delay risk. The identified risk factors require attention.";
 
-                                        <i class="fa-solid fa-tree text-red-500 text-lg mb-2"></i>
+            }
 
-                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">
-                                            Protected Land
-                                        </p>
+            else {
 
-                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">
-                                            10%
-                                        </p>
+                messageBox.className =
+                    "mt-auto bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-start gap-3";
 
-                                        <p class="text-[10px] font-bold text-red-600 leading-tight">
-                                            Clearance Required
-                                        </p>
 
-                                    </div>
+                messageIcon.className =
+                    "fa-regular fa-lightbulb text-gray-500 mt-0.5 text-lg";
 
 
-                                    <!-- Tribal -->
-                                    <div class="bg-purple-50/50 p-3 rounded-lg border border-purple-100 text-center flex flex-col items-center justify-center">
+                messageText.className =
+                    "text-xs text-gray-700 font-semibold leading-relaxed";
 
-                                        <i class="fa-solid fa-people-group text-purple-600 text-lg mb-2"></i>
 
-                                        <p class="text-[10px] font-bold text-gray-700 mb-0.5">
-                                            Tribal Land
-                                        </p>
+                messageText.textContent =
+                    "Prediction information is currently unavailable.";
 
-                                        <p class="text-lg font-black text-gray-900 leading-none mb-1">
-                                            5%
-                                        </p>
+            }
 
-                                        <p class="text-[10px] font-bold text-purple-700 leading-tight">
-                                            Special Clearance
-                                        </p>
+        }
 
-                                    </div>
 
-                                </div>
+        /* NO PROJECTS */
 
+        function showNoProjects() {
 
-                                <!-- Information -->
-                                <div class="bg-blue-50/50 border border-blue-100 p-3 rounded-lg flex items-start gap-2.5">
+            document.getElementById(
+                "project-count"
+            ).textContent =
+                "(0)";
 
-                                    <i class="fa-solid fa-circle-info text-blue-500 mt-0.5 text-sm"></i>
 
-                                    <p class="text-[11px] text-blue-800 font-medium leading-relaxed">
+            document.getElementById(
+                "project-list"
+            ).innerHTML = `
 
-                                        GIS analysis indicates that the project area contains protected land and tribal land.
-                                        Additional clearances may be required from respective authorities.
+                <div class="p-6 text-sm text-gray-400 text-center">
 
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- ================================================= -->
-                            <!-- DELAY PREDICTION -->
-                            <!-- ================================================= -->
-
-                            <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm h-full flex flex-col">
-
-                                <h3 class="font-bold text-gray-900 mb-4">
-                                    Delay Prediction
-                                </h3>
-
-
-                                <!-- Prediction -->
-                                <div class="flex justify-between items-start mb-6">
-
-
-                                    <div class="flex items-start gap-3">
-
-                                        <div class="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
-
-                                            <i class="fa-regular fa-calendar-days text-gray-500 text-lg"></i>
-
-                                        </div>
-
-
-                                        <div>
-
-                                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wide">
-                                                Predicted Delay
-                                            </p>
-
-                                            <p class="text-2xl font-black text-gray-900 leading-none mt-1">
-                                                2 Months
-                                            </p>
-
-                                        </div>
-
-                                    </div>
-
-
-                                    <!-- Risk -->
-                                    <div class="text-right">
-
-                                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wide mb-1.5">
-                                            Risk Level
-                                        </p>
-
-                                        <div class="flex items-center justify-end gap-1.5">
-
-                                            <div class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></div>
-
-                                            <span class="text-sm font-black text-gray-900">
-                                                LOW
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-
-                                <!-- Risk Factors -->
-                                <div class="flex items-start gap-3 pt-2 mb-6">
-
-                                    <div class="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
-
-                                        <i class="fa-solid fa-list-check text-gray-500 text-lg"></i>
-
-                                    </div>
-
-
-                                    <div>
-
-                                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wide">
-                                            Main Risk Factors
-                                        </p>
-
-                                        <p class="text-sm font-bold text-gray-900 mt-1">
-                                            Survey / Objection
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-
-                                <!-- Bottom message -->
-                                <div class="mt-auto bg-green-50 p-4 rounded-lg border border-green-100 flex items-start gap-3">
-
-                                    <i class="fa-regular fa-lightbulb text-green-600 mt-0.5 text-lg"></i>
-
-                                    <p class="text-xs text-green-800 font-semibold leading-relaxed">
-
-                                        Project is likely to be completed within expected timeline with minimal delays.
-
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                    No projects available.
 
                 </div>
 
-            </div>
-
-        </main>
+            `;
 
 
-    <!-- Chart Setup -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Project Progress Chart (Donut)
-            const ctx = document.getElementById('progressChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Completed', 'Ongoing', 'Delayed'],
-                    datasets: [{
-                        data: [62, 47, 15],
-                        backgroundColor: ['#0ea5e9', '#3b82f6', '#ef4444'], // specific matching colors
-                        borderWidth: 0,
-                        cutout: '70%'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }, // Custom legend is built in HTML
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return ' ' + context.label + ': ' + context.raw;
-                                }
-                            }
+            document.getElementById(
+                "detail-project-name"
+            ).textContent =
+                "No Projects";
+
+
+            document.getElementById(
+                "detail-project-type"
+            ).textContent =
+                "—";
+
+
+            document.getElementById(
+                "detail-project-state"
+            ).textContent =
+                "—";
+
+        }
+
+
+        /* FILTER EVENTS */
+
+        document
+            .getElementById(
+                "project-type-filter"
+            )
+            .addEventListener(
+                "change",
+                renderProjectList
+            );
+
+
+        document
+            .getElementById(
+                "state-filter"
+            )
+            .addEventListener(
+                "change",
+                renderProjectList
+            );
+
+
+        document
+            .getElementById(
+                "project-search"
+            )
+            .addEventListener(
+                "input",
+                renderProjectList
+            );
+
+
+        /* =========================================
+           LIVE AI DEMO DATA
+           ========================================= */
+
+        const LIVE_DEMO_DATA = {
+
+            project_code: "JUDGE-DEMO-001",
+
+            state: "West Bengal",
+
+            district: "Howrah",
+
+            latitude: 22.5958,
+
+            longitude: 88.2636,
+
+            project_type: "Road",
+
+            land_area: 5.0,
+
+            project_cost: 500000000,
+
+            affected_families: 10,
+
+            landowners: 8,
+
+            rehabilitation_required: 0,
+
+            rr_required: 0,
+
+            stakeholder_responsiveness: 0.95,
+
+            pending_approvals: 1,
+
+            approval_delay_days: 5,
+
+            documentation_completion: 0.95,
+
+            departments_involved: 2,
+
+            notification_status: "Completed",
+
+            legal_disputes: 0,
+
+            court_cases: 0,
+
+            ownership_conflicts: 0,
+
+            objections_count: 0,
+
+            compensation_total: 10000000,
+
+            compensation_paid: 9500000,
+
+            compensation_completion: 0.95,
+
+            funding_status: "Fully Funded",
+
+            rr_completion: 0.95,
+
+            current_stage: "Land Acquisition",
+
+            planned_duration: 180,
+
+            elapsed_days: 60,
+
+            possession_percentage: 90,
+
+            milestone_delay_days: 5,
+
+            district_historical_delay_rate: 0.10,
+
+            state_historical_delay_rate: 0.12
+
+        };
+
+
+        /* OPEN LIVE DEMO */
+
+        function openLiveDemo() {
+
+            const modal =
+                document.getElementById(
+                    "live-demo-modal"
+                );
+
+            modal.classList.remove("hidden");
+
+            modal.classList.add("flex");
+
+            loadDemoDataset();
+
+        }
+
+
+        /* CLOSE LIVE DEMO */
+
+        function closeLiveDemo() {
+
+            const modal =
+                document.getElementById(
+                    "live-demo-modal"
+                );
+
+            modal.classList.add("hidden");
+
+            modal.classList.remove("flex");
+
+        }
+
+
+        /* LOAD DEMO DATA */
+
+        function loadDemoDataset() {
+
+            document.getElementById(
+                "demo-project-code"
+            ).value =
+                LIVE_DEMO_DATA.project_code;
+
+
+            document.getElementById(
+                "demo-project-type"
+            ).value =
+                LIVE_DEMO_DATA.project_type;
+
+
+            document.getElementById(
+                "demo-state"
+            ).value =
+                LIVE_DEMO_DATA.state;
+
+
+            document.getElementById(
+                "demo-district"
+            ).value =
+                LIVE_DEMO_DATA.district;
+
+
+            document.getElementById(
+                "demo-stakeholder"
+            ).value =
+                LIVE_DEMO_DATA.stakeholder_responsiveness;
+
+
+            document.getElementById(
+                "demo-approval-delay"
+            ).value =
+                LIVE_DEMO_DATA.approval_delay_days;
+
+
+            document.getElementById(
+                "demo-milestone-delay"
+            ).value =
+                LIVE_DEMO_DATA.milestone_delay_days;
+
+
+            document.getElementById(
+                "demo-possession"
+            ).value =
+                LIVE_DEMO_DATA.possession_percentage;
+
+
+            document.getElementById(
+                "live-demo-result"
+            ).classList.add("hidden");
+
+
+            document.getElementById(
+                "live-demo-error"
+            ).classList.add("hidden");
+
+        }
+
+
+        /* RUN LIVE PREDICTION */
+
+        async function runLivePrediction() {
+
+            const button =
+                document.getElementById(
+                    "run-demo-button"
+                );
+
+
+            const resultBox =
+                document.getElementById(
+                    "live-demo-result"
+                );
+
+
+            const errorBox =
+                document.getElementById(
+                    "live-demo-error"
+                );
+
+
+            const errorText =
+                document.getElementById(
+                    "live-demo-error-text"
+                );
+
+
+            errorBox.classList.add(
+                "hidden"
+            );
+
+
+            resultBox.classList.add(
+                "hidden"
+            );
+
+
+            button.disabled = true;
+
+
+            button.innerHTML = `
+                <i class="fa-solid fa-spinner fa-spin mr-1"></i>
+                Running Prediction...
+            `;
+
+
+            try {
+
+                const data = {
+
+                    ...LIVE_DEMO_DATA,
+
+                    project_code:
+                        document.getElementById(
+                            "demo-project-code"
+                        ).value.trim(),
+
+                    project_type:
+                        document.getElementById(
+                            "demo-project-type"
+                        ).value.trim(),
+
+                    state:
+                        document.getElementById(
+                            "demo-state"
+                        ).value.trim(),
+
+                    district:
+                        document.getElementById(
+                            "demo-district"
+                        ).value.trim(),
+
+                    stakeholder_responsiveness:
+                        Number(
+                            document.getElementById(
+                                "demo-stakeholder"
+                            ).value
+                        ),
+
+                    approval_delay_days:
+                        Number(
+                            document.getElementById(
+                                "demo-approval-delay"
+                            ).value
+                        ),
+
+                    milestone_delay_days:
+                        Number(
+                            document.getElementById(
+                                "demo-milestone-delay"
+                            ).value
+                        ),
+
+                    possession_percentage:
+                        Number(
+                            document.getElementById(
+                                "demo-possession"
+                            ).value
+                        )
+
+                };
+
+
+                const response =
+                    await fetch(
+                        `${API_BASE}/predict`,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify(data)
+
                         }
-                    }
+                    );
+
+
+                const prediction =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        prediction?.detail
+                            ? JSON.stringify(
+                                prediction.detail
+                            )
+                            : `Prediction failed: ${response.status}`
+                    );
+
                 }
-            });
-        });
+
+
+                console.log(
+                    "Live demo prediction:",
+                    prediction
+                );
+
+
+                displayLiveDemoResult(
+                    prediction
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Live demo error:",
+                    error
+                );
+
+
+                errorText.textContent =
+                    `Prediction failed: ${error.message}`;
+
+
+                errorBox.classList.remove(
+                    "hidden"
+                );
+
+
+            } finally {
+
+                button.disabled = false;
+
+
+                button.innerHTML = `
+                    <i class="fa-solid fa-brain mr-1"></i>
+                    Run AI Prediction
+                `;
+
+            }
+
+        }
+
+
+        /* DISPLAY LIVE DEMO RESULT */
+
+        function displayLiveDemoResult(
+            prediction
+        ) {
+
+            const resultBox =
+                document.getElementById(
+                    "live-demo-result"
+                );
+
+
+            const probability =
+                document.getElementById(
+                    "demo-probability"
+                );
+
+
+            const riskLevel =
+                document.getElementById(
+                    "demo-risk-level"
+                );
+
+
+            const delayRisk =
+                document.getElementById(
+                    "demo-delay-risk"
+                );
+
+
+            const modelVersion =
+                document.getElementById(
+                    "demo-model-version"
+                );
+
+
+            const factors =
+                document.getElementById(
+                    "demo-risk-factors"
+                );
+
+
+            probability.textContent =
+                `${prediction.delay_probability}%`;
+
+
+            riskLevel.textContent =
+                prediction.risk_level || "—";
+
+
+            delayRisk.textContent =
+                prediction.delay_risk ?? "—";
+
+
+            modelVersion.textContent =
+                prediction.model_version
+                    ? `Model v${prediction.model_version}`
+                    : "Random Forest";
+
+
+            const risk =
+                String(
+                    prediction.risk_level || ""
+                ).toUpperCase();
+
+
+            const riskStyle =
+                getRiskStyle(risk);
+
+
+            riskLevel.className =
+                `text-2xl font-black mt-2 ${riskStyle.text}`;
+
+
+            if (
+                prediction.risk_factors &&
+                prediction.risk_factors.length > 0
+            ) {
+
+                factors.innerHTML =
+                    prediction.risk_factors
+                        .map(
+                            factor => `
+
+                                <div class="flex items-center gap-2 mb-2">
+
+                                    <i class="fa-solid fa-circle-exclamation text-orange-500 text-xs"></i>
+
+                                    <span class="font-semibold">
+                                        ${escapeHTML(factor)}
+                                    </span>
+
+                                </div>
+
+                            `
+                        )
+                        .join("");
+
+            } else {
+
+                factors.innerHTML = `
+
+                    <span class="text-green-700 font-semibold">
+
+                        No major risk factors identified.
+
+                    </span>
+
+                `;
+
+            }
+
+
+            resultBox.classList.remove(
+                "hidden"
+            );
+
+        }
+
+
+        /* START */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            loadProjects
+        );
+
     </script>
 
-    
 </body>
+
 </html>

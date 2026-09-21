@@ -2,6 +2,8 @@ from pydantic import BaseModel
 
 
 class ProjectResponse(BaseModel):
+
+    project_name: str
     id: int
     project_code: str
     user_id: int | None
